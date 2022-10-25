@@ -1,0 +1,26 @@
+= Aktuelle Quote Anzeigen
+:allow-uri-read: 
+
+
+
+
+== Aktuelle Quote Anzeigen
+
+. Melden Sie sich bei der Azure Konsole an, navigieren Sie zum Modul „Abonnements“ und klicken Sie auf „Quoten“. Wählen Sie dann im Dropdown-Menü Provider alle Provider aus, wählen Sie im Dropdown-Menü „Alle anzeigen“ aus und wählen Sie die Azure-Region aus, in der Ihr Cloud Workspace bereitgestellt wird.
++
+image:quota1.png[""]
+
+. Dann werden Sie sehen, wie viel Sie verbrauchen gegen Wie viel Kontingent haben Sie verfügbar. In der nachstehenden Abbildung verbraucht CloudJumper 42 CPUs von den 350 CPUs, die für die BS-Produktfamilie von VMs verfügbar sind. Steigende Kontingente
++
+image:quota2.png[""]
+
+. Wenn Sie Ihre Quote erhöhen möchten, klicken Sie auf Anfrage steigern und sagen Sie es, was Sie erhöhen möchten (99% der Zeit wird dies Compute/CPUs sein).
++
+image:quota3.png[""]
+
+. Wählen Sie die Region aus, in der Ihr Cloud Workspace bereitgestellt wird, und die VM-Familie, für die Sie die Quote erhöhen möchten.
++
+image:quota4.png[""]
+
+. Geben Sie Ihre Kontaktinformationen ein und klicken Sie auf Erstellen, um die Anfrage an Microsoft zu übermitteln. In der Regel erhöhen sie das sehr schnell.
+

@@ -1,0 +1,61 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Das Command Center ist eine ausführbare Datei, die auf dem CWMGR1 Platform Server in der Bereitstellung ausgeführt wird. Der Zugriff erfolgt über eine Verbindung zur VM CWMGR1 und die lokale Ausführung auf dieser VM.
+
+Diese Applikation wurde für Fehlerbehebung, Diagnose und erweiterte Managementfunktionen konzipiert. Diese Applikation wird hauptsächlich von den internen Entwicklungs- und Support-Teams von NetApp verwendet, allerdings werden einige Funktionen gelegentlich von Kunden-Administratoren verwendet. Diese Dokumentation wird zur Unterstützung der Verwendung von Auswahlfunktionen bereitgestellt. Verwenden Sie diese Befehle sorgfältig und in Zusammenarbeit mit dem NetApp Support Team.
+
+
+
+== Command Center Wird Ausgeführt
+
+.So führen Sie die Command Center-Anwendung aus:
+. Verbindung zum Server herstellen Klicken Sie auf der Seite _VDS > Bereitstellung > Plattformserver_ auf das Symbol _Actions_ und wählen Sie „Verbinden“ aus.
++
+image::Management.command_center_overview-68087.png[Management.command Übersicht Mitte 68087]
+
+. Geben Sie bei Aufforderung zur Eingabe von Anmeldedaten die Anmeldedaten für den Domänenadministrator ein
++
+.. Der Benutzer muss Mitglied der Sicherheitsgruppe „CW-Infrastructure“ sein. Aus Konsistenzgründen empfehlen wir, diese Mitgliedschaft hinzuzufügen, indem wir den Benutzer zur Gruppe „Level 3 Technicians“ in _AD > Cloud Workspace > Cloud Workspace Tech Users > Groups_ machen
++
+image::Management.command_center_overview-1c42d.png[Management.command Mittelübersicht 1c42d]
+
+
+
+. Suchen Sie das Desktop-Symbol für _Command Center_ und führen Sie es aus
++
+image::Management.command_center_overview-3c860.png[Management.command Übersicht Mitte 3c860]
+
++
+.. Um die erweiterte Registerkarte zu aktivieren, starten Sie die Anwendung mit dem Schalter "-showadvancedtab".
+
+
+
+
+
+
+=== Registerkarte „Vorgänge“
+
+image::Management.command_center_overview-b614e.png[Management.command Übersicht Zentrum b614e]
+
+Im Menü *Befehl* können Sie aus einer Liste von Aktionen auswählen (siehe unten).
+
+Sobald ein Befehl ausgewählt wurde, können die Daten mit Bereitstellungsdaten über die Schaltfläche *Daten laden* ausgefüllt werden. Die Schaltfläche Daten laden wird auch verwendet, um den Hypervisor nach Daten zu fragen, sobald eine frühere Auswahl getroffen wurde (z. B. Laden einer Liste der verfügbaren Backup-Daten nach Auswahl einer bestimmten VM aus einer Dropdown-Liste)
+
+image::Management.command_center_overview-85417.png[Management.command Übersicht Mitte 85417]
+
+Nachdem Sie eine Auswahl auf einem Befehl getroffen haben, wird der ausgewählte Prozess durch Klicken auf *Befehl ausführen* ausgeführt.
+
+Um Protokolle zu prüfen, klicken Sie auf die Schaltfläche *Alle Protokolle anzeigen*. Die RAW-Textdatei wird geöffnet, wobei die neuesten Einträge unten angezeigt werden.
+
+
+
+==== Befehlsliste
+
+* link:Management.command_center.operations.copy_template_to_gallery.html["Vorlage in Galerie kopieren"]
+

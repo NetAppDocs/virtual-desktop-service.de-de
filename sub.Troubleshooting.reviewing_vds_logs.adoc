@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.reviewing_vds_logs.html 
+summary: Schritt-für-Schritt-Anleitung zur Fehlerbehebung bei fehlgeschlagenen VDS-Aktionen 
+keywords:  
+---
+= Fehlerbehebung bei fehlgeschlagenen VDS-Aktionen
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Ein Großteil der Protokollierung, die in VDS stattfindet, ist in der Web-UI aufgrund des schieren Volumens nicht zugänglich. Detailliertere Protokolle finden Sie am Endpunkt. Diese Protokolle werden im Folgenden beschrieben.
+
+In VDS v5.4+ werden die Protokolle im folgenden Ordnerpfad gefunden:
+
+ C:\programdata\cloudworkspace
+In früheren VDS-Versionen können sie sich in den folgenden Pfaden befinden:
+
+....
+C:\Program Files\CloudWorkspace\
+C:\Program Files\CloudJumper\
+C:\Program Files\IndependenceIT\
+....
+
+NOTE: Der Dateityp variiert auch nach VDS-Version. Protokolldateien sind entweder .txt- oder .log-Dateien, die in Unterordnern des oben beschriebenen Pfads gefunden werden.
+
+
+
+== Automatisierungsprotokolle
+
+
+
+=== CW VM Automation Service-Protokoll
+
+ CwVmAutomationService.log
+Der CW VM Automation Service ist ein Windows-Dienst, der für das Management aller virtuellen Maschinen in der Bereitstellung verantwortlich ist. Als Windows-Dienst wird er immer in einer Bereitstellung ausgeführt, hat aber zwei Hauptbetriebsarten: Den geplanten Task-Modus und den Ereignismodus.
+
+Der geplante Task-Modus besteht aus Aktivitäten, die im Rahmen eines Zeitplans auf den VMs ausgeführt werden, einschließlich Erfassung von Sizing- und Performance-Daten, Neubooten von VMs, Einchecking-Status (ein oder aus) im Vergleich zu Regelsätzen, die durch die Funktionen „Workload Schedule“ und „Live Scaling“ generiert werden. Die Protokolle bezeichnen diese Aktionstypen in der 5. Spalte mit Namen wie „tägliche Aktionen“, „wöchentliche Aktionen“ und „tägliche Wartung“. Wenn Sie Fragen wie „Warum hat Server X Neustart letzte Nacht um 2:00 am“ oder „Warum ist dieser Server an, wenn ich denke, es sollte aus“ beheben, dann sind die geplanten Aufgaben für diese spezifischen VMs in der Regel der beste Ort, um zu schauen.
+
+Der Ereignismodus wird aktiviert, wenn ein Benutzer oder ein anderer VDS-Dienst, wie z. B. der CW Automation Service, zur Fertigstellung einer Aufgabe auffordert. Beispiele für diese Art von Aktivität sind eine Benutzeranfrage zum Erstellen eines neuen Servers oder CW Automation, in der die Größe und der Zustand der zu prüfenden Server angefordert werden, weil dem Arbeitsbereich weitere Benutzer hinzugefügt wurden. Diese Ereignisse haben in der Regel Protokolleinträge mit dem Ereignisnamen „Create Server“ und dem tatsächlichen Namen der VM direkt daneben (z. B. Server NXTS2 erstellen). Bei der Fehlerbehebung dieser Art von Ereignissen ist es normalerweise am besten, zum unteren Rand des Protokolls zu blättern und dann zur aufwärts Suche nach dem VM-Namen. Sie können dann weitere Zeilen nach oben scrollen, um zu sehen, wo der Prozess gestartet wurde.
+
+
+
+=== CW Automation Service-Protokoll
+
+ CWAutomationService.log
+Das CW Automation Service-Protokoll ist der primäre Windows-Service zur Verwaltung der Komponenten einer Workspace-Bereitstellung. Er führt die Aufgaben aus, die für das Management von Benutzern, Applikationen, Datengeräten und Richtlinien erforderlich sind. Darüber hinaus kann die IT Aufgaben für den CW VM Automation Service erstellen, wenn die Größe, Anzahl oder der Zustand der VMs in der Bereitstellung geändert werden müssen.
+
+Wie der CW VM Automation Service führt der CW Automation-Service sowohl geplante Aufgaben als auch ereignisgesteuerte Aufgaben aus, wobei letzterer der häufigere Typ ist. Das Protokoll für den CW Automation Service beginnt jede Zeile mit der Einheit und Aktion, die bearbeitet wird (z. B. Start Server NXTS1). Die Suche nach dem Entity-Namen am unteren Rand der Datei ist der schnellste Weg, um die spezifischen Protokollzeilen zu finden, die für die Aufgabe gelten.
+
+
+
+=== CW Agent Service-Protokoll
+
+ CwAgent.log
+Der CW Agent Service führt alle Aufgaben aus, die lokal für eine bestimmte VM liegen, einschließlich der Prüfung der Ressourcenebenen und der Auslastung der VM, der Prüfung, ob die VM über ein gültiges Zertifikat für den TLS-Datenverkehr verfügt, und prüft, ob der obligatorische Neustart-Zeitraum erreicht ist. Neben der Überprüfung detaillierter Informationen zu diesen Aufgaben kann dieses Protokoll auch verwendet werden, um auf unerwartete VM-Neustarts oder unerwartete Netzwerk- oder Ressourcenaktivitäten zu prüfen.
+
+
+
+=== CWManagerX-Protokoll
+
+ CWManagerX.log
+CWManagerX ist ein Webservice, der die Kommunikationsverbindung zwischen der lokalen Bereitstellung und der globalen VDS-Kontrollebene bereitstellt. Aufgaben und Datenanfragen, die aus der VDS-Webanwendung oder der VDS-API stammen, werden über diesen Webdienst an die lokale Bereitstellung übermittelt. Von dort aus werden die Aufgaben und Anforderungen an den entsprechenden Webservice (oben beschrieben) oder in seltenen Fällen direkt an Active Directory weitergeleitet. Da es sich dabei meist um eine Kommunikationsverbindung handelt, gibt es bei normaler Kommunikation nicht viel Protokollierung, aber dieses Protokoll enthält Fehler, wenn die Kommunikationsverbindung unterbrochen oder falsch ausgeführt wird.
+
+
+
+=== DC-Konfigurationsprotokoll
+
+ DCConfig.log
+Bei DC Config handelt es sich um eine Windows-Anwendung, die bestimmte Konfigurationsparameter bereitstellt, die nicht in der VDS-Webanwendungsoberfläche verfügbar sind. Im Protokoll DC Config werden die Aktivitäten aufgeführt, die ausgeführt werden, wenn Konfigurationsänderungen in DC Config vorgenommen werden.
+
+
+
+=== CAVDCDeployment-Protokoll
+
+ CAVDCDeployment.log
+CW VDC Deployment ist eine Windows-Anwendung, die die für die Erstellung einer Implementierung in Azure erforderlichen Aufgaben ausführt. Das Protokoll verfolgt die Konfiguration der Windows-Services des Cloud Workspace, der Standard-GPOs sowie Routing- und Ressourcenregeln.
+
+
+
+=== Verschiedene Protokolle
+
+....
+CwVmAutomationService-Installing.log
+CwAgent-Installing.log
+....
+Die verbleibenden Protokolle verfolgen die Installation der oben beschriebenen Windows-Dienste und -Anwendung. Da VDS-Dienste automatisch aktualisieren, wenn eine neue Version für diese spezifische Bereitstellung bestimmt ist, verfolgen diese Protokolle den Upgrade-Prozess, da der Service oder die Anwendung während des Upgrades normalerweise deaktiviert werden müssen. Wenn Sie feststellen, dass die Dienste ständig gestoppt werden, können diese Protokolle helfen festzustellen, ob ein Upgrade auf einen bestimmten Service die Ursache ist. In diesen Fällen würde es erwarten, dass ein Fehler in diesen Protokollen angezeigt wird, in denen erläutert wird, warum das Upgrade fehlgeschlagen ist.
+
+
+
+=== Zugriff auf Protokolle und Überprüfung von Informationen
+
++image:troubleshooting1.png[""]
+
+. VDS speichert ausführliche Protokolle und stellt einige von ihnen im Abschnitt „Aufgabenverlauf“ der Seite „Bereitstellungen“ im VDS bereit. Klicken Sie auf Ansicht, um Details zu den aufgeführten Aufgaben anzuzeigen.
++
+image:troubleshooting2.png[""]
+
+. Manchmal enthält der Aufgabenverlauf nicht genügend Details, um die wahre Ursache zu identifizieren. Um den Bereich Task History nutzbar zu halten und nicht von allen protokollierten Ereignissen überfordert zu werden, wird hier nur eine Teilmenge an Aufgabeinformationen dargestellt. Für einen tieferen Einblick in die oben genannten Text-Log-Dateien können weitere Details bereitgestellt werden.
++
+.. Um auf dieses Protokoll zuzugreifen, navigieren Sie zum Abschnitt Bereitstellungen und klicken Sie auf das Zahnradsymbol neben der CWMGR1-VM, und klicken Sie dann auf Verbinden (oder stellen Sie im Fall des CwAgent-Protokolls eine Verbindung zur entsprechenden VM her).
+
+
++
+image:troubleshooting3.png[""]
+
+. Bei der Verbindung zu einem Platform Sever (wie dem CWMGR1) werden Sie nicht automatisch beim Server angemeldet (im Gegensatz zur Verbindung mit einem Server im Mandanten). Sie müssen sich mit einem Level3 .tech-Konto anmelden.
++
+image:troubleshooting4.png[""]
+
+. Navigieren Sie dann wie oben gezeigt zum Pfad und öffnen Sie die Protokolldatei.
++
+image:troubleshooting5.png[""]
+
+. Diese Textdatei enthält ein Protokoll aller Ereignisse, das älteste der neuesten Ereignisse ist:
++
+image:troubleshooting6.png[""]
+
+. Beim Öffnen eines Support-Cases mit NetApp VDS wird die Möglichkeit, die hier gefundenen Fehler bereitzustellen, DIE Beschleunigung der Problemlösung DEUTLICH beschleunigen.
+

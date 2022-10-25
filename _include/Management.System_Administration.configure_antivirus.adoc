@@ -1,0 +1,38 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Virtual Desktop Service (VDS)-Administratoren sind für die Überwachung ihrer Plattforminfrastruktur (mindestens CWMGR1) und aller anderen Infrastrukturen und Virtual Machines (VMs) verantwortlich. In den meisten Fällen ordnen Administratoren das Monitoring der Infrastruktur (Hypervisor/SAN) direkt mit ihrem Datacenter-/IaaS-Provider zu. Die Administratoren sind für die Überwachung von Terminalservern und Datenservern verantwortlich, in der Regel durch die Bereitstellung ihrer bevorzugten RMM-Lösung (Remote Management and Monitoring).
+
+Anti-Virus ist für den Administrator zuständig (für die Plattforminfrastruktur und Terminal/Datenserver VMs). Um diesen Prozess zu vereinfachen, wird auf VDS für Azure-Servern standardmäßig Windows Defender angewendet.
+
+
+NOTE: Achten Sie bei der Installation von Lösungen von Drittanbietern darauf, dass Firewalls und andere Komponenten, die die VDS-Automatisierung beeinträchtigen könnten, nicht berücksichtigt werden.
+
+Genauer gesagt kann dies zu negativen Auswirkungen führen, wenn diese Anti-Virus-Agenten auf einem Server installiert werden, der von Virtual Desktop Service verwaltet wird.
+
+Unsere allgemeine Anleitung ist, dass VDS-Plattformautomatisierung in der Regel nicht von Anti-Virus- oder Anti-Malware-Produkten beeinflusst wird, es eine bewährte Methode ist, Ausnahmen/Ausschlüsse für die folgenden Prozesse auf allen Plattformservern hinzuzufügen (CWMGR1, RDGateways, HTML5Gateways, FTP usw.):
+
+....
+*\paexec.exe
+*\paexec_1_25.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CW Automation Service\cw.automation.service.exe
+C:\Program Files\CloudWorkspace\CwVmAutomationService\CwVmAutomationService.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Printer.exe
+C:\Program Files (x86)\Myrtille\bin\Myrtille.Services.exe
+....
+Darüber hinaus empfehlen wir die sichere Auflistung der folgenden Prozesse auf Client-Servern:
+
+....
+C:\Program Files\CloudWorkspace\CwAgent\paexec.exe
+C:\Program Files\CloudWorkspace\CwAgent\CwAgent.exe
+C:\Program Files\CloudWorkspace\CwRemoteApps\cwra.exe
+C:\Program Files\CloudWorkspace\Pen\Pen.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgent.exe
+C:\Program Files\CloudWorkspace\MfaAgent\MFAAgentMonitor.exe
+....

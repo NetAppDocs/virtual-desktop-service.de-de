@@ -1,0 +1,61 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+NetApp Virtual Desktop Service (VDS) umfasst ohne Aufpreis einen SMS/E-Mail-basierten MFA Service. Dieser Service ist unabhängig von anderen Dienstleistungen (z.B. Azure Conditional Access) und kann zur Sicherung von Administratoranmeldungen auf VDS und Benutzeranmeldungen auf virtuellen Desktops verwendet werden.
+
+
+
+== MFA-Grundlagen
+
+* VDS MFA kann Admin-Benutzern, einzelnen Endbenutzern oder für alle Endbenutzer angewendet werden
+* VDS MFA kann SMS- oder E-Mail-Benachrichtigungen senden
+* VDS MFA verfügt über eine Self-Service-Ersteinrichtung und Reset-Funktion
+
+
+
+
+== Umfang des Leitfadens
+
+Dieses Handbuch erläutert die Einrichtung von MFA sowie die Darstellung der Benutzerfreundlichkeit
+
+.In diesem Leitfaden werden die folgenden Themen behandelt:
+.  MFA for Individual Users,MFA für einzelne Benutzer aktivieren
+.  MFA for All Users,MFA für alle Benutzer erforderlich
+.  MFA for Individual Administrators ,MFA für einzelne Administratoren aktivieren
+.  User Initial Setup,Ersteinrichtung Des Endbenutzers
+
+
+
+
+== MFA für einzelne Benutzer aktivieren
+
+MFA kann für einzelne Benutzer auf der Benutzer-Detailseite durch Klicken auf _Multi-Faktor Auth Enabled_ aktiviert werden
+
+Arbeitsbereiche > Workspace-Name > Benutzer & Gruppen > Benutzername > Multi-Faktor Auth aktiviert > Aktualisieren
+
+MFA kann auch allen Benutzern zugewiesen werden. Wenn diese Einstellung aktiviert ist, wird das Kontrollkästchen aktiviert und _ (über Client-Einstellungen)_ wird an das Kontrollkästchen angehängt.
+
+
+
+== MFA für alle Benutzer erforderlich
+
+MFA kann auf der Detailseite des Arbeitsbereichs für alle Benutzer aktiviert und durchgesetzt werden, indem Sie auf _MFA für Alle Benutzer aktiviert_ klicken
+
+Workspaces > Workspace-Name > MFA für alle Benutzer aktiviert >Update
+
+
+
+== Aktivierung von MFA für einzelne Administratoren
+
+MFA ist auch für Administratorkonten verfügbar, die auf das VDS-Portal zugreifen. Dies kann pro Administrator auf der Seite „Administratordetails“ aktiviert werden. Administratoren > Admin-Name > Multi-Faktor-Auth Erforderlich > Aktualisieren
+
+
+
+== Ersteinrichtung
+
+Bei der ersten Anmeldung nach der Aktivierung von MFA wird der Benutzer oder der Admin aufgefordert, eine E-Mail-Adresse oder Telefonnummer einzugeben. Sie erhalten einen Bestätigungscode, mit dem sie die erfolgreiche Anmeldung bestätigen können.

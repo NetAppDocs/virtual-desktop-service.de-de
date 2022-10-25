@@ -1,0 +1,25 @@
+= AVD-Bildschirmschutz – Übersicht
+:allow-uri-read: 
+
+
+
+
+== AVD-Bildschirmschutz – Übersicht
+
+Dieses Skript-Paket aktiviert/deaktiviert die native AVD-Funktion _Screen Capture Protection_, indem Sie den (relevanten) Befehl mit PowerShell ausführen:
+
+Aktivieren:
+
+`reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableScreenCaptureProtection /t REG_DWORD /d 1`
+
+Deaktivieren:
+
+`reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fEnableScreenCaptureProtection /f`
+
+Die Microsoft-Dokumentation zu dieser AVD-Funktion finden Sie hier:https://docs.microsoft.com/en-us/azure/virtual-desktop/security-guide#session-host-security-best-practices[]
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.AVDScreenCaptureProtection-216a6.png[Scriptbibliothek.AVDScreenCaptureProtection 216a6]

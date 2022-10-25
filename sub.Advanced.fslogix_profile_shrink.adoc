@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: Advanced.fslogix_profile_shrink.html 
+summary: Zusammenfassung der FSLogix-Profilschrumpffunktion 
+keywords:  
+---
+= FSLogix-Profil verkleinern
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+VDS verfügt über einen integrierten Profilschrumpfbetrieb, der nachts läuft. Durch diese Automatisierung wird der FSLogix-Container eines Benutzerprofils automatisch verkleinert, wenn 5 GB oder mehr gespeichert werden können. Diese Automatisierung läuft nachts um 12:01 Uhr. Der 5-GB-Schwellenwert ist in DCConfig konfigurierbar, auf dem CWMGR1-Server gefunden.
+
+image::Advanced.fslogix_profile_shrink-ea982.png[Advanced.fslogix-Profil verkleinern ea982]

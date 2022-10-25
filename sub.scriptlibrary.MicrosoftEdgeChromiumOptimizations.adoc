@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.MicrosoftEdgeChromiumOptimizations.html 
+summary: Skriptdokumentation – Microsoft Edge Chromium-Optimierungen 
+keywords:  
+---
+= Scripted Event Documentation – Microsoft Edge Chromium-Optimierungen
+:allow-uri-read: 
+
+
+
+
+== Übersicht Über Globale Skripts
+
+NetApp VDS umfasst eine Bibliothek mit vordefinierten skriptbasierten Ereignissen, die direkt in VDS-Umgebungen verwendet und/oder dupliziert und als Bausteine für individuelle skriptbasierte Ereignisse verwendet werden können.
+
+In diesem Artikel werden sowohl die Aktion Install/Enable als auch die Deinstallation/Deaktivierung behandelt.
+
+
+
+== Verwendung Von Globalen Skripten
+
+Integrierte skriptbasierte Ereignisse wie diese sind bereits ausgefüllt. Wenn Sie das Kontrollkästchen „globaler“-Filter aktivieren, werden diese angezeigt.
+
+Globale skriptbasierte Ereignisse wie diese sind schreibgeschützt. Sie können als ist verwendet werden oder über die Funktion „Klonen“ kann eine Kundenkopie für die Bearbeitung und Nutzung erstellt werden.
+
+Die Schaltfläche Klonen befindet sich im Aktivitätsmenü auf der Seite „skriptbasierte Ereignisse“.
+
+image::scriptlibrary.overview-2ccb2.png[Scriptbibliothek.Übersicht 2cb2]
+
+
+
+== Microsoft Edge Chromium-Optimierungen
+
+In Microsoft Edge Chromium 89, Microsoft hat Funktionen hinzugefügt, um den Ressourcenverbrauch der Microsoft Edge Chrom Browser-Registerkarten zu begrenzen. Dieses globale Skript wendet Einstellungen an, um die Hintergrundtabs auf ein Timeout zu begrenzen und den Verbrauch von Ressourcen nach 15 Minuten zu beenden. Hintergrundtabs, auf denen Audio wiedergegeben wird, sind nicht betroffen.
+
+Details können gefunden werden link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["Hier"].
+
+
+
+=== Manuelle Aktivität hinzufügen
+
+Damit ein Skript im Repository eine Aktion ausführen kann, muss ein Vorgang erstellt werden, um dieses Skript einem ausgewählten Trigger zuzuordnen. In diesem Beispiel wird die Aktivität ausgeführt, wenn der VDS Admin das Skript manuell auslöst.
+
+VDS skriptbasierte Ereignisse bieten viele andere Arten von Aktivitäts-Triggern wie _Create Server_, die als Alternative zum Ereignistyp _Manual_ verwendet werden können. Mit _Create Server_ würde dieses Skript einfach auf allen neu erstellten VMs im VDS ausgeführt. _Create Server_ und andere Trigger werden dokumentiert und können untersucht werden link:Management.Scripted_Events.scripted_events.html["Hier"].
+
+.So erstellen Sie eine Aktivität und verknüpfen dieses Skript mit einer Aktion:
+. Navigieren Sie zum Abschnitt „skriptbasierte Ereignisse“ im VDS
+. Klicken Sie unter „ Aktivitäten “ auf _+ Aktivität hinzufügen_
+. Geben Sie im geöffneten Dialogfeld die folgenden Informationen ein:
++
+** *Name:* Benennen Sie diese Aktivität
+** *Beschreibung:* Geben Sie optional eine Beschreibung ein
+** *Bereitstellung* Wählen Sie die gewünschte Bereitstellung aus der Dropdown-Liste aus
+** *Skript:* Wählen Sie das Skript install (oder uninstall) aus dem Dropdown-Menü aus. Dies könnte das globale Skript oder Kundenskript sein, das Sie geklont und angepasst haben.
+** *Argumente:* Legen Sie leer
+** *Kontrollkästchen aktiviert:* `Check` Lieferumfang
+** *Ereignistyp:* Wählen Sie Aus `Manual` Aus der Dropdown-Liste
+** *Zieltyp:* Wählen Sie das aus `Servers` Optionsfeld
+** * Verwaltete Server:* `Check` Die Box für jede VM, die diese Deinstallation erhalten soll.
+
+
+

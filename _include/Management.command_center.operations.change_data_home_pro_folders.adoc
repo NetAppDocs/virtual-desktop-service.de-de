@@ -1,0 +1,29 @@
+= Übersicht Zu Daten-/Pro/Home-Ordnern Ändern
+:allow-uri-read: 
+
+
+
+
+== Übersicht Zu Daten-/Pro/Home-Ordnern Ändern
+
+image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change Data Home Pro Folder 678cd]
+
+Der Speicherort für die Daten-, Profile- und Home-Ordner der Benutzer wird durch Active Directory gemanagt. Command Center enthält einen Vorgang zum Ändern dieser Standorte.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command Center.Operations.Vorlage in Galerie ed821 kopieren]
+
+
+
+== Auswählen eines Ressourcen-Pools
+
+Wenn die Auswahl für den Ressourcen-Pool leer ist, werden die Einstellungen global angewendet.
+
+Durch Auswahl eines bestimmten Ressourcen-Pools (auch als Host-Pool bezeichnet) kann der Profilpfad des Benutzers für diesen Ressourcen-Pool individuell definiert werden
+
+image::Management.command_center.operations.change_data_home_pro_folders-3ac43.png[][]
+
+
+
+== Ist Windows Server
+
+Das Kontrollkästchen „IS Windows Server“ sollte deaktiviert sein, wenn ein Speicherdienst (z. B. Azure NetApp Files) wird als Speicherort ausgewählt.

@@ -1,0 +1,21 @@
+= Google Chrome Übersicht
+:allow-uri-read: 
+
+
+
+
+== Google Chrome Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Google Chrome_ mit dem chocolatey Paketmanager (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcuts\Google Chrome.lnk`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallGoogleChrome.png[Scriptbibliothek.activity.InstallGoogleChrome]

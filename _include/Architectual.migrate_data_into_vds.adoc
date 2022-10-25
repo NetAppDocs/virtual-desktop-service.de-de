@@ -1,0 +1,88 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Das Migrieren von Daten ist eine nahezu universelle Anforderung für die Migration zu einer beliebigen Cloud-Lösung. Während Administratoren für die Migration von Daten in ihre Virtual Desktops verantwortlich sind, steht NetApp aufgrund seiner Erfahrung für unzählige Kundenmigrationen im Einsatz. Bei der Virtual Desktop-Umgebung handelt es sich lediglich um eine gehostete Windows-Umgebung, sodass wahrscheinlich alle gewünschten Methoden unterstützt werden können.
+
+.Üblicherweise migrierte Daten:
+* Benutzerprofile (Desktop, Dokumente, Favoriten usw.…)
+* File Server-Freigaben
+* Datenfreigaben (App-Daten, Datenbanken, Backup-Caches)
+
+
+.In der Virtual Desktop-Umgebung gibt es zwei primäre Orte, an denen Daten gespeichert und organisiert sind:
+* Das Laufwerk Benutzer (normalerweise H:\): Dies ist das zugeordnete Laufwerk, das für jeden Benutzer sichtbar ist.
++
+** Dies wird wieder dem Pfad <DRIVE>:\Home\CustomerCode\user.name\ zugeordnet
+** Jeder Benutzer hat sein eigenes Laufwerk H:\ und kann keinen anderen Benutzer sehen
+
+
+* Das freigegebene (typischerweise i:\) Laufwerk: Dies ist das freigegebene zugeordnete Laufwerk, das für alle Benutzer sichtbar ist
++
+** Dies wird dem Pfad <DRIVE>:\Data\CustomerCode\ zugeordnet
+** Alle Benutzer können auf dieses Laufwerk zugreifen. Ihre Zugriffsebene auf enthaltene Ordner/Dateien wird im Bereich Ordner von VDS verwaltet.
+
+
+
+
+
+
+== Generischer Migrationsprozess
+
+. Replizieren von Daten in die Cloud-Umgebung
+. Verschieben Sie die Daten auf den entsprechenden Pfad für die Laufwerke H:\ und I:\
+. Weisen Sie in der Virtual Desktop-Umgebung entsprechende Berechtigungen zu
+
+
+
+
+== FTPS-Transfers und -Überlegungen
+
+
+
+=== Migration mit FTPS
+
+. Wenn die FTPS-Serverrolle während des CWA-Bereitstellungsprozesses aktiviert wurde, sammeln Sie FTPS-Anmeldeinformationen, indem Sie sich beim VDS anmelden, zu Berichten navigieren und den Master Client-Bericht für Ihr Unternehmen ausführen
+. Daten hochladen
+. Verschieben Sie die Daten auf den entsprechenden Pfad für die Laufwerke H:\ und I:\
+. Weisen Sie in der virtuellen Desktop-Umgebung über das Ordnermodul entsprechende Berechtigungen zu
+
+
+
+NOTE: Bei der Übertragung von Daten über FTPS verhindert jede Unterbrechung, dass die Daten wie vorgesehen übertragen werden. Da die von Virtual Desktop Services gemanagten Server nachts neu gestartet werden, wird die standardmäßige Übertragungsstrategie über Nacht wahrscheinlich unterbrochen. Administratoren können den Migrationsmodus aktivieren, sodass die VMs nicht mehr für eine Woche neu gestartet werden können.
+
+Die Aktivierung des Migrationsmodus ist einfach: Navigieren Sie zur Organisation, scrollen Sie dann zum Abschnitt Virtual Desktop Settings und aktivieren Sie das Kontrollkästchen für den Migrationsmodus, und klicken Sie dann auf Update.
+
+
+NOTE: NetApp empfiehlt Administratoren die Aktivierung einer Compliance-Einstellung, die Unternehmen bei der Einhaltung von PCI-, HIPAA- und NIST-Kontrollen unterstützt, indem sie Gateways der Bereitstellung usw. härten. Dadurch wird auch die standardmäßige FTP-Server-Rolle, sofern aktiviert, von der Annahme unverschlüsselter Standardübertragungen über Port 21 deaktiviert. FileZilla erlaubt SFTP nicht, was bedeutet, dass Verbindungen mit FTPS über Port 990 hergestellt werden sollten.
+
+Um diese Einstellung zu aktivieren, stellen Sie eine Verbindung zu CWMGR1 her, navigieren Sie zum Programm CwVmAutomationService und aktivieren Sie dann die PCI v3-Konformität.
+
+
+
+== Synchronisierung von Tools und Überlegungen
+
+Enterprise File Sync and Share, das häufig als EFSS- oder Sync-Tools bezeichnet wird, kann besonders bei der Datenmigration von Nutzen sein, da das Tool Änderungen auf beiden Seiten bis zur Umstellung erfasst. Tools wie OneDrive, das mit Office 365 kommt, können Ihnen helfen, Dateiserver-Daten zu synchronisieren. Es ist auch nützlich für VDI-Benutzer-Bereitstellungen als auch, wo es eine 1:1-Beziehung zwischen dem Benutzer und der VM, solange der Benutzer nicht versucht, gemeinsam genutzte Inhalte auf ihren VDI-Server zu synchronisieren, wenn gemeinsam genutzte Daten einmal auf die Shared bereitgestellt werden (typischerweise I:\) Antrieb für das gesamte Unternehmen. Migration von SQL und ähnlichen Daten (Open Files)
+
+.Offene Dateien werden von gängigen Sync- und/oder Migrationslösungen nicht übertragen, darunter folgende Dateitypen:
+* Mailbox-Dateien (.ost)
+* QuickBooks-Dateien
+* Microsoft Access-Dateien
+* SQL Datenbanken
+
+
+Das heißt, wenn ein einzelnes Element der gesamten Datei (z.B. 1 neue E-Mail) oder Datenbank (1 neuer Datensatz wird in das System einer App eingegeben) erscheint, dann ist die gesamte Datei anders und Standard-Sync-Tools (z.B. Dropbox) Werden annehmen, dass es eine völlig neue Datei ist und erneut verschoben werden muss. Auf Wunsch stehen spezielle Tools für den Kauf bei Drittanbietern zur Verfügung.
+
+Eine weitere häufige Vorgehensweise bei diesen Migrationen ist der Zugriff auf VAR-Mitarbeiter von Drittanbietern, die häufig den Import/Export von Datenbanken optimiert haben.
+
+
+
+== Frachtfestplatten
+
+Viele Datacenter Provider senden keine Festplatten mehr an – entweder diese oder Sie müssen ihre spezifischen Richtlinien und Verfahren befolgen.
+
+Microsoft Azure ermöglicht Unternehmen die Nutzung von Azure Data Box, zu denen Administratoren von der Koordinierung mit ihren Microsoft Vertretern profitieren können.

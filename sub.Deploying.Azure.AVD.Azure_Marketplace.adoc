@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: Deploying.Azure.AVD.Azure_Marketplace.html 
+summary: Schrittweise Anleitungen für den Kauf von VDS über Azure Marketplace 
+keywords:  
+---
+= Schritte In Azure Marketplace
+:allow-uri-read: 
+
+
+Das VDS-Team hat Freitag, 15. Januar 2021, berichtet, dass der Service live und über den Azure Marketplace transportbereit ist. Diese neue Marktfunktion bietet Ihnen als gemeinsamer Kunde von NetApp und Microsoft mehrere entscheidende Vorteile:
+
+* Da Sie die Verpflichtungen Ihrer bestehenden Enterprise-Vereinbarung für die Zahlung von über den Azure Marketplace erworbenen Services nutzen können, müssen Sie für diesen leistungsstarken AVD-Erweiterungsservice kein neues Budget definieren und zuweisen. Sie können Ihre bestehenden Azure-Verpflichtungen nutzen, um VDS zu aktivieren und die AVD-Umgebungen zu optimieren. Und gleichzeitig Ihre gesamten Cloud-Ausgaben senken!
+* Verbesserte Abläufe ohne administrativen Aufwand – Microsoft fügt Ihre vorhandene Azure-Rechnung einfach neben der übrigen Infrastruktur und dem Service hinzu. Dies ist eine schnelle und einfache Möglichkeit, die Automatisierung und Orchestrierung zu nutzen, um AVD-Implementierungen zu optimieren, Ihre Ausgaben für die Cloud-Infrastruktur zu senken, Und holen Sie mehr aus Ihrer AVD-Investition heraus.
+
+
+
+
+== Häufig gestellte Fragen zur Lizenzanzahl:
+
+* Im Azure Marketplace müssen Lizenzanzahl durchgesetzt werden. Dies bedeutet, dass Sie virtuelle Desktops nicht für mehr Benutzer bereitstellen können als die Anzahl der im Azure Marketplace erworbenen Lizenzen.
++
+** Wenn Sie beispielsweise 100 Benutzer für einen POC erworben haben und zusätzliche Benutzer aktivieren möchten, navigieren Sie zurück zum Azure Marketplace, und erhöhen Sie die Anzahl der über den Azure Marketplace erworbenen Lizenzen.
+
+
+* Wenn ein Administrator die Anzahl der über das Azure-Portal erworbenen Lizenzen auf eine Zahl geringer als die Anzahl der Benutzer mit VDS-Desktops verringert, wird für Administratoren bei der Anmeldung in der VDS-UI eine Fehlermeldung angezeigt.
++
+** Daher ist es notwendig, die Anzahl der erworbenen VDS-Lizenzen zu verringern, eine Best Practice, die virtuellen Desktops von Benutzern im VDS zu deprovisionieren, bevor die Lizenzanzahl im Azure Marketplace verringert wird.
+
+
+
+
+
+
+== Workflow
+
+. Suche nach Azure Marketplace
+
+
+image::Deploying.Azure.AVD.Azure_Marketplace-18287.png[Deploying.Azure.AVD.Azure Marketplace 18287]
+
+. Check-in „Private Angebote“
++
+image::Deploying.Azure.AVD.Azure_Marketplace-4cba8.png[Deploying.Azure.AVD.Azure Marketplace 4cba8]
+
+. Klicken Sie auf „Einrichten + Abonnieren“.
++
+image::Deploying.Azure.AVD.Azure_Marketplace-885e1.png[Bereitstellen.Azure.AVD.Azure Marketplace 8851]
+
+. Wählen Sie Abonnement, Name und Benutzeranzahl
++
+image::Deploying.Azure.AVD.Azure_Marketplace-36efc.png[Deploying.Azure.AVD.Azure Marketplace 36efc]
+
+. Überprüfen Sie die Bedingungen und klicken Sie auf „Abonnieren“.
++
+image::Deploying.Azure.AVD.Azure_Marketplace-bbe9d.png[Deploying.Azure.AVD.Azure Marketplace bbe9d]
+
+. Warten Sie, bis das Abonnement abgeschlossen ist
++
+image::Deploying.Azure.AVD.Azure_Marketplace-9a2ef.png[Deploying.Azure.AVD.Azure Marketplace 9a2ef]
+
+. Klicken Sie auf „Jetzt Konto konfigurieren“, sobald das Abonnement abgeschlossen ist
++
+image::Deploying.Azure.AVD.Azure_Marketplace-38a10.png[Deploying.Azure.AVD.Azure Marketplace 38a10]
+
+. Nehmen Sie im Namen Ihrer Organisation Genehmigungen und Einwilligungen an
++
+image::Deploying.Azure.AVD.Azure_Marketplace-b914e.png[Deploying.Azure.AVD.Azure Marketplace b914e]
+
+. Geben Sie primäre Kontaktinformationen ein
++
+image::Deploying.Azure.AVD.Azure_Marketplace-f9650.png[Deploying.Azure.AVD.Azure Marketplace f9650]
+
+. Registrieren eines VDS-Administratorkontos
++
+image::Deploying.Azure.AVD.Azure_Marketplace-4f802.png[Deploying.Azure.AVD.Azure Marketplace 4f802]
+
+. Bestätigen Sie die Eingaben und klicken Sie auf „Registrieren“.
++
+image::Deploying.Azure.AVD.Azure_Marketplace-8a6d6.png[Deploying.Azure.AVD.Azure Marketplace 8a6d6]
+
+. Starten Sie den Bereitstellungsassistenten. link:Deploying.Azure.AVD.Deploying_AVD_in_Azure_v6.html["Dokumentations-Link des AVD-Bereitstellungsassistenten"]
++
+image::Deploying.Azure.AVD.Azure_Marketplace-6bb58.png[Bereitstellen.Azure.AVD.Azure Marketplace 6bb58]
+
+
+
+
+
+== Beheben Von Häufigen Problemen
+
+
+
+=== Fehler beim Abrufen des Azure AD Profils
+
+Diese generische Fehlermeldung sagt Ihnen nicht, was das Problem tatsächlich ist. Der Grund, warum ein Nutzer diese Nachricht sieht, ist Cookie-bezogen - dies kann passieren, wenn der Nutzer Cookies von Drittanbietern in seinem Browser blockiert hat. Diese Einstellung ist standardmäßig aktiviert, wenn im Inkognito-Modus in Google Chrome. Durch die erneute Aktivierung von Cookies von Drittanbietern können Sie mit der Bestellung von VDS über den Marktplatz fortfahren.
+
+Benutzer können dieses Problem über den Abschnitt Einstellungen jedes Browsers lösen. Der spezifische Ort in jedem Browser ist:
+
+* Chrome: Diese Einstellungen sind im Abschnitt Datenschutz und Sicherheit
+* Edge/Edge Chromium: Diese Einstellungen finden Sie im Abschnitt Datenschutz
+* Firefox: Diese Einstellungen befinden sich im Abschnitt Datenschutz & Sicherheit
+* Internet Explorer: Diese Einstellungen befinden sich im Abschnitt Vertrauenswürdige Sites
+
+
+Hinweis: Wenn Sie sich in einem Unternehmensnetzwerk befinden (VPN, etc.), dann hat Ihr Unternehmen diese Kontrollen in Ihrem Browser für Sie angewendet. Sie können einen anderen Browser überprüfen, um zu sehen, ob dort noch Cookies von Drittanbietern aktiviert sind, und wenn diese nicht, sollten Sie sich an Ihren Systemadministrator wenden.
+
+
+
+=== Zugriff auf VDS nicht möglich
+
+Es gibt ein weiteres Element, das eine Barriere für Marketplace-Käufe darstellen kann – eine Organisation kontrolliert, auf welche Websites ein Benutzer zugreifen kann. Leider ist dies oft unklar für die Nutzer und kann ein Szenario, in dem Benutzer nicht sicher, wie man weiter.
+
+Dies kann sich auf verschiedene Arten manifestieren:
+
+* Unternehmen machen den Zugriff auf bestimmte Websites ausdrücklich nicht gestattet
+* Unternehmen erlauben den Zugriff auf jede Website außer ausdrücklich erlaubten Websites
+* Unternehmen Quarantäne jede Website, wenn ein Benutzer zum ersten Mal auf sie zugreift (gemeinsame Cisco Umbrella/OpenDNS-Funktionalität)
+
+
+Benutzer können dieses Problem testen, indem sie denselben Prozess von außerhalb des Unternehmensnetzwerks oder von einem mobilen Gerät aus versuchen. Wenn das das Problem löst und Sie in der Lage sind, fortzufahren, ist es eine unternehmensspezifische Web-Browser-Einstellung. Wenden Sie sich an Ihren Systemadministrator, um Zugriff auf den Erwerb dieses Dienstes und für zukünftige Aktualisierungen dieses Dienstes zu gewähren.

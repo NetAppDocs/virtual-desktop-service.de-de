@@ -1,0 +1,63 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Der Virtual Desktop Service von NetApp ermöglicht Unternehmen das Management von Implementierungen auf früheren Versionen, die Vorschau zukünftiger Versionen und das Management von Umgebungen, die eine Version vor (N-1-Methodik) ausführen.
+
+
+
+=== URLs für den virtuellen Desktop-Dienst
+
+Virtual Desktop Service ist die Managementkonsole, mit der Administratoren VDS-Implementierungen fortlaufend verwalten können.
+
+[cols="20,20,20,20,20"]
+|===
+| Umgebung | Beschreibung | URL | Codebase | API-Dokumentation 
+
+
+| Vorschau | Vorschaufenster der bevorstehenden Version | https://preview.manage.cloudworksace.com/[] | 5.4 | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+
+
+| *Strom* | *Aktuelle Version* | *https://manage.vds.netapp.com/* | *6.0* | *https://api.cloudworkspace.com/6.0/swagger/ui/index* 
+
+
+| Zurück | Vorherige Version | https://manage.cloudworkspace.com/[] | 5.4 | https://api.cloudworkspace.com/5.4/swagger/ui/index[] 
+|===
+
+
+=== Bereitstellung Von Virtual Desktop Services
+
+VDS bietet einen assistentengesteuerten Implementierungsprozess, mit dem Administratoren die Provisionierung einer AVD- und/oder virtuellen Desktop-Umgebung deutlich optimieren können.
+
+Administratoren können keine Implementierungen in einer älteren Umgebung bereitstellen – nur in einer aktuellen oder Vorschauumgebung.
+
+[cols="20,20,20,20,20"]
+|===
+| Umgebung | Beschreibung | URL | Codebase | Implementierungsleitfaden 
+
+
+| *Strom* | *Aktuelle Version* | *https://manage.vds.netapp.com/deployments/add* | *5.4* | *link:Deploying.Azure.AVD.Deploying_AVD_in_Azure_v6.html["VDS v6.0 - Bereitstellungshandbuch"]* 
+
+
+| Zurück | Vorherige Version | https://cwasetup.cloudworkspace.com[] | 5.4 | Wenden Sie Sich An Den Support 
+|===
+
+
+=== VDS Kostenplaner
+
+Der VDS-Kostenplanator ist ein speziell entwickeltes Tool mit Mehrwert, mit dem Unternehmen die Kosten der Public Cloud entweder in Azure oder in Google Cloud abschätzen können. Das Tool bietet Möglichkeiten, die Budgets zu variieren und zu optimieren, um die Lösung bereitzustellen, die im Budget eines Unternehmens erforderlich ist.
+
+[cols="33,33,33"]
+|===
+| Umgebung | Beschreibung | URL 
+
+
+| Validierung | Vorschau für die kommende Version | https://val.manage.vds.netapp.com/cost-estimator[] 
+
+
+| *Strom* | *Aktuelle Version* | *https://manage.vds.netapp.com/cost-estimator* 
+|===

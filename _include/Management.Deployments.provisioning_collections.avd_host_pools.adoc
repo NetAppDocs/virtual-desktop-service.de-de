@@ -1,0 +1,37 @@
+= AVD-Host-Update-Prozess
+:allow-uri-read: 
+
+
+
+
+=== AVD-Host-Update-Prozess
+
+VDS bietet eine einfache Möglichkeit, Sitzungshosts in einem AVD-Hostpool mithilfe von Provisioning Collections und der *Session-Host hinzufügen*-Funktion zu aktualisieren. Dieser Vorgang kann ohne Beeinträchtigung der Endbenutzer durchgeführt und mit nachfolgenden Image-Aktualisierungen wiederholt werden, basierend auf vorherigen Bildwiederholungen.
+
+.Die Aktualisierung des AVD Session-Hosts erfolgt wie folgt:
+. Erstellen Sie eine neue VDI Provisioning Collection, passen Sie die Sammlung gemäß den obigen Anweisungen an und validieren Sie sie.
++
+.. Im Allgemeinen wird diese Provisioning-Sammlung auf der vorherigen VM-Vorlage aufgebaut und einen Prozess „Öffnen, Speichern unter“ emuliert.
+
+
+. Sobald die Provisioning Collection validiert wurde, navigieren Sie zur Seite _Workspace > AVD > Host Pools_, und klicken Sie auf den Namen des Host-Pools
+. Klicken Sie auf der Seite _Host Pool > Session Hosts_ auf *+ Session Host hinzufügen*
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning Sammlungen 9ed95]
+
+. Wählen Sie die neueste *VM Template* aus. Wählen Sie je nach Ihren Anforderungen die passende Auswahl für *Maschinengröße* und *Speichertyp* aus.
+. Geben Sie die *Anzahl der Instanzen* ein, die der Gesamtanzahl der erforderlichen Sitzungshosts entspricht. Normalerweise wird dies die gleiche Nummer sein wie derzeit im Host-Pool, aber es kann eine beliebige Zahl sein.
++
+.. Beachten Sie, dass die Sitzungshosts, die sich derzeit im Host-Pool befinden, letztendlich deaktiviert werden, nachdem dieser neue Host online geschaltet wurde. Planen Sie, dass die * Anzahl der eingegebenen Instanzen* ausreichend ist, um den gesamten Workload in diesem Host-Pool zu unterstützen.
+
+
+. Klicken Sie auf *Speichern*, die Session-Hosts bauen auf der ausgewählten VM-Vorlage auf und starten in nur 10-15 Minuten (je nach Hypervisor) online.
+. Wenn ein neuer Host online geschaltet wird, bleibt die Standardeinstellung in *Neue Sitzungen deaktivieren*. Für jeden Sitzungshost kann der Schalter *Neue Sitzungen zulassen* verwendet werden, um zu verwalten, welche Hosts neue Benutzersitzungen empfangen können. Sobald ausreichend neue Hosts aufgebaut und die Funktionalität bestätigt wurde, kann diese Einstellung sowohl auf den neuen als auch auf den alten Hosts verwaltet werden, um alle neuen Sitzungen an die neuen Hosts weiterzuleiten. Die alten Hosts, mit *Neue Sitzungen zulassen* auf *deaktiviert* eingestellt, können weiterhin bestehende Benutzersitzungen ausführen und hosten.
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning Kollektionen be47e]
+
+. Da sich Benutzer vom alten Host(s) abmelden und keine neuen Benutzersitzungen den alten Host(s) anschließen, können die alten Host(s), bei denen *Sessions = 0* gelöscht werden kann, durch Anklicken des Symbols *Aktionen* und Auswählen von *delete* gelöscht werden.
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning Kollektionen cefb9]
+
+

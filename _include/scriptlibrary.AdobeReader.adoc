@@ -1,0 +1,21 @@
+= Adobe Reader DC-Übersicht
+:allow-uri-read: 
+
+
+
+
+== Adobe Reader DC-Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Adobe Reader DC_ mithilfe des chocolatey-Paketmanagers (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcuts\Acrobat Reader DC.lnk`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallAdobeReader.png[Scriptbibliothek.activity.InstallAdobeReader]

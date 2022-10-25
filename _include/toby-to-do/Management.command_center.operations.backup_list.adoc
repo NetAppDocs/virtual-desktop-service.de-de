@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.backup_list-80035.png[Management.command Center.Operations.Backup-Liste 80035]

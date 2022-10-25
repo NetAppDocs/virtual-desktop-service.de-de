@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: Management.Scripted_Events.scripted_events.html 
+summary: Skriptbasierte Ereignisse 
+keywords:  
+---
+= Skriptbasierte Ereignisse
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Mithilfe von skriptbasierten Ereignissen kann der erweiterte Administrator mithilfe eines Mechanismus individuelle Automatisierungsfunktionen für Systemwartung, Benutzerwarnungen, Gruppenrichtlinienmanagement oder andere Ereignisse erstellen. Skripte können als ausführbarer Prozess mit Argumenten bezeichnet werden oder als Argumente für ein anderes ausführbares Programm verwendet werden. Mit dieser Funktionalität können Skripts kombiniert und verschachtelt werden, um komplexe Anpassungs- und Integrationsanforderungen zu unterstützen.
+
+Ein detailliertes Beispiel für skriptbasierte Ereignisse in Aktion finden Sie im link:Management.Applications.application_entitlement_workflow.html["Leitfaden Zur Anwendungsberechtigung"].
+
+Zudem ermöglicht das Skript-Ereignis die Erstellung von Automatisierungen, die kein Skript zur Verarbeitung benötigen, sondern der Automatisierungsfluss wird durch einen Systemauslöser gestartet und führt ein bestehendes Programm oder Systemdienstprogramm mit optionalen Argumenten aus.
+
+Skripte Ereignisse enthalten sowohl ein *Repository* von Skripten als auch *Aktivitäten*. Skripte enthalten die Anweisungen auf *Was* zu tun, während Aktivitäten die Skripte mit dem entsprechenden Trigger und Ziel (*wann und wo*) für das Skript verknüpfen.
+
+
+
+=== Repository
+
+Auf der Registerkarte „Repository“ wird eine Liste aller Skripts angezeigt, die über Ihr VDS-Konto bereitgestellt werden können. Dies ist ein benutzerdefiniertes Repository, das von allen Administratoren in Ihrer VDS-Instanz gemeinsam genutzt wird. Der Zugriff auf skriptbasierte Ereignisse kann über die Seite „_VDS > Administratoren > Berechtigungen “ gemanagt werden.
+
+image::sub.Management.Scripted_Events.scripted_events-1ce76.png[Sub.Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse 1ce76]
+
+
+
+==== Kundenfilter
+
+Jede VDS-Administratororganisation verfügt über eine private Bibliothek mit Skripten, die von ihrem Unternehmen erstellt und/oder angepasst wurden. Diese Skripte sind als Skripttyp „Kunde“ definiert. Kundenskripte ein werden von jedem VDS-Administrator mit entsprechenden Administratorberechtigungen zum Abschnitt „skriptbasierte Ereignisse“ gelöscht und bearbeitet.
+
+
+
+==== Globaler Filter
+
+NetApp veröffentlicht zudem eine Bibliothek mit globalen Skripts, die in allen VDS-Administratororganisationen identisch sind. Diese Skripte sind als Skripttyp „Global“ definiert. Globale Skripts können von keinem VDS-Administrator bearbeitet oder gelöscht werden. Vielmehr können globale Skripte „geklont“ werden und das resultierende Skript ist ein „Kunde“-Skript, das bearbeitet und verwendet werden kann.
+
+
+
+==== Skript Herunterladen
+
+Durch die Möglichkeit, die mit einem Skript-Ereignis verknüpfte Skriptdatei herunterzuladen, kann der VDS-Administrator die zugrunde liegende Skriptdatei vor der Bereitstellung überprüfen und bearbeiten. Das Ausführen eines Skripts, das du nicht vollständig verstehst, ist niemals ratsam.
+
+image::sub.Management.Scripted_Events.scripted_events-02a9b.png[Sub.Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse 02a9b]
+
+
+
+==== Skript Hinzufügen
+
+Durch Klicken auf die Schaltfläche _+ Skript hinzufügen_ wird eine neue Seite zum Erstellen eines Skripts und Speichern im Repository geöffnet.
+
+image::Management.Scripted_Events.scripted_events-a53fa.png[Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse a53fa]
+
+Die folgenden Felder müssen ausgefüllt werden, um ein neues Skript zu erstellen:
+
+* *Name*
+* *Skriptdatei Einschließen*
++
+** Ja - ermöglicht das Hochladen und Ausführen einer Skriptdatei (z. B. einer .ps1-Datei) durch die ausführbare Datei „Ausführen mit“.
+** Nein - entfernt das Feld „Script File“ (unten) und führt einfach den Befehl „Execute with“ und „Arguments“ aus
+
+
+* *Skriptdatei*
++
+** Wenn _Skript-Datei einschließen = ja_ dieses Feld sichtbar ist und das Hochladen einer Skriptdatei ermöglicht.
+
+
+* *Mit* Ausführen
++
+** Definiert den Pfad der ausführbaren Datei, die zum Ausführen der Skriptdatei oder des Befehls verwendet wird, der ausgeführt wird.
+** Wenn Sie zum Beispiel PowerShell verwenden möchten, würde der Wert „Ausführen mit“ _C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe_ sein
+
+
+* *Argumente*
++
+** Definiert alle zusätzlichen Argumente, die gegen den Befehl „mit ausführen“ ausgeführt werden.
+** VDS bietet einige kontextbezogene Variablen, die verwendet werden können, darunter:
++
+*** %companycode% - Unternehmenscode zur Laufzeit
+*** %Servername% - VM-Name zur Laufzeit
+*** %samaccountname% - <username>.<companycode>
+*** %applicationname% - angeforderter Anwendungsname zur Laufzeit
+*** %Scriptname% - Skriptname zur Laufzeit
+*** %Username% - Benutzername@loginIdentifier zur Laufzeit
+
+
+
+
+* *Dokumentation URL*
++
+** In diesem Feld kann der Autor des Skripts mit der außerhalb von VDS gefundenen Dokumentation verknüpfen, z. B. mit einem vom VDS-Administrator verwendeten Knowledge Base-System.
+
+
+
+
+
+
+==== Skript Bearbeiten
+
+Wenn Sie auf den Namen eines Skripts im Repository klicken, wird eine neue Seite mit Details zum Skript und einer Aktionsschaltfläche geöffnet, um *edit* zu öffnen.
+
+Beim Bearbeiten eines Skripts können dieselben Felder wie oben im dokumentiert bearbeitet werden link:#add-script["Skript Hinzufügen"] Abschnitt.
+
+Auf dieser Skript-Detailseite können Sie auch *das Skript löschen und *download* alle hochgeladenen Skriptdateien.
+
+image::Management.Scripted_Events.scripted_events-3e756.png[Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse 3e756]
+
+
+
+=== Aktivitäten
+
+Aktivitäten verknüpfen ein Skript aus dem Repository mit einer Implementierung, einer Untermenge von VMs und einem auslösenden Ereignis.
+
+image::Management.Scripted_Events.scripted_events-f971c.png[Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse f971c]
+
+
+
+==== Aktivität Hinzufügen
+
+Durch Klicken auf die Schaltfläche _+ Add Activity_ wird eine neue Seite zum Erstellen einer Aktivität geöffnet.
+
+image::Management.Scripted_Events.scripted_events-02ef8.png[Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse 02ef8]
+
+Die folgenden Felder müssen ausgefüllt werden, um einen neuen Vorgang zu erstellen:
+
+* *Name*
+* *Beschreibung* (Optional)
+* * Bereitstellung*
+* *Skript*
+* *Argumente*
+* *Aktiviert* Kontrollkästchen
+* *Ereigniseinstellungen*
+
+
+
+
+==== Aktivitätsauslösern
+
+image::sub.Management.Scripted_Events.scripted_events-cdfcd.png[Sub.Management.skriptbasierte Ereignisse.skriptbasierte Ereignisse CDFCD]
+
+* *Anwendungsinstallation*
++
+** Dies wird ausgelöst, wenn der VDS-Administrator auf der Seite _Workspace > Applications_ auf „+ Hinzufügen...“ klickt.
+** Mit dieser Auswahl können Sie eine Anwendung aus der Anwendungsbibliothek auswählen und die Verknüpfung der Anwendung vordefinieren.
+** Detaillierte Anweisungen für diesen Auslöser sind im hervorgehoben link:scriptlibrary.AdobeReader.html#install-script["_Adobe Reader DC_ -Skript-Dokumentation installieren"].
+
+
+* *Anwendung Deinstallieren*
++
+** Dies wird ausgelöst, wenn der VDS-Administrator auf der Seite _Workspace > Applications_ auf „Actions > Uninstall“ klickt.
+** Mit dieser Auswahl können Sie eine Anwendung aus der Anwendungsbibliothek auswählen und die Verknüpfung der Anwendung vordefinieren.
+** Detaillierte Anweisungen für diesen Auslöser sind im hervorgehoben link:scriptlibrary.AdobeReader.html##uninstall-script["_Adobe Reader DC_-Skript-Dokumentation deinstallieren"].
+
+
+* *Clone Server*
++
+** Dies wird ausgelöst, wenn die Klonfunktion auf eine vorhandene VM durchgeführt wird
+
+
+* *Create Cache*
++
+** Dies wird jedes Mal ausgelöst, wenn eine neue VM durch VDS erstellt wird, um einen Sammel-Cache für die Bereitstellung zu nutzen
+
+
+* *Create Client*
++
+** Dieser Vorgang wird bei jedem Hinzufügen einer neuen Client-Organisation zu VDS ausgelöst
+
+
+* *Server Erstellen*
++
+** Diese Funktion wird jedes Mal ausgelöst, wenn eine neue VM mithilfe von VDS erstellt wird
+
+
+* *Benutzer Erstellen*
++
+** Dieser Vorgang wird bei jedem Hinzufügen eines neuen Benutzers über VDS ausgelöst
+
+
+* *Benutzer Löschen*
++
+** Dies wird jedes Mal ausgelöst, wenn ein neuer Benutzer über VDS gelöscht wird
+
+
+* *Manuell*
++
+** Dies wird von einem VDS-Administrator manuell über die Seite „skriptbasierte Ereignisse > Aktivitäten“ ausgelöst
+
+
+* *Manuelles Anwendungs-Update*
+* *Geplant*
++
+** Dieser wird ausgelöst, wenn das definierte Datum/die definierte Uhrzeit erreicht wird
+
+
+* *Server Starten*
++
+** Dies wird bei jedem Booten einer VM ausgelöst
+
+
+
+
+Durch Klicken auf den Eintrag _Name_ wird ein Dialogfeld geöffnet, in dem die Aktivität bearbeitet werden kann.

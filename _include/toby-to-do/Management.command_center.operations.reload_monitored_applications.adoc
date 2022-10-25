@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.reload_monitored_applications-6d616.png[Management.command Center.Operations.reload überwachte Anwendungen 6d616]

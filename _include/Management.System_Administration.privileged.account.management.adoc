@@ -1,0 +1,106 @@
+= Management privilegierter Konten (Privileged Account Management, PAM)
+:allow-uri-read: 
+
+
+
+
+== Management privilegierter Konten (Privileged Account Management, PAM)
+
+Diese Funktion bietet eine spezifische, prüfbare Aufzeichnung granularer Administratorrechte, die VDS- und/oder Active Directory-Konten mit privilegierten Rechten gewährt werden. Externer Zugriff läuft standardmäßig automatisch ab.
+
+PAM bietet einen Mechanismus, mit dem Kunden dem VDS-Administrator und/oder dem NetApp VDS-Support Zugriff gewähren können. Kunden erhalten dadurch Zugriff auf Partner in einem überprüfbaren, verfolgbaren, meldepflichtigen Format.
+
+Im modernen Sicherheitskontext muss jedes privilegierte Konto einen Zweck haben (und einen möglichst spezifischen Zweck) und nur dann aktiv bleiben, wenn es erforderlich ist, um die Angriffsfläche zu reduzieren.
+
+
+
+== PAM-Anforderungen in VDS genehmigen und ablehnen
+
+Sobald eine PAM-Anfrage gestellt wurde, werden alle VDS-Administratoren eine Meldung unter der Glocke sehen.
+
+image:PAM1.jpg[""]
+
+
+NOTE: Alle VDS-Administratoren können PAM-Anforderungen anzeigen. Jedoch können nur Administratoren mit der Rolle für PAM-Verantwortliche Anfragen genehmigen oder ablehnen.
+
+Anwenden der Rolle PAM Approver
+
+Alle primären Administratoren übernehmen die PAM Approver-Rolle, aber diese Rolle kann jedem anderen VDS-Administrator zugewiesen werden, solange der VDS-Benutzer über Admin - Edit-Berechtigungen verfügt. Navigieren Sie zum Modul „Administratoren“, wählen Sie einen Administrator aus, und aktivieren Sie das Kontrollkästchen für PAM Approver.
+
+image:PAM2.jpg[""]
+
+Aktivieren der Genehmigungen auf Client-Ebene
+
+Falls die Bereitstellung eines Unternehmens auch die Möglichkeit zur Genehmigung des Zugriffs erfordert, können Software Master Partner die Genehmigungen auf Client-Ebene aktivieren, indem sie zum Bereitstellungsmodul navigieren und zum Abschnitt „Bereitstellungsdetails“ scrollen.
+
+Aktivieren Sie dann das Kontrollkästchen Clientgenehmigung für PAM-Zugriffsanforderungen benötigen, und klicken Sie auf Aktualisieren. Dadurch werden Anforderungen gesendet, die der Software-Master-Partner zur Implementierung an die VDS-Administratoren sendet. Hinweis: Hierzu müssen Benutzer über die folgenden Schritte auch als VDS-Administratoren eingerichtet werden. < to Admin Access for Users
+
+image:PAM3.png[""]
+
+PAM-Anforderungen genehmigen/ablehnen
+
+Alle Administratoren können Anforderungen anzeigen, indem sie auf den Dropdown-Pfeil neben ihrem Namen, dann auf Einstellungen und dann auf der Registerkarte PAM-Anforderungen klicken. Hinweis: Genehmigungen auf Clientebene sehen dieselben Informationen und befolgen den unten definierten Prozess.
+
+image:PAM4.png[""]
+
+Administratoren können die folgenden Details jeder Anfrage überprüfen, bevor sie auf das Einstellrad für jede Anfrage klicken und genehmigen oder ablehnen:
+
+Anforderungs-ID: Nützlich bei der Kommunikation/Nachverfolgung von Anfragen oder als Referenz bei der Prüfung des Zugriffs auf Ihre Umgebung
+
+Zugangsstufe:
+
+VDS: Erteilt vollständige Berechtigungen als VDS-Administrator
+
+Bereitstellung: Gewährt Domänenadministratorrechten Zugriff auf die Active Directory-Struktur für Fehlerbehebungszwecke
+
+Antragsteller: Die E-Mail-Adresse der Person, die Zugang beantragt
+
+Bereitstellung: Die Bereitstellungskennung, die der Anfordernde für privilegierten Zugriff auf ersucht hat
+
+Dauer: Die Anzahl der Tage, an denen dieser Zugriff aktiv ist, bevor er automatisch abläuft (Standardeinstellung: 3)
+
+Hinweise: Zeigt alle Notizen an, die vom Anforderer eingegeben wurden
+
+Status:
+
+Ausstehende Genehmigung: Zeigt Anfragen an, die noch von einem PAM-Genehmiger genehmigt oder abgelehnt werden müssen
+
+Genehmigt: Zeigt vorhandene, genehmigte Anfragen an
+
+image:PAM5.jpg[""]
+
+Genehmigen
+
+Nachdem Sie auf die Einstellungen geklickt haben, werden die PAM-Genehmiger die Anforderungsdetails erneut sehen. Der PAM-Genehmiger kann dann alle für den Empfänger erforderlichen Notizen eingeben und auf Genehmigen klicken, um temporären, geprüften Zugriff zu gewähren.
+
+image:PAM6.jpg[""]
+
+Ablehnten
+
+VDS-Administratoren können bei der Ablehnung von PAM-Anforderungen Notizen eingeben. Ein Beispiel dafür wäre die Frage, dass der Anfordernde nach den gleichen Berechtigungen fragt, aber für eine kürzere Dauer.
+
+image:PAM7.jpg[""]
+
+Berichte zu PAM-Anfragen
+
+VDS-Administratoren mit Reporting-Rechten können zum Modul Berichte navigieren und eine CSV-Datei exportieren, in der alle Details zu jeder PAM-Anforderung angezeigt werden.
+
+image:PAM8.png[""]
+
+Aktivieren von PAM-Konten
+
+Das beim Erstellen der PAM-Anfrage eingegebene E-Mail-Konto wird folgendermaßen angezeigt: Klicken Sie auf Anfrage aktivieren, um den erforderlichen Administratorzugriff (Active Directory für die Bereitstellung) zu erhalten.
+
+image:PAM9.jpg[""]
+
+Wenn Sie auf Anfrage aktivieren klicken, wird eine SMS-Nachricht an die beim Erstellen der PAM-Anforderung eingegebene Nummer gesendet. Geben Sie den Code ein, den Sie auf Ihrem Mobilgerät erhalten, und legen Sie dann das Passwort für Ihr Active Directory-Konto für die Bereitstellung fest.
+
+image:PAM10.jpg[""]
+
+Anschließend wird angezeigt, dass das Active Directory-Administratorkonto für diese Bereitstellung erfolgreich erstellt wurde.image:PAM11.jpg[""]
+
+Abgelaufene Konten
+
+Konten, die auslaufen, erhalten eine Nachricht wie die folgende. Der privilegierte Zugriff, der mit dieser E-Mail-Adresse verknüpft ist, ist damit nicht mehr gültig.
+
+image:PAM12.jpg[""]

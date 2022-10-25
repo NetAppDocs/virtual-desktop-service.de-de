@@ -1,0 +1,23 @@
+= Übersicht Über Globale Skripts
+:allow-uri-read: 
+
+
+
+
+== Übersicht Über Globale Skripts
+
+NetApp VDS umfasst eine Bibliothek mit vordefinierten skriptbasierten Ereignissen, die direkt in VDS-Umgebungen verwendet und/oder dupliziert und als Bausteine für individuelle skriptbasierte Ereignisse verwendet werden können.
+
+In diesem Artikel werden sowohl die Aktion Install/Enable als auch die Deinstallation/Deaktivierung behandelt.
+
+
+
+== Verwendung Von Globalen Skripten
+
+Integrierte skriptbasierte Ereignisse wie diese sind bereits ausgefüllt. Wenn Sie das Kontrollkästchen „globaler“-Filter aktivieren, werden diese angezeigt.
+
+Globale skriptbasierte Ereignisse wie diese sind schreibgeschützt. Sie können als ist verwendet werden oder über die Funktion „Klonen“ kann eine Kundenkopie für die Bearbeitung und Nutzung erstellt werden.
+
+Die Schaltfläche Klonen befindet sich im Aktivitätsmenü auf der Seite „skriptbasierte Ereignisse“.
+
+image::scriptlibrary.overview-2ccb2.png[Scriptbibliothek.Übersicht 2cb2]

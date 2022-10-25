@@ -1,0 +1,53 @@
+= Fehler
+:allow-uri-read: 
+
+
+
+
+== Fehler
+
+Das Drucken auf dem lokalen Drucker über den Cloud-Desktop funktioniert nicht.
+
+
+
+== Remote Desktop Services mit ThinPrint
+
+VDS umfasst optional ThinPrint für RDS-Implementierungen (Remote Desktop Services). Die Software und die Lizenzierung werden bei der ersten Implementierung automatisch konfiguriert. Wenn ThinPrint in Gebrauch ist, können die folgenden Abschnitte die Fehlerbehebung bei Problemen mit dem Drucken erleichtern.
+
+
+
+=== Ursache
+
+Es gibt verschiedene Methoden zur Verbindung mit dem Cloud-Desktop. Diese Methode unterscheidet sich in der Ausführung von Druckfunktionen und damit in der Gewissheit, welche Art von Zugriff für die Fehlersuche benötigt wird:
+
+. Verwenden des Access-Client von CloudJumper auf einem Windows-Gerät
++
+.. ThinPrint wird auf dem lokalen Gerät ausgeführt und leitet die Kommunikation zwischen dem Drucker und dem Cloud-Desktop weiter
+
+
+. Verwenden des HTML5-Browsers auf jedem Gerät
++
+.. Der Browser zeigt das gedruckte Dokument als PDF an, um lokal herunterzuladen und zu drucken
+
+
+. Verwenden eines manuell konfigurierten RDP-Clients (normalerweise) auf einem Mac oder Linux-Computer
++
+.. Lokale Drucker werden mit dem Cloud-Desktop freigegeben, indem sie „Lokale Ressourcen“ im RDP-Client manuell konfigurieren.
+
+
+
+
+
+
+=== Auflösung
+
+. Versuchen Sie, ein Dokument vom lokalen Gerät zu drucken, um zu bestätigen, dass das lokale Gerät erfolgreich eine Verbindung zum Drucker herstellt.
+. Deinstallieren Sie ThinPrint, und installieren Sie es erneut, wenn Sie den Access Client auf einem Windows-Gerät verwenden. https://www.thinprint.com/en/resources-support/software/clientsandtools/[]
+. Notieren Sie sich den Zugriffstyp und die Ergebnisse der ersten beiden Schritte in einem neuen Fall mit CloudJumper Support.
+
+
+
+
+== Azure Virtual Desktop
+
+VDS implementiert keine Drucklösung oder spezielle Druckkonfiguration für AVD-Umgebungen. Fragen zum Drucken sollten an Microsoft oder (wenn eine implementiert wurde) an den Hersteller der Drucktechnologie gerichtet werden.

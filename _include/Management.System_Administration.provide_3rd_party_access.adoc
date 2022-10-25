@@ -1,0 +1,29 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Der Zugang zu Dritten ist eine gängige Praxis bei der Migration zu einer beliebigen Cloud-Lösung.
+
+VDS-Administratoren entscheiden sich oft dafür, diesen Dritten nicht das gleiche Zugriffsniveau wie sie zu geben, um eine „am wenigsten erforderliche“ Sicherheitszugangsrichtlinie zu befolgen.
+
+Um Administratorzugriff für Dritte einzurichten, melden Sie sich beim VDS an und navigieren Sie zum Organisationsmodul, klicken Sie in die Organisation und klicken Sie auf Benutzer und Gruppen.
+
+Erstellen Sie dann ein neues Benutzerkonto für den Dritten, und blättern Sie nach unten, bis Sie den Abschnitt „Administratorzugriff“ sehen und das Kontrollkästchen aktivieren, um Administratorrechte zu aktivieren.
+
+image:3rdparty1.png[""]
+
+Der VDS Admin wird dann mit dem Bildschirm Admin Access Setup angezeigt. Es ist nicht erforderlich, den Benutzernamen, die Anmeldung oder das Passwort zu ändern. Fügen Sie einfach Telefonnummer und/oder E-Mail hinzu, wenn Sie die Multi-Faktor-Authentifizierung erzwingen möchten, und wählen Sie die Zugriffsstufe für die Erteilung aus.
+
+Für Datenbankadministratoren wie VAR oder ISV ist _Servers_ in der Regel das einzige erforderliche Zugriffsmodul.
+
+image:3rdparty2.png[""]
+
+Nach dem Speichern erhält der Endbenutzer Zugriff auf Self-Management-Funktionen, indem er sich mit seinen standardmäßigen Benutzeranmeldeinformationen für Virtual Desktop beim VDS anmeldet.
+
+Wenn sich der neu erstellte Benutzer anmeldet, werden nur die Module angezeigt, die Sie ihm zugewiesen haben. Sie können die Organisation auswählen, nach unten zum Abschnitt Server blättern und sich mit dem Servernamen verbinden, den Sie ihnen mitteilen (z. B. <XYZ>D1, wobei XYZ Ihr Unternehmenscode ist und D1 bestimmt, dass der Server ein Datenserver ist. Im folgenden Beispiel möchten wir ihnen mitteilen, sich mit dem TSD1-Server zu verbinden, um ihre Aufgaben auszuführen.
+
+image:3rdparty3.png[""]

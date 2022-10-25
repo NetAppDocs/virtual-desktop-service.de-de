@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.make_server_active-6dc9b.png[Management.command Center.Operations.make Server Active 6dc9b]

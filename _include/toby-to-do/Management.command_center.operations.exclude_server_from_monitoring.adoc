@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.exclude_server_from_monitoring-f1bdb.png[Management.command Center.Operations.Exclude Server from Monitoring f1bdb]

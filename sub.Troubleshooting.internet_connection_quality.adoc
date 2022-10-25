@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.internet_connection_quality.html 
+summary: Schritt-für-Schritt-Anleitung zur Fehlerbehebung bei Problemen mit der Internet-Qualität 
+keywords:  
+---
+= Fehlerbehebung In Bezug Auf Die Qualität Der Internetverbindung
+:allow-uri-read: 
+
+
+
+
+== Symptome
+
+Wenn Benutzerverbindungen getrennt werden müssen, muss eine Verbindung wiederhergestellt werden. Laggy Interface Antwort, allgemeine Performance-Probleme, die nicht scheinen, mit Ressource (RAM/CPU) Lasten zusammenhängen.
+
+
+
+== Ursache
+
+Wenn Benutzer Performance-Probleme melden, Benutzerverbindungen fallen gelassen oder eine laggy Schnittstelle, die häufigste Ursache sind nicht Ressourcen überhaupt, sondern die Netzwerkverbindungen zwischen dem Kunden und dem Rechenzentrum. Diese Verbindungen laufen über ihren ISP, verschiedene Internet-Backbone-Betreiber und schließlich in das Rechenzentrum. Dabei werden die Daten durch mehrere Zwischenstopps geleitet. Jeder dieser Hops kann zu Netzwerklatenz, verlorenen Paketen und Jitter führen, die alle zur wahrgenommenen Performance der Desktop Computing-Umgebung auf dem virtuellen Desktop beitragen können.
+
+Tier 1-Triage und Fehlerbehebung enthalten grundlegende Schritte wie die Bestätigung von Ressourcen (RAM, CPU und HDD-Platz) ausreichend sind. Sobald der Vorgang abgeschlossen ist, ist das Testen der Netzwerkkonnektivität ein großer nächster Schritt bei der Fehlerbehebung. Auflösung
+
+
+
+=== Primäre Option: Der NetApp VDS Windows-Client verfügt über integrierte Diagnosetools
+
+Der Diagnosetest kann innerhalb des Virtual Desktop Client ausgeführt und an Ihre E-Mail gesendet werden.
+
+. Klicken Sie auf das Voreinstellung-Symbol (vier horizontale Linien in der oberen Menüleiste).
+. Klicken Sie Auf Hilfe
+. Klicken Sie Auf Netzwerk-Test
+. Geben Sie den Benutzernamen ein, bei dem die Probleme auftreten, und klicken Sie auf Ausführen
+. Geben Sie nach Abschluss Ihre E-Mail-Adresse ein, um einen E-Mail-Bericht zu erhalten
+. Lesen Sie den Bericht, um mögliche Verbindungsprobleme zu beheben
+
+
+image:internet_quality1.gif[""]
+
+image:internet_quality2.png[""]
+
+
+
+=== Sekundäre Option: Manuelle Analyse mit PingPlotter
+
+Um zu bestätigen, dass die Netzwerkverbindung des Clients die Ursache ist, können Sie das kostenlose Dienstprogramm PingPlotter ausführen. Dieses Dienstprogramm sendet alle paar Sekunden einen Ping und berichtet über die Geschwindigkeit (Latenz) der Umrundung dieses Ping. Es notiert auch den Paketverlust (PL) Prozentsatz an jedem Hop entlang der Route. Wenn eine hohe Latenz und/oder ein hoher Paketverlust beobachtet wird, ist es ein guter Hinweis darauf, dass die Leistungsprobleme durch die Qualität der Internetverbindung am Hop verursacht werden, die diese Probleme zeigt.
+
+. Herunterladen und installieren link:https://www.pingplotter.com/["Ping-Plotter"] (Verfügbar für MacOS, Windows und iOS).
+. Geben Sie das Gateway des Datacenters ein, in dem der Mandant bereitgestellt wird.
+. Lassen Sie es mehrere Minuten laufen. Idealerweise, während Performance-Probleme oder Distimmigungen auftreten.
+. Erfassen Sie die Daten mit „Bild speichern…“ Über das Menü Datei, wenn es für eine zusätzliche Fehlerbehebung benötigt wird.
+

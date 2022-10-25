@@ -1,0 +1,151 @@
+= Workload-Planung
+:allow-uri-read: 
+
+
+
+
+== Workload-Planung
+
+Workload Scheduling ist eine Funktion, die das Zeitfenster für den aktiven Betrieb der Umgebung einplanen kann.
+
+Die Workload-Planung kann auf „Always On“, „Always Off“ oder „Scheduled“ eingestellt werden. Wenn auf „geplant“ gesetzt, können die ein- und Ausschaltzeiten so fein eingestellt werden wie ein anderes Zeitfenster für jeden Wochentag.
+
+image:Workload_schedule1.png[""]
+
+Wenn ein geplantes Ausschalten geplant wird, entweder über „Always Off“ oder „Scheduled“, werden alle virtuellen Mandantenmaschinen heruntergefahren. Plattformserver (wie z.B. CWMGR1) bleiben aktiv, um Funktionen wie Wake-on-Demand zu ermöglichen.
+
+Workload Schedule funktioniert in Verbindung mit anderen Funktionen zur Ressourcenoptimierung, einschließlich Live Scaling und Wake On Demand.
+
+
+
+== Wake-on-Demand
+
+Wake On Demand (WOD) ist eine zum Patent angemeldete Technologie, mit der die entsprechenden VM-Ressourcen für einen Endbenutzer aktiviert werden können, um unbeaufsichtigten Zugriff auf 24/7 zu ermöglichen, selbst wenn Ressourcen für den Betrieb geplant sind.
+
+
+
+=== WOD für Remote Desktop Services
+
+In RDS verfügt der VDS Windows Client über eine integrierte Wake-On-Demand-Integration und kann die entsprechenden Ressourcen ohne zusätzliche Benutzeraktionen aktivieren. Der Kunde muss lediglich seine normale Anmeldung einleiten, und der Client benachrichtigt sie über eine kurze Verzögerung, die die VM(s) aktiviert sind. Dieser Client (und damit die automatisierte Weckfunktion) steht nur zur Verfügung, wenn eine Verbindung von einem Windows-Gerät zu einer RDS-Umgebung hergestellt wird.
+
+Ähnliche Funktionen sind für RDS-Implementierungen in den VDS Web-Client integriert. Der VDS Web Client ist verfügbar unter: link:https://login.cloudworkspace.com[""]
+
+Wake-on-Demand-Funktionen sind nicht in den Microsoft RD-Client (für Windows oder eine andere Plattform) und keine anderen RD-Clients von Drittanbietern integriert.
+
+
+
+=== Wake-On-Demand für Azure Virtual Desktop
+
+In AVD sind die einzigen Clients, die für die Verbindung verwendet werden können, Microsoft bereitgestellt und enthalten somit nicht die Wake-on-Demand-Funktionalität.
+
+VDS verfügt über eine Self-Service Wake-on-Demand-Funktion für AVD über den VDS Web Client. Der Web-Client kann dazu genutzt werden, die entsprechenden Ressourcen zu aktivieren, dann kann die Verbindung über den Standard-AVD-Client initiiert werden.
+
+.So aktivieren Sie VM-Ressourcen in AVD:
+. Stellen Sie eine Verbindung zum VDS Web Client unter her link:https://login.cloudworkspace.com[""]
+. Melden Sie sich mit den AVD-Benutzeranmeldeinformationen an
++
+** Eine Warnmeldung gibt die Meldung _ „Sie haben die AVD-Dienste von Microsoft zur Verfügung. Klicken SIE HIER, um den Status anzuzeigen und Offline Host Pools zu starten.“_
+
+
+. Nach dem Klicken auf „_HERE_“ wird eine Liste der verfügbaren Host-Pools sowie der Link „Click to Start“ in der Status-Spalte angezeigt
++
+image:Wake_on_Demand_h5_1.png[""]
+
+. _Klicken Sie auf den Link Start_ und warten Sie 1-5 Minuten, bis der Status in „Online“ geändert wird, und zeigen Sie ein grünes Statussymbol an
+. Stellen Sie eine Verbindung mit AVD über Ihren normalen Prozess her
+
+
+
+
+== Live-Skalierung
+
+Live-Skalierung funktioniert in Verbindung mit Workload Scheduling, indem die Anzahl der Online-Sitzungshosts während der geplanten aktiven Zeit, wie in Workload Scheduling konfiguriert, verwaltet wird. Wenn es für den Offline-Modus geplant ist, wird die Verfügbarkeit des Host-Sitzungs durch Live Scaling nicht gesteuert. Die Live-Skalierung wirkt sich nur auf Shared-Benutzer und Shared-Server in RDS- und AVD-Umgebungen, VDI-Benutzer und VDI-VMs aus diesen Berechnungen aus. Alle anderen VM-Typen sind nicht betroffen.
+
+
+NOTE: Die Einstellung AVD_Load Balancer type_ interagiert mit dieser Konfiguration, daher sollte bei der Auswahl dieser Einstellung ebenfalls darauf Wert genommen werden. Kosteneinsparungen werden durch eine „erste Tiefe“-Lösung maximiert, während die Leistung der Endbenutzer mit einem breiten First-Typ maximiert wird.
+
+Wenn die Live-Skalierung ohne Optionen aktiviert ist, wählt die Automation Engine automatisch Werte für die Anzahl der Extra Powered auf Servern, für freigegebene Benutzer pro Server und für max. Freigegebene Benutzer pro Server aus.
+
+* Die _Anzahl von Extra Powered auf Servern_ ist standardmäßig auf 0 eingestellt, was bedeutet, dass 1 Server 24/7 ausführt.
+* Die _Shared Users per Server_ ist standardmäßig die Anzahl der Benutzer im Unternehmen geteilt durch die Anzahl der Server.
+* Die Option „ _max Shared Users per Server_“ ist standardmäßig „skalierbar“.
+
+
+Live Scaling schaltet die Server ein, wenn sich Benutzer anmelden und sie ausschalten, wenn sich Benutzer abmelden.
+
+Die Stromversorgung eines zusätzlichen Servers wird automatisch ausgelöst, sobald die Gesamtzahl der aktiven Benutzer die Anzahl der freigegebenen Benutzer pro Server erreicht hat, multipliziert mit der Gesamtzahl der Powered on Servers.
+
+ e.g. With 5 Shared Users per Server set (this is the default # we’ll use for all examples in this article) and 2 servers running, a 3rd server won’t be powered up until server 1 & 2 both have 5 or more active users. Until that 3rd server is available, new connections will be load balanced all available servers. In RDS and AVD Breadth mode, Load balancing sends users to the server with the fewest active users (like water flowing to the lowest point). In AVD Depth mode, Load balancing sends users to servers in a sequential order, incrementing when the Max Shared Users number is reached.
+Durch die Live-Skalierung werden zudem die Server abgeschaltet, um Kosten zu sparen. Wenn ein Server über 0 aktive Benutzer verfügt und ein anderer Server über eine verfügbare Kapazität unter _freigegebene Benutzer pro Server_ verfügt, wird der leere Server heruntergefahren.
+
+Der Einschalten des nächsten Servers kann einige Minuten dauern. In bestimmten Situationen kann die Geschwindigkeit der Anmeldungen die Verfügbarkeit neuer Server überbieten. Wenn sich zum Beispiel 15 Personen in 5 Minuten anmelden, landen sie alle auf dem ersten Server (oder werden einer Sitzung verweigert), während ein 2. Und 3. In diesem Szenario kann die Überlastung eines einzelnen Servers durch zwei Strategien entschärfung werden:
+
+. Aktivieren Sie _Anzahl von Extra Powered auf Servern_, damit die zusätzlichen Server eingeschaltet und verfügbar sind, um Verbindungen zu akzeptieren und der Plattform Zeit zu geben, weitere Server zu erweitern.
++
+.. Bei Aktivierung wird die Zahl dem berechneten Bedarf hinzugefügt. Wenn Sie z. B. auf einen zusätzlichen Server (und 6 verbundene Benutzer) gesetzt haben, wären aufgrund der Anzahl der Benutzer zwei Server aktiv, plus einen dritten aufgrund der Einstellung „_Extra Powered on Servers_“.
+
+
+. Aktivieren Sie _max Shared Users pro Server_, um eine harte Grenze für die Anzahl der Benutzer pro Server zu setzen. Neue Verbindungen, die dieses Limit überschreiten würden, werden abgelehnt, der Endbenutzer erhält eine Fehlermeldung und muss es in ein paar Minuten erneut versuchen, sobald der zusätzliche Server verfügbar ist. Wenn eingestellt, definiert diese Zahl auch die Tiefe von AVD-freigegebenen Servern.
++
+.. Angenommen, das Delta zwischen _Shared Benutzern pro Server_ und _max Shared Users pro Server_ ist angemessen, sollten die neuen Server verfügbar sein, bevor das Maximum, jedoch in den extremsten Situationen (ungewöhnlich große Login-Anstürme) erreicht wird.
+
+
+
+
+
+
+== Skalierung der VM-Ressourcen
+
+Die Skalierung der VM-Ressourcen ist eine optionale Funktion, mit der sich Größe und Anzahl der Host-VMs in einer Umgebung ändern lassen.
+
+Bei Aktivierung berechnet VDS die entsprechende Größe und Menge der Host-VMs für Sitzungen basierend auf den von Ihnen ausgewählten Kriterien. Zu diesen Optionen gehören: Aktive Benutzer, benannte Benutzer, Serverlast und Behoben.
+
+image:VMResource2.png[""]
+
+Die Größe der VMs ist in der in der UI ausgewählten Familie von VMs enthalten, die durch Dropdown geändert werden kann. (Z. B. _DV3-Standardfamilie_ in Azure)
+
+image:VMResource1.png[""]
+
+
+
+=== Skalierung je nach Anwender
+
+
+NOTE: Die unten stehende Funktion verhält sich gleichermaßen für „aktive Benutzer“ oder „Benutzeranzahl“. Bei der Benutzeranzahl handelt es sich um eine einfache Anzahl aller mit einem VDS-Desktop aktivierten Benutzer. Aktive Benutzer ist eine berechnete Variable, die auf den Daten der letzten 2 Wochen der Benutzersitzung basiert.
+
+Bei der Berechnung auf Basis von Benutzern wird die Größe (und die Anzahl) der Session-Host-VMs auf Basis der definierten RAM- und CPU-Anforderungen berechnet. Der Administrator kann GB RAM, Anzahl der vCPU-Kerne pro Benutzer sowie zusätzliche nicht variable Ressourcen definieren.
+
+In der Abbildung unten wird jedem Benutzer 2 GB RAM und 1/2 eines vCPU-Kerns zugewiesen. Zusätzlich beginnt der Server mit 2 vCPU Cores und 8 GB RAM.
+
+image:VMResource3.png[""]
+
+Außerdem kann der Administrator die Maximalgröße festlegen, auf die eine VM maximal erreichbar ist. Wenn die Umgebung erreicht ist, werden sie horizontal skaliert, indem zusätzliche VM-Session-Hosts hinzugefügt werden.
+
+In dem Screenshot unten ist jede VM auf 32 GB RAM und 8 vCPU Kerne beschränkt.
+
+image:VMResource4.png[""]
+
+Wenn alle diese Variablen definiert sind, berechnet VDS die geeignete Größe und Menge der Host VMs für die Session. Dadurch wird die Zuweisung der entsprechenden Ressourcen auch beim Hinzufügen und Entfernen von Benutzern erheblich vereinfacht.
+
+
+
+=== Skalierung je nach Serverlast
+
+Bei der Berechnung auf Basis der Serverlast werden die Größe (und die Anzahl) der Host-VMs der Session basierend auf den durchschnittlichen CPU-/RAM-Auslastungsraten gemäß VDS im Zeitraum von zwei Wochen berechnet.
+
+Wenn der maximale Schwellenwert überschritten wird, erhöht VDS die Größe oder erhöht die Menge, um die durchschnittliche Nutzung innerhalb des Bereichs wiederherzustellen.
+
+Wie die benutzerbasierte Skalierung können auch die VM-Familie und die maximale VM-Größe definiert werden.
+
+image:VMResource6.png[""]
+
+
+
+== Andere aktive Ressourcen
+
+Workload Scheduling steuert die Plattformserver wie CWMGR1 nicht, da sie benötigt werden, um die Wake-On-Demand-Funktionalität auszulösen und andere Plattformaufgaben zu ermöglichen. Außerdem sollte 24/7 für den normalen Umgebungsbetrieb ausgeführt werden.
+
+Zusätzliches Einsparpotenzial kann durch die Deaktivierung der gesamten Umgebung erreicht werden, wird aber nur für Umgebungen empfohlen, die nicht im produktiven Betrieb sind. Dies ist eine manuelle Aktion, die im Abschnitt Bereitstellungen von VDS ausgeführt werden kann. Um die Umgebung wieder in den normalen Status zu bringen, ist auf derselben Seite auch ein manueller Schritt erforderlich.
+
+image:Stop_Deployment.png[""]
+image:Start_deployment.png[""]

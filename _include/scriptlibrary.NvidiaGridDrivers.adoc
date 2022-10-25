@@ -1,0 +1,15 @@
+= Übersicht über NVIDIA GRID Treiber
+:allow-uri-read: 
+
+
+
+
+== Übersicht über NVIDIA GRID Treiber
+
+Dieses Skript-Paket installiert/deinstalliert _Nvidia GRID Drivers_ mithilfe des chocolatey-Paketmanagers (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallNvidiaGridDrivers.png[Scriptbibliothek.activity.InstallNvidiaGridDrivers]

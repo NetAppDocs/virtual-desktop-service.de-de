@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_azure_AVD_hostpool_54.html 
+summary: Erstellen Sie mit NetApp VDS v5.4 einen AVD Host-Pool 
+keywords:  
+---
+= Erstellen Sie mit NetApp VDS v5.4 einen AVD Host-Pool
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+video::kaHZm9yCv8g[youtube]

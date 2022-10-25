@@ -1,0 +1,21 @@
+= Übersicht über die Ezeep Print App
+:allow-uri-read: 
+
+
+
+
+== Übersicht über die Ezeep Print App
+
+Dieses Skript-Paket installiert/deinstalliert _Ezeep Print App_ mithilfe des chocolatey-Paketmanagers (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcuts\Printer Self Service.lnk`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallEzeepPrintApp.png[Scriptbibliothek.activity.InstallEzeepPrintApp]

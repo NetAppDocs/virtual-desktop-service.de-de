@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.application_issues.html 
+summary: Schritt-für-Schritt-Leitfaden zur Fehlerbehebung bei Applikationsproblemen 
+keywords:  
+---
+= Fehlerbehebung Bei Applikationsproblemen
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Fehlerbehebung bei einem Anwendungsfehler ist eine gängige administrative Praxis, die nicht VDS selbst beinhaltet, aber wird stark unterstützt durch VDS und die Kontrolle, die es Administratoren bietet. Da NetApp VDS keine Fehlerbehebung für diese Probleme bei den Kunden übernimmt, können wir anhand unserer Erfahrungen Administratoren Ratschläge geben, nachdem wir einige grundlegende Informationen wie die folgenden ermittelt haben, um sich ausführlicher mit den Endbenutzern und/oder Drittanbietern zu beschäftigen.
+
+* Name des Benutzers, der das Problem auftritt
+* Name der Anwendung, mit der der Benutzer arbeitete
+* Der Server, auf dem die Benutzersitzung war
+* Schritte zur Reproduktion des Problems
+
+
+
+
+== Überprüfen Ihrer Tools
+
+
+
+=== Monitoring
+
+Nachdem Sie den Server identifiziert haben, den der Benutzer verwendet hat, überprüfen Sie Ihre Überwachungslösung, um zu überprüfen, ob der Ressourcenverbrauch (CPU und RAM) im normalen Bereich liegt. Sie können auch validieren, dass anwendungsspezifische Anforderungen (ein besonderer Service, der Probleme verursachen wird, wenn es nicht läuft) sind funktionsfähig. In solchen Situationen können erweiterte Einstellungen wie die Überwachung der oben/unten genannten Dienste ausgelöst worden sein.
+
+
+
+=== Virenschutz
+
+Als Administrator mit Zugriff auf die Server und auf Azure Active Directory können Sie die erkannten Daten und die festgelegten Richtlinien überprüfen. Sollte ein unvorhergesehener Vorfall vorhanden sein, kann es zu Auswirkungen auf Ihre Applikation kommen.
+
+
+
+=== Weitere Tools
+
+Einige Anwendungen erfordern zusätzliche Komponenten, wie z. B. ein Servicekonto, das unbestimmte Zeit angemeldet bleibt, oder ein VPN an eine physische Ausrüstung (z. B. eine Netzwerk-Appliance vor Ort oder ein Gerät der Fertigungsausrüstung oder Diagnoseprogramm). In diesen Fällen können anwendungsspezifische Fehler durch eine andere Ursache als die Installation der Anwendung oder die Konfiguration der Einstellungen verursacht werden.
+
+
+
+=== Erweiterung des Zugriffs auf Dritte
+
+Anwendungen und/oder deren Datenbanken werden häufig von dem Softwareanbieter (ISV) selbst oder einem Drittanbieter installiert, konfiguriert und unterstützt. In diesen Situationen möchten Sie den temporären Administratorzugriff auf folgende Schritte ausweiten: link:Management.System_Administration.provide_3rd_party_access.html["Bereitstellen von zeitweiligen Zugangs zu Dritten"]
+
+Als Best Practice empfiehlt es sich, diese Konten von Dritten nach Abschluss des Upgrades oder Updates oder nach Behebung des Problems herunterzufahren.
+
+In vielen Fällen erfordert ein Software-Wartungsvertrag mit dem ISV, um eine solche Fehlerbehebung durchzuführen. Falls dies nicht der Fall ist, kann Ihnen der ISV dieses Problem möglicherweise erst unterstützen, wenn er vorhanden ist.
+
+
+NOTE: Möglicherweise besteht auch darin, dass das Problem der Fehlerbehebung auf die Hardware (Desktops, Laptops, Thin Clients usw.) zurückzuführen ist, mit der die Endbenutzer arbeiten. Ein Beispiel könnte sein, dass ein Upgrade des Laptops eines Benutzers könnte die Maschine in den Augen einer dünnen Client-Konfigurationsdatei sperren, was bedeutet, dass die Endbenutzer nicht auf die Tools zugreifen können, die ihnen erlauben, sich an ihrem virtuellen Desktop anzumelden. In diesem Fall kann ein Wartungsvertrag für Hardware erforderlich sein, bevor der Hersteller Ihnen behilflich sein wird.

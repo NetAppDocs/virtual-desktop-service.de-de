@@ -1,0 +1,15 @@
+= NVIDIA-Cuda-Treiber – Übersicht
+:allow-uri-read: 
+
+
+
+
+== NVIDIA-Cuda-Treiber – Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Nvidia Cuda Drivers_ mit dem chocolatey-Paketmanager (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallNvidiaCudaDrivers.png[Scriptbibliothek.activity.InstallNvidiaCudaDrivers]

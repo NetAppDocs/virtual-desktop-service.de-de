@@ -1,0 +1,94 @@
+= Neuen Benutzer erstellen
+:allow-uri-read: 
+
+
+
+
+== Neuen Benutzer erstellen
+
+Administratoren können Benutzer hinzufügen, indem sie auf Arbeitsbereiche > Benutzer und Gruppen > Hinzufügen/Importieren klicken
+
+Benutzer können einzeln oder mit einem Massenimport hinzugefügt werden.
+
+image:add_import_users.png["Breite = 25 %"]
+
+
+NOTE: Einschließlich genauer E-Mail und Handy # in dieser Phase verbessert den Prozess der Aktivierung MFA später erheblich.
+
+Sobald Sie Benutzer erstellt haben, können Sie auf ihren Namen klicken, um Details zu sehen, wie wann sie erstellt wurden, ihren Verbindungsstatus (ob sie gerade angemeldet sind oder nicht) und was ihre spezifischen Einstellungen sind.
+
+
+
+== Aktivieren des Virtual Desktop für vorhandene AD-Benutzer
+
+Wenn Benutzer bereits in AD vorhanden sind, können Sie den Virtual Desktop der Benutzer einfach aktivieren, indem Sie auf das System neben ihrem Namen klicken und dann ihren Desktop aktivieren.image:Enable_desktop.png["Breite = 50 %"]
+
+
+NOTE: Nur für den Azure AD-Domänendienst: Damit die Anmeldung funktioniert, muss der Password-Hash für Azure AD-Benutzer synchronisiert werden, um die NTLM- und Kerberos-Authentifizierung zu unterstützen. Am einfachsten ist es, das Benutzerpasswort in Office.com oder im Azure Portal zu ändern, sodass die Hash-Synchronisierung des Passworts erzwungen wird. Der Synchronisierungszyklus für Domain Service-Server kann bis zu 20 Minuten dauern, sodass Änderungen an Passwörtern in Azure AD in der Regel 20 Minuten in AADDS und damit in der VDS-Umgebung wieder aufnehmen können.
+
+
+
+== Benutzerkonto(e) löschen
+
+
+
+== Benutzerinformationen bearbeiten
+
+Auf der Benutzerdetailseite können Änderungen an den Benutzerdetails wie Benutzername und Kontaktdaten vorgenommen werden. Die E-Mail- und Telefonwerte werden für den SSPR-Prozess (Self Service Password Reset) verwendet.
+
+image:user_detail.png[""]
+
+
+
+== Sicherheitseinstellungen für Benutzer bearbeiten
+
+* VDI-Benutzer aktiviert – eine RDS-Einstellung, die, wenn sie aktiviert ist, einen dedizierten VM-Session-Host erstellt und diesem Benutzer als einzigen Benutzer zugewiesen wird, der eine Verbindung zu ihm herstellt. Im Rahmen der Aktivierung dieses Kontrollkästchens wird der CWMS-Administrator aufgefordert, VM-Image, -Größe und -Speichertyp auszuwählen.
++
+** AVD-VDI-Benutzer sollten auf der AVD-Seite als VDI-Hostpool verwaltet werden.
+
+
+* Kontoablauf aktiviert – ermöglicht dem CWMS-Administrator, ein Ablaufdatum auf dem Endbenutzerkonto festzulegen.
+* Passwort zurücksetzen bei der nächsten Anmeldung erzwingen – fordert den Endbenutzer auf, sein Passwort bei der nächsten Anmeldung zu ändern.
+* Multi-Faktor Auth aktiviert – aktiviert MFA für den Endbenutzer und fordert ihn zur Einrichtung von MFA bei der nächsten Anmeldung auf.
+* Mobile Drive Enabled – eine ältere Funktion, die in aktuellen RDS- oder AVD-Bereitstellungen nicht verwendet wird.
+* Lokaler Laufwerkszugriff aktiviert – ermöglicht es dem Endbenutzer, von der Cloud-Umgebung aus auf den lokalen Gerätebsspeicher zuzugreifen, einschließlich Kopieren/Einfügen, USB-Massenspeicher und Systemlaufwerke.
+* Wake-on-Demand aktiviert – für RDS-Benutzer, die sich über den CW-Client für Windows verbinden, erhalten sie dadurch die Berechtigung, ihre Umgebung zu nehmen, wenn sie außerhalb der normalen Arbeitszeiten gemäß Workload Schedule eine Verbindung herstellen.
+
+
+
+
+== Gesperrtes Konto
+
+Standardmäßig sperren fünf fehlgeschlagene Anmeldeversuche das Benutzerkonto. Das Benutzerkonto wird nach 30 Minuten entsperrt, es sei denn, _Enable Password Komplexitäts_ ist aktiviert. Wenn die Passwortkomplexität aktiviert ist, wird das Konto nicht automatisch entsperrt. In beiden Fällen kann der VDS-Administrator das Benutzerkonto manuell von der Seite Benutzer/Gruppen im VDS entsperren.
+
+
+
+== Benutzerpasswort zurücksetzen
+
+Setzt das Benutzerpasswort zurück.
+
+Hinweis: Beim Zurücksetzen von Azure AD-Benutzerpasswörtern (oder beim Entsperren eines Kontos) kann es eine Verzögerung von bis zu 20 Minuten geben, wenn das Zurücksetzen über Azure AD propagiert.
+
+
+
+== Administratorzugriff
+
+Wenn dies ermöglicht wird, erhält der Endbenutzer eingeschränkten Zugriff auf das Management-Portal für seinen Mandanten. Zu den üblichen Nutzungsmöglichkeiten gehört die Bereitstellung eines vor-Ort-Mitarbeiters, der auf das Zurücksetzen von Peers-Passwörtern, die Zuweisung von Anwendungen oder das Zulassen von manuellen Server-Wakeup-Zugriffen zugreifen kann. Berechtigungen, die steuern, welche Bereiche der Konsole angezeigt werden können, werden auch hier festgelegt.
+
+
+
+== Benutzer abmelden
+
+Angemeldete Benutzer können vom VDS-Administrator von der Seite Benutzer/Gruppen im VDS abgemeldet werden.
+
+
+
+== Applikationen Unterstützt
+
+Zeigt die in diesem Arbeitsbereich bereitgestellte Anwendung an. Das Kontrollkästchen stellt die Apps für diesen spezifischen Benutzer bereit. Vollständige Dokumentation zum Application Management finden Sie hier. Der Zugriff auf Anwendungen kann auch über die App-Schnittstelle oder auf Security Groups gewährt werden.
+
+
+
+== Benutzerprozesse anzeigen/beenden
+
+Zeigt die Prozesse an, die derzeit in der Sitzung des Benutzers ausgeführt werden. Auch von dieser Schnittstelle können Prozesse beendet werden.

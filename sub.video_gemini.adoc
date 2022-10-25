@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: video_gemini.html 
+summary: NetApp VDS Gemini – Demo 
+keywords:  
+---
+= NetApp VDS Gemini – Demo
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+<iframe src='//players.brightcove.net/260701648001/H1gEPI1kz_default/index.html?videoId=6182654694001' allowfullscreen Framegrand=0></iframe>

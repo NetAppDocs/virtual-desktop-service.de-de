@@ -1,0 +1,15 @@
+= AMD Radeon Instinct Treiber – Übersicht
+:allow-uri-read: 
+
+
+
+
+== AMD Radeon Instinct Treiber – Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _AMD Radeon Instinct Drivers_ mithilfe des chocolatey-Paketmanagers (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallAMDRadeonInstinctDrivers.png[Scriptbibliothek.activity.InstallAMDRadeonInstinctDrivers]

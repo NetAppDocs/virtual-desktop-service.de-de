@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.edit_workload_schedule-a3550.png[Management.command Center.Operations.Workload-Planung a3550 bearbeiten]

@@ -1,0 +1,24 @@
+= Zoom für VDI/AVD-Übersicht
+:allow-uri-read: 
+
+
+
+
+== Zoom für VDI/AVD-Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Zoom VDI-AVD_ mit PowerShell für die Bereitstellung.
+
+
+NOTE: Die Zoomleistung wird verbessert, wenn die Audioumleitung auch für die VDI/AVD-Umgebung aktiviert ist.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcuts\Zoom VDI.lnk`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallZoomVDI-AVD.png[Scriptbibliothek.activity.InstallZoomVDI AVD]

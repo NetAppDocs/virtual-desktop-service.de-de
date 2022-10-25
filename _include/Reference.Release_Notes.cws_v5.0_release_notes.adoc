@@ -1,0 +1,92 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+NOTE: Für v5.0 von CWS gibt es keine weiteren wiederkehrenden Releases – alle Releases werden als Hotfixes betrachtet.
+
+
+
+== Überblick
+
+CloudJumper hat die Cloud Workspace Suite 5.0 für die allgemeine Implementierung ab Q4 2016 veröffentlicht. Diese Version enthält ein Update sowohl der CWS-APIs als auch der Admin-Control-Schnittstelle. Das Release ist eine signifikante Änderung und ist nicht „abwärtskompatibel“ zu Version 4.x Einheiten.
+
+Version 4.x wird weiterhin unterstützt, bis alle Partner Software Defined Data Centers (SDDCs) auf die Plattform 5.0 aktualisiert wurden. Upgrades werden von CloudJumper in Abstimmung mit jedem Partner abgeschlossen und bestehende Dienste nicht unterbrochen. Es entstehen keine Upgrade-Gebühren oder Implementierungskosten für den Wechsel. CWS 5 unterstützt weiterhin alle Funktionen der vorherigen Versionen und erweitert neue Funktionen, die sowohl die Administrator- als auch die Endbenutzererfahrung verbessern und die preisgekrönte Automatisierung und Orchestrierung, die mit früheren Versionen der Cloud Workspace Suite eingeführt wurde, weiter verbessern.
+
+Mit CWS 5.0 hat CloudJumper alle Plattformen-APIs in DAS REST-API-Format umgeschrieben und die früheren SOAP-APIs vollständig ausgemustert. Diese aktualisierte Architektur wird die Weiterentwicklung von CloudJumper einfacher und schneller erleichtern und schafft eine noch freundlichere Umgebung für externe Entwickler, um ihre Services und Produkte auf der Basis von Cloud Workspace zu erweitern.
+
+
+
+== Highlights
+
+* Vollständiges UI/UX Rewrite
+* Azure AD-Integration
+* Implementierung des Azure SDDC Self-Service
+* App-Services
+* Ressourcenplanung
+* Live-Server-Skalierung – Plattformübergreifend
+* Automatisiertes Klonen Von Servern – Plattformübergreifend
+* Laufwerkfreigaben werden pro Client individuell angepasst
+
+
+
+
+== Wichtige Funktionen
+
+
+
+=== Integration von Azure Active Directory (AD
+
+* Erstellen Sie SDDC als Private Cloud Active Directory, oder verwenden Sie Microsoft Azure-AD-als-Service
+* Kombinieren Sie CWS mit Office365
+* Unterstützung von SSO und MFA auf Basis von Azure
+
+
+
+
+=== Implementierung des Azure SDDC Self-Service
+
+* Vollständige Integration in Azure
+* Schnelle Implementierung neuer SDDCs
+* Implementieren Sie Private Enterprise Clouds innerhalb von Azure für jeden Workload, einschließlich Cloud Workspace Managed: WAAS, App Services, Private Web App und SharePoint
+
+
+
+
+=== App-Services
+
+* Implementieren Sie Applikationssilos zur Veröffentlichung von Applikationen als isolierte Service-Bausteine
+* Apps, die von ‘öffentlichen’ App-Servern an viele benutzerdefinierte Einheiten geliefert werden
+* Applikationen werden in dedizierten Server-Pools für einzelne Applikationen installiert
+* Apps werden von den Anforderungen des Benutzerprofils und der Datenschicht entkoppelt
+* Bauen Sie hochskalierbare App-Services auf
+* Mehrere App-Services können zu Benutzersammlungen kombiniert werden
+* CWS-Lizenzverfolgung und Nutzungsberichte
+
+
+
+
+=== Live-Server-Skalierung – plattformübergreifend
+
+* Intelligente, automatisierte Skalierung von Serverressourcen/aktiven Servern
+* Managen Sie Server-Ressourcen optimal mit dynamischer Zunahme/Senkung bei Änderungen der Benutzerlast
+* Automatische Skalierung von Serverressourcen, je nach Workload
+
+
+
+
+=== Automatisiertes Serverklonen – plattformübergreifend
+
+* Erhöhen Sie den Server automatisch, bis die Anzahl der verfügbaren Benutzer steigt
+* Fügt den verfügbaren Ressourcen-Pools zusätzliche Server hinzu
+* Kombinieren Sie die CWS Live Server Scaling-Funktion, um eine vollständig automatisierte Lösung zu schaffen
+
+
+
+
+=== Ressourcenplanung
+
+* Planen Sie die Servicezeiten auf Kundenbasis
+* Kosteneindämmung für Public Clouds
+* Schalten Sie die Systeme aus, wenn sie nicht verwendet werden, und aktivieren Sie sie nach einem vordefinierten Zeitplan erneut
+

@@ -1,0 +1,26 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Das Entsperren eines gesperrten Kontos für einen Endbenutzer ist ein einfacher Prozess, der ein mittelmäßig häufiges Problem behebt, das Endbenutzer berichten.
+
+Nach vier fehlgeschlagenen Anmeldeversuchen wird der Benutzer gesperrt. Die Dauer beträgt 30 Minuten, es sei denn, das Konto hat die Passwortkomplexität aktiviert, in diesem Fall kann die Sperrung nur manuell durchgeführt werden.
+
+Das Benutzerkonto kann in der Liste der Benutzer auf der Seite Benutzer und Gruppen in den Arbeitsbereichen oder auf der Seite Benutzerdetails entsperrt werden.
+
+
+
+== Seite „Benutzer Und Gruppen“
+
+image:unlock_user_accounts1.png[""]
+image:unlock_user_accounts2.png[""]
+
+
+
+== Seite „Benutzerdetails“
+
+image:unlock_user_accounts3.png[""]

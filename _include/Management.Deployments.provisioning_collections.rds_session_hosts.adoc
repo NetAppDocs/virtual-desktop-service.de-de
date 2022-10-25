@@ -1,0 +1,37 @@
+= RDS Session Host Update-Prozess
+:allow-uri-read: 
+
+
+
+
+=== RDS Session Host Update-Prozess
+
+VDS bietet eine einfache Möglichkeit, Sitzungshosts in einer RDS-Umgebung mithilfe von Provisioning Collections und der *Add Server*-Funktionalität zu aktualisieren. Dieser Vorgang kann ohne Beeinträchtigung der Endbenutzer durchgeführt und mit nachfolgenden Image-Aktualisierungen wiederholt werden, basierend auf vorherigen Bildwiederholungen.
+
+.Die Aktualisierung des RDS Session-Hosts erfolgt wie folgt:
+. Erstellen Sie eine neue VDI Provisioning Collection, passen Sie die Sammlung gemäß den obigen Anweisungen an und validieren Sie sie.
++
+.. Im Allgemeinen wird diese Provisioning-Sammlung auf der vorherigen VM-Vorlage aufgebaut und einen Prozess „Öffnen, Speichern unter“ emuliert.
+
+
+. Wenn die Provisioning Collection validiert wurde, navigieren Sie zur Seite _Workspace > Servers_, klicken Sie auf *+ Add Server*
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning collections.rds-Sitzung hostet e8204]
+
+. Wählen Sie *TS* als *Server-Rolle* aus
+. Wählen Sie die neueste *VM Template* aus. Wählen Sie je nach Ihren Anforderungen die passende Auswahl für *Maschinengröße* und *Speichertyp* aus. Lassen Sie *Datenlaufwerk* deaktiviert.
+. Wiederholen Sie diesen Vorgang für die Gesamtanzahl der für die Umgebung erforderlichen Session-Hosts.
+. Klicken Sie auf *Server hinzufügen*. Die Sitzungshosts bauen auf der Grundlage der ausgewählten VM-Vorlage auf und starten in nur 10-15 Minuten (je nach Hypervisor) online.
++
+.. Beachten Sie, dass die Sitzungshosts, die sich derzeit in der Umgebung befinden, letztendlich deaktiviert werden, nachdem dieser neue Host online geschaltet wurde. Die Erstellung von ausreichend neuen Hosts ist geplant, um den gesamten Workload in dieser Umgebung zu unterstützen.
+
+
+. Wenn ein neuer Host online geschaltet wird, bleibt die Standardeinstellung in *Neue Sitzungen deaktivieren*. Für jeden Sitzungshost kann der Schalter *Neue Sitzungen zulassen* verwendet werden, um zu verwalten, welche Hosts neue Benutzersitzungen empfangen können. Auf diese Einstellung können Sie zugreifen, indem Sie die Einstellungen jedes einzelnen Host-Servers bearbeiten. Sobald ausreichend neue Hosts aufgebaut und die Funktionalität bestätigt wurde, kann diese Einstellung sowohl auf den neuen als auch auf den alten Hosts verwaltet werden, um alle neuen Sitzungen an die neuen Hosts weiterzuleiten. Die alten Hosts, mit *Neue Sitzungen zulassen* auf *deaktiviert* eingestellt, können weiterhin bestehende Benutzersitzungen ausführen und hosten.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning Collections.rds-Sitzung hostet 726d1]
+
+. Da sich Benutzer vom alten Host(s) abmelden und keine neuen Benutzersitzungen den alten Host(s) anschließen, können die alten Host(s), bei denen *Sessions = 0* gelöscht werden kann, durch Anklicken des Symbols *Aktionen* und Auswählen von *delete* gelöscht werden.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning collections.rds Session hostet 45d32]
+
+

@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.list_long_running_operations-98e9c.png[Management.command Center.Operations.list lange laufende Operationen 98e9c]

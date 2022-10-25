@@ -1,0 +1,72 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+VDS organisiert Konzepte in verschiedene Schichten einer logischen Hierarchie. In diesem Artikel wird erläutert, wie sie zu einem gemeinsamen System passen.
+
+
+
+=== VDS-Organisationsschema
+
+Das VDS-Verwaltungsportal finden Sie unter https://manage.vds.netapp.com[]. Diese Webschnittstelle ist eine zentrale Konsole zum Verwalten aller VDS-bezogenen Objekte. Innerhalb der VDS-Weboberfläche sind die folgenden Komponenten- und logischen Container-Hierarchie vorhanden.
+
+
+
+==== VDS-Bereitstellung
+
+Bei _Deployment_ handelt es sich um ein VDS-Konzept, das _VDS Workspace(s)_ organisiert und enthält. In bestimmten Implementierungsarchitekturen kann eine Implementierung mehrere VDS-Arbeitsbereiche enthalten.
+
+
+NOTE: Das Ausführen mehrerer VDS-Workspaces innerhalb einer einzelnen Implementierung heißt „Mandantenfähigkeit“ – dies ist nur eine Option bei RDS-Implementierungen. AVD-Implementierungen unterstützen diesen Ansatz nicht.
+
+Eine Bereitstellung wird durch ihre Active Directory Domäne definiert, und es gibt eine 1:1-Beziehung zwischen der AD-Domäne und einer Bereitstellung.
+
+Bestimmte VM-Ressourcen werden zur Unterstützung einer Implementierung implementiert, die bei der Implementierung für alle VDS-Arbeitsbereiche gemeinsam genutzt wird. Z. B. jede Implementierung enthält eine VM mit dem Namen „CWMGR1“, ein Server, auf dem VDS-Applikationen ausgeführt werden, eine SQL Express-Datenbank und vereinfacht das Management der VDS Workspace(s) (und der enthaltenen Ressourcen) in der Implementierung.
+
+
+
+==== VDS-Arbeitsbereich
+
+
+WARNING: Es besteht ein Unterschied zwischen einem „*VDS* Workspace“ und einem „*AVD* Workspace“.
+
+Ein VDS Workspace ist ein logischer Container in der Implementierung für die Client-Ressourcen (Endbenutzer). Zu diesen Ressourcen zählen Virtual Machines (für Session-Hosts, Applikations-Server, Datenbank-Server, File Server usw.), virtuelles Netzwerk, Storage und andere Hypervisor-Infrastruktur.
+
+Der VDS Workspace verfügt außerdem über Managementfunktionen zum Managen von Benutzern, Sicherheitsgruppen, Workload Scheduling, Applikationen, Automatisierung, VMs und AVD-Konfiguration.
+
+In der Regel wird ein VDS Workspace mit einem einzelnen Unternehmen oder (in Unternehmensimplementierungen) einer Geschäftseinheit ausgerichtet.
+
+
+
+==== VDS-Standorte
+
+Innerhalb einer Implementierung können mehrere Standorte für unterschiedliche Infrastrukturanbieter erstellt werden, die alle innerhalb einer einzigen Bereitstellung gemanagt werden.
+
+Dies ist hilfreich, wenn ein einzelnes Unternehmen oder eine Geschäftseinheit Benutzer und Applikationen über mehrere physische Standorte (z. B. Nordamerika und EMEA), Hypervisor-Abonnements (zur Ausrichtung der Kosten an Geschäftseinheiten) und sogar Hypervisoren (z. B. Benutzer in Azure, Google Compute und On-Premises HCI auf vSphere) hosten muss.
+
+
+
+==== AVD-Arbeitsbereiche
+
+
+WARNING: Es besteht ein Unterschied zwischen einem „*VDS* Workspace“ und einem „*AVD* Workspace“.
+
+Ein AVD Workspace ist ein logischer Container, der sich in einem VDS Workspace und einer VDS-Site befindet. Sie kann auf ähnliche Weise wie eine VDS-Site zum segmentieren von Management- und Betriebsrichtlinien in derselben Implementierung verwendet werden.
+
+
+
+==== AVD-Host-Pools
+
+AVD-Hostpools sind logische Container, die sich in einem AVD-Arbeitsbereich befinden und die Sitzungshosts und Anwendungsgruppen-Benutzer zum Server der Benutzersitzungen und zum Steuern des Zugriffs auf einzelne Ressourcen halten.
+
+
+
+==== AVD-Anwendungsgruppen
+
+Jeder AVD-Host-Pool beginnt mit einer einzigen „Desktop“-App-Gruppe. Benutzer und/oder Gruppen können dieser (oder einer anderen) App-Gruppe zugewiesen werden, um den zugewiesenen Benutzern den Zugriff auf die Ressourcen in der App-Gruppe zu ermöglichen.
+
+In einem Host-Pool in VDS können weitere App-Gruppen erstellt werden. Alle zusätzlichen App-Gruppen sind „RemoteApp“-Anwendungsgruppen und dienen RemoteApp-Ressourcen, anstatt eine vollständige Windows-Desktop-Erfahrung zu ermöglichen.

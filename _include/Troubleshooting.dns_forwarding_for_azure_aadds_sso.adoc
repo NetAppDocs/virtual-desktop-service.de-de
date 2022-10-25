@@ -1,0 +1,46 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Benutzer können nicht auf Firmen-Websites auf primären E-Mail-Domain zugreifen.
+
+_Zum Beispiel können NetApp Mitarbeiter in VDS-Arbeitsbereichen nicht auf netapp.com zugreifen, wenn ihr SSO-Konto user@netapp.com_ ist
+
+Dedizierte VDS-Implementierungen nutzen die interne Domäne des Azure-Mandanten.
+
+
+
+== Auflösung
+
+Um dies zu lösen, muss das Team des Unternehmens, das DNS verwaltet, eine DNS-Suchtzone für Ihre interne Domäne erstellen, damit sie die richtige externe IP-Adresse auflösen kann (um NetApp zu diesem Zweck NetApp Mitarbeiter innerhalb ihres virtuellen Desktops auf netapp.com durchsuchen zu können).
+
+
+
+== Schritt für Schritt
+
+. Installieren Sie die DNS-Server-Tools auf CWMGR1 – damit können Sie DNS verwalten.
++
+image:dns1.png[""]
+
++
+image:dns2.png[""]
+
++
+image:dns3.png[""]
+
++
+image:dns4.png[""]
+
++
+image:dns5.png[""]
+
+. Nach der Installation können Sie zu Systemsteuerung → System und Sicherheit → Verwaltung Tools gehen und DNS öffnen.
++
+image:dns6.png[""]
+
+. Wenn Sie nach dem DNS-Server gefragt werden, auf dem DNS ausgeführt wird, möchten Sie Ihren Domainnamen eingeben (in dem Beispiel, das wir verwendet haben, wäre dies _netapp.com_).
+

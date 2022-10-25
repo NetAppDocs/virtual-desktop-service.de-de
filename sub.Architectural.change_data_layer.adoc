@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: Architectural.change_data_layer.html 
+summary: Wechseln Sie die Storage-Plattform Schritt-für-Schritt-Anleitung 
+keywords:  
+---
+= Umleitung Der Storage-Plattform
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Bereitstellungstechnologien für Virtual Desktop Services ermöglichen unterschiedliche Storage-Optionen je nach zugrunde liegender Infrastruktur und dieser Leitfaden beschreibt, wie eine Änderung nach der Implementierung vorgenommen werden kann.
+
+Die Performance virtueller Desktops hängt von verschiedenen wichtigen Ressourcen ab. Die Storage-Performance ist eine der primären Variablen. Wenn sich Anforderungen ändern und Workloads steigen, ist es häufig erforderlich, die Storage-Infrastruktur zu ändern. In fast allen Fällen umfasst dies die Migration von einer File-Server-Plattform zu NetApp Storage-Technologie (z. B. Azure NetApp Files, NetApp Cloud Volumes Service in Google oder NetApp Cloud Volumes ONTAP in AWS), da diese Technologien typischerweise das beste Performance-Profil für Endbenutzer-Computing-Umgebungen bieten.
+
+
+
+=== Erstellen der neuen Speicherebene
+
+Aufgrund der Vielzahl potenzieller Storage-Services in zahlreichen Cloud- und HCI-Infrastrukturanbietern wird in diesem Leitfaden davon ausgegangen, dass bereits ein neuer Storage-Service etabliert wurde und der bekannte SMB-Pfad(e) enthält.
+
+
+
+=== Erstellen von Speicherordnern
+
+. Erstellen Sie im neuen Speicherdienst drei Ordner:
++
+** /Daten
+** /Home
+** /Pro
++
+image:storage1.png[""]
+
+
+
+. Legen Sie Die Ordnerberechtigungen Fest
++
+.. Wählen Sie unter Ordnereigenschaften die Option _Sicherheit, >Erweitert > Vererbung deaktivieren_
++
+image:storage2.png[""]
+
+.. Sie können die verbleibenden Einstellungen an die Einstellungen der ursprünglichen Storage-Ebene anpassen, die ursprünglich durch die Automatisierung der Implementierung erstellt wurden.
+
+
+
+
+
+
+=== Verschieben von Daten
+
+Verzeichnisse, Daten, Dateien und Sicherheitseinstellungen können auf verschiedene Arten verschoben werden. Die folgende robocopy-Syntax führt zu den erforderlichen Änderungen. Die Pfade müssen an Ihre Umgebung angepasst werden.
+
+ robocopy c:\data\zucd \\uyy-1c37.deskapps.mobi\zucd-data /xd ~snapshot /MIR /CopyAll /R:1 /W:1 /tee /log:C:\temp\roboitD.txt
+
+
+=== Umleitung des SMB-Pfads bei der Umstellung
+
+Wenn der Zeitpunkt der Umstellung zu verkürzen ist, werden einige Änderungen alle Storage-Funktionen in der VDS-Umgebung umleiten.
+
+
+
+==== Gruppenrichtlinienobjekte aktualisieren
+
+. Das Gruppenrichtlinienobjekt Benutzer (mit dem Namen _<company-Code>-Users_) muss mit dem neuen Freigabepfad aktualisiert werden. Wählen Sie _Benutzerkonfiguration > Windows-Einstellungen > Einstellungen > Laufwerkskarten_
++
+image:storage3.png[""]
+
+. Klicken Sie mit der rechten Maustaste auf _H:_, wählen Sie Eigenschaften > Bearbeiten > Aktion: Ersetzen_, und geben Sie den neuen Pfad ein
++
+image:storage4.png[""]
+
+. Mit Classic- oder Hybrid-AD-Update wird die Freigabe in ADUC in der Firma OU definiert. Dies spiegelt sich in der VDS-Ordnerverwaltung wieder.
++
+image:storage5.png[""]
+
+
+
+
+
+==== Aktualisieren der FSLogix-Profilpfade
+
+. Öffnen Sie Regedit auf dem ursprünglichen Dateiserver und allen anderen bereitgestellten Sitzungshosts.
++
+
+NOTE: Dies kann bei Bedarf auch über eine GPO-Richtlinie festgelegt werden.
+
+. Bearbeiten Sie den Wert _VHDLocations_ mit dem neuen Wert. Dies sollte der neue SMB Pfad plus _pro/profilecontainers_ sein, wie in der Abbildung unten gezeigt.
++
+image:storage6.png[""]
+
+
+
+
+
+==== Aktualisieren Sie die Ordnerumleitungseinstellungen für die Home-Verzeichnisse
+
+. Open Group Policy Management, wählen Sie das Gruppenrichtlinienobjekt Benutzer aus, das mit DC=Domain,DC=mobi/Cloud Workspace/Cloud Workspace Companies/<company-Code>/<company-Code>-Desktop-Benutzer verknüpft ist.
+. Ordnerumleitungspfade bearbeiten unter Benutzerkonfiguration>Richtlinien>Windows-Einstellungen>Ordnerumleitung.
+. Nur Desktop und Dokumente müssen aktualisiert werden. Die Pfade sollten mit dem neuen SMB-Pfad-Bereitstellungspunkt für Home Volume übereinstimmen
++
+image:storage7.png[""]
+
+
+
+
+
+==== Aktualisieren Sie die VDS SQL-Datenbank mit Command Center
+
+CWMGR1 enthält eine Hilfsprogramm-Anwendungen namens Command Center, die Bulk-Update der VDS-Datenbank kann.
+
+.So stellen Sie die endgültige Datenbank-Aktualisierung vor:
+. Stellen Sie eine Verbindung zu CWMGR1 her, navigieren Sie und führen Sie CommandCenter.exe aus
++
+image:storage10.png[""]
+
+. Navigieren Sie zur Registerkarte _Operations_, klicken Sie auf _Daten laden_, um das Dropdown-Menü Company Code auszufüllen, wählen Sie den Unternehmenscode aus, und geben Sie die neuen Speicherpfade für die Speicherebene ein, und klicken Sie dann auf _Execute Command_.
++
+image:storage11.png[""]
+
+

@@ -1,0 +1,17 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.create_server_from_clone-098a1.png[Management.command Center.Operations.Server aus Clone 098a1 erstellen]
+
+image::Management.command_center.operations.create_server_from_clone-2b8e0.png[Management.command Center.Operations.Server aus Clone 2b8e0 erstellen]
+
+image::Management.command_center.operations.create_server_from_clone-b252d.png[Management.command Center.Operations.Server aus Klon b252d erstellen]
+
+image::Management.command_center.operations.create_server_from_clone-3b909.png[Management.command Center.Operations.Server aus Clone 3b909 erstellen]
+
+image::Management.command_center.operations.create_server_from_clone-68dc9.png[Management.command Center.Operations.create Server aus Clone 68dc9]

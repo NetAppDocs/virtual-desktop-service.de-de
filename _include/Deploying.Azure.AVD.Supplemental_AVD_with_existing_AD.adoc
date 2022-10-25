@@ -1,0 +1,59 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+VDS Setup hat die Möglichkeit, eine neue Bereitstellung mit einer vorhandenen AD-Struktur zu verbinden. Diese Anweisung deckt diese Option im Detail ab. Dieser Artikel ist nicht eigenständiger, sondern eine detaillierte Erklärung einer Alternative zur neuen AD-Option, die in der beschrieben wird link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html["AVD-Bereitstellungsleitfaden"]
+
+
+
+== Typ Active Directory
+
+Im nächsten Abschnitt wird der Bereitstellungstyp Active Directory für die VDS-Bereitstellung definiert. In diesem Handbuch werden wir vorhandenes Windows Server Active Directory auswählen, das eine bereits vorhandene AD-Struktur nutzt.
+
+
+
+== Vorhandenes AD-Netzwerk
+
+VDS Setup zeigt eine Liste von vNets an, die die Verbindung zwischen der bestehenden AD-Struktur und Azure AD darstellen könnten. In der ausgewählten vnet-Version sollte ein von Azure gehostetes DC eingerichtet sein, das Sie in Azure konfiguriert haben. Zusätzlich verfügt vnet über benutzerdefinierte DNS-Einstellungen, auf die das von Azure gehostete DC verwiesen wird.
+
+image:existingDNS.png[""]
+
+
+
+== Vorhandener Active Directory-Domänenname
+
+Geben Sie den vorhandenen Domänennamen ein, der verwendet werden soll. Hinweis: Sie möchten die Domäne, die im Azure Portal unter dem Active Directory Modul zu finden ist, nicht verwenden, da sie zu DNS-Problemen führen kann. Das primäre Beispiel hierfür ist, dass Benutzer nicht über ihren Desktop auf diese Website (<yourdomain>.com, zum Beispiel) zugreifen können.
+
+
+
+== Vorhandener AD-Benutzername und Kennwort
+
+Es gibt drei Möglichkeiten, die erforderlichen Zugangsdaten bereitzustellen, um die Implementierung mit einer vorhandenen AD-Struktur zu vereinfachen.
+
+. Geben Sie den Benutzernamen und das Kennwort für den Active Directory-Domänenadministrator an
++
+Dies ist die einfachste Methode – Bereitstellung von Anmeldeinformationen für den Domänenadministrator, die zur Vereinfachung der Bereitstellung verwendet werden.
+
++
+
+NOTE: Dieses Konto kann für einen einmaligen Zweck erstellt und nach Abschluss des Implementierungsprozesses gelöscht werden.
+
+. Erstellen Sie Die Erforderlichen Berechtigungen Für Kontoabgleich
++
+Bei dieser Methode müssen die Administratoren des Kunden hier manuell die Berechtigungsstruktur erstellen, dann hier die Anmeldedaten für das CloudWorkSpaceSVC-Konto eingeben und fortfahren.
+
+. Manueller Implementierungsprozess
++
+Wenden Sie sich an den NetApp VDS Support, um Unterstützung bei der Konfiguration von AD-Zugriff mit den geringsten Berechtigungen bei Account-Principals zu erhalten.
+
+
+
+
+
+== Nächste Schritte
+
+Dieser Artikel behandelt die einzigartigen Schritte zur Implementierung in einer vorhandenen AD Umgebung. Wenn Sie diese Schritte abgeschlossen haben, können Sie zurück zum Standard-Implementierungsleitfaden zurückkehren link:Deploying.Azure.AVD.Deploying_AVD_in_Azure.html#active-directory-type["Hier"].

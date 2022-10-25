@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: Management.command_center.operations.copy_template_to_gallery.html 
+summary: 'VDS Command Center Funktion "Vorlage in Galerie kopieren" Übersicht' 
+keywords:  
+---
+= Command Center Befehl: Vorlage in Galerie kopieren
+:allow-uri-read: 
+
+
+
+
+== Warnung Für Command Center
+
+
+CAUTION: Das Command Center ist eine Anwendung, die auf dem CWMGR1-Plattformserver in der Bereitstellung ausgeführt wird. Diese Applikation wurde für Fehlerbehebung, Diagnose und erweiterte Managementfunktionen konzipiert. Diese Applikation wird hauptsächlich von den internen Entwicklungs- und Support-Teams von NetApp verwendet, allerdings werden einige Funktionen gelegentlich von Kunden-Administratoren verwendet. Diese Dokumentation wird zur Unterstützung der Verwendung von Auswahlfunktionen bereitgestellt. Verwenden Sie diese Befehle sorgfältig und in Zusammenarbeit mit dem NetApp Support Team. Weitere Informationen finden Sie im link:Management.command_center.overview.html["Command Center – Übersicht"] Artikel:
+
+
+
+== Vorlage in Galerierieübersicht kopieren
+
+image::Management.command_center.operations.copy_template_to_gallery-67ea4.png[Management.command Center.Operations.Vorlage in Galerie 67ea4 kopieren]
+
+Wenn eine VDI Provisioning Collection fertiggestellt ist, wird das Image in Azure als Image gespeichert und kann auf derselben VDS-Site bereitgestellt werden. Um das Image für die Bereitstellung in einer anderen Azure-Region innerhalb desselben Abonnements verfügbar zu machen, wird die Funktion „Vorlage in Galerie kopieren“ verwendet. Durch diese Aktion wird das VM-Image in die Galerie „gemeinsam genutzt“ kopiert und in alle ausgewählten Regionen repliziert.
+
+image::Management.command_center.operations.copy_template_to_gallery-ed821.png[Management.command Center.Operations.Vorlage in Galerie ed821 kopieren]
+
+
+
+== Dropdown-Liste VM Template Availability in VDS
+
+Nach Abschluss der Replikation wird das Image in VDS in der Dropdown-Liste zur Auswahl von VM-Vorlagen bei der Bereitstellung neuer VMs angezeigt. Das gemeinsam genutzte Bild steht für die Bereitstellung in allen Regionen zur Verfügung, die beim Kopieren ausgewählt wurden.
+
+image::Management.command_center.operations.copy_template_to_gallery-04bd8.png[Management.command Center.Operations.Vorlage in Galerie 04bd8 kopieren]
+
+VM Images, die in der Shared Gallery gespeichert sind, werden mit ihrer Version in Form von "-x.x.x" angefügt, wobei die Version mit der Bildversion im Azure Portal übereinstimmt.
+
+image::Management.command_center.operations.copy_template_to_gallery-ee598.png[Management.command Center.Operations.Vorlage in Galerie e598 kopieren]
+
+
+NOTE: Die Replikation des Bildes kann eine Weile dauern (je nach Größe des Bildes) und der Status kann durch Klicken auf die Version (z.B. #1.0.0#) in der Spalte „Name“, wie in der Abbildung oben hervorgehoben.
+
+
+
+== Regionale Verfügbarkeit
+
+Implementierungen können nur in den Bereichen durchgeführt werden, in denen das Image repliziert wurde. Diese Option kann im Azure-Portal durch Anklicken der #1.x.x# und dann auf _Update Replication_ wie hier dargestellt geprüft werden:
+
+image::Management.command_center.operations.copy_template_to_gallery-9b63a.png[Management.command Center.Operations.Vorlage in Galerie 9b63a kopieren]

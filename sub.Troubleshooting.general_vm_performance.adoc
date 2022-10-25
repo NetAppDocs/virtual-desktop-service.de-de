@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: Troubleshooting.general_vm_performance.html 
+summary: Schritt-für-Schritt-Anleitung zur Fehlerbehebung bei Problemen mit der Internet-Qualität 
+keywords:  
+---
+= Fehlerbehebung Bei Der Leistung Von Virtuellen Maschinen
+:allow-uri-read: 
+
+
+NetApp bietet Kunden Einblick in die Fehlerbehebung bei der Server-Performance für Benutzer/Applikationen. Alle Unternehmen nutzen Ressourcen anders, je nachdem, wie viele Endanwender sich gleichzeitig angemeldet haben: Nutzung von Applikationen, falls SQL Standard installiert ist oder nicht SQL Express usw. Es ist also wichtig, die Vorgänge zu überprüfen, wenn ein Benutzer Performance-Probleme meldet.
+
+
+
+== Überblick
+
+Jede App ist anders, und selbst die gleiche Software, die von der gleichen Anzahl von Benutzern ausgeführt wird, kann verschiedene Ressourcenverbrauchsmuster haben. Aus diesem Grund hilft es, die Anwendungen zu verstehen, die Ihre Benutzer verwenden und was wirklich die Macht der App. Handelt es sich um CPU, RAM oder Storage? Diese Überlegungen helfen Ihnen bei der Fehlerbehebung.
+
+Nach unserer Erfahrung haben sich diese als allgemein wahrhaftige Aussagen erwiesen, die Ihnen helfen, zu beginnen:
+
+....
+CPU: this is usually the culprit/limiting factor if the app in question is home-grown and/or an Excel issue
+RAM: this is usually the culprit/limiting factor if SQL Standard is used
+Storage: this is usually a contributing factor if disk consumption is greater than 90%.
+....
+
+NOTE: Wenn SQL Express verwendet wird, ist es wahrscheinlich ein einschränkender Faktor – es begrenzt den RAM-Verbrauch auf 1 GB, die unter den erforderlichen Spezifikationen des Software-Anbieters sein kann.
+
+
+
+== In nächtlichen Ressourcenberichten
+
+VDS sendet nächtliche Berichte mit Informationen über jede VM. Dieser Bericht enthält viele nützliche Informationen, darunter Empfehlungen, ob Ressourcen erhöht oder verringert werden sollen. Hier einige Auszüge:
+
+Dieses Bild zeigt, ob Sie CPU/RAM auf VMs für einen bestimmten Arbeitsbereich erhöhen oder verringern sollten.image:vm_performance1.png[""]
+
+In der Abbildung unten sehen wir, dass es eine Spalte gibt, die zeigt, wie lange der Server seit dem Neustart des Servers vergangen ist.image:vm_performance2.png[""]
+
+In diesem Image sehen wir einen Vergleich zwischen Storage Provisioning und Verbraucht – Dies wird zu einem guten Thema, um kurz zu untersuchen auf den ersten oder sobald Sie bestätigt haben, dass CPU/RAM nicht das Problem sind.image:vm_performance3.png[""]
+
+
+
+== Anzeige des CPU-/RAM-Ressourcenverbrauchs in Echtzeit
+
+. Melden Sie sich beim VDS an, klicken Sie dann auf das Organisationsmodul und wählen Sie die gewünschte Organisation aus.
++
+image:vm_performance4.png[""]
+
+. Sie können den Server finden, an dem der Benutzer angemeldet ist, indem Sie ihn im Abschnitt Benutzer suchen.
++
+image:vm_performance5.png[""]
+
+. Blättern Sie dann nach unten, bis Sie den Abschnitt „Server“ sehen. Suchen Sie den Server, auf dem der Benutzer, der das Problem meldet, angemeldet ist, und klicken Sie auf das Einstellrad, und stellen Sie dann eine Verbindung her.
++
+image:vm_performance6.png[""]
+
+. Wenn Sie eine Verbindung zum Server hergestellt haben, klicken Sie auf die Schaltfläche Start. Klicken Sie dann auf Task-Manager.
++
+image:vm_performance7.png[""]
+
+. Der Task-Manager gibt Ihnen einen umfassenden Einblick in das Geschehen, genau in diesem Moment. Dies ist der absolut beste Weg, um zu sehen, was Ihre Benutzer im Moment beeinflussen sie ein Problem an Sie melden.
+. Sie können die auf dem Server ausgeführten Prozesse überprüfen, ermitteln, welche Ursache das Problem hat und entweder mit dem Kunden kommunizieren oder die Prozesse vor Ort beenden.
++
+image:vm_performance8.png[""]
+
+. Sie können auch die Registerkarte Performance anzeigen, um zu zeigen, was passiert, live. Dies ist ein gewaltiger Schritt zur Fehlerbehebung: Die Endbenutzer müssen die Schritte wiederholen, die sie unternommen haben, um ein Performance-Problem zu verursachen, und dann sehen, was passiert. Ähnlich, wenn sie folgen allgemeinen Rat (schließen Sie überschüssigen Chrome-Browser-Tabs, wie Google Chrome Tabs sind eine gemeinsame Ressource Verbraucher) können Sie sehen Ressourcenverbrauch Rückgang.
++
+image:vm_performance9.png[""]
+
+. Auf der Registerkarte „Benutzer“ können Sie anzeigen, welcher Benutzer – falls überhaupt – die Ressourcen verbraucht, was zu einer Spitzenauslastung führt.
++
+image:vm_performance10.png[""]
+
+. Sie können jeden Endbenutzer erweitern, um zu sehen, welche spezifischen Prozesse sie laufen und wie viel jeder verbraucht.
++
+image:vm_performance11.png[""]
+
+. Eine weitere Option ist die Anzeige, welche Dienste ausgeführt werden.
++
+image:vm_performance12.png[""]
+
+. Kunden können den Ressourcenmonitor auch öffnen, um weitere Einzelheiten zu erfahren.
++
+image:vm_performance13.png[""]
+
+
+
+
+
+== Erwägen Storage-PerformAkne
+
+Einer der häufigsten Ursachen für Performance-Probleme mit vms ist die unzureichende Performance von Festplatten. Standard- (und sogar SSD-Festplatten) sind nicht für die hohe I/O-Last ausgelegt, die für VDS Workloads erforderlich ist. Benutzer-Logins erfolgen in der Regel in Bündel und jeder erfordert erhebliche I/O, da Profile und Einstellungen geladen werden. Die hochperformanten Storage-Technologien von NetApp wie Azure NetApp Files, CVO und CVS eignen sich besonders gut für diesen Workload und sollten als Standardoption für VDS-Workloads angesehen werden.
+
+
+
+== Berücksichtigung des Storage-Verbrauchs
+
+Microsoft gilt seit langem als Best Practice, beim Festplattenverbrauch jedes Laufwerks mindestens 90 % zu zulässt. Dies führt in ihren Augen zu einem Performance-Einbußen und kann zu weiteren Herausforderungen führen. Beispielsweise fehlt es an genügend Storage für Backups, sodass Benutzer nicht mehr arbeiten können.
+
+RMM-Tools können Speicher-Monitoring-Services anbieten, einschließlich der Möglichkeit, Schwellenwerte und Warnmeldungen festzulegen. Wenn der Speicher zu einer Herausforderung für Sie wird, empfiehlt es sich, diese Art von Warnmeldungen mit Ihrem RMM-Anbieter zu aktivieren.
+
+Zur tieferen Untersuchung installieren Sie Software, um den Laufwerkverbrauch zu überprüfen.
+
+Aus Gesprächen mit Kunden haben sich WinDirStat oder TreeSize als bevorzugte Anwendungen für die Kontrolle des Antriebsverbrauchs erwiesen.
+
+WinDirStat kann eine vollständige Festplatte über das Netzwerk untersuchen, wenn nicht genügend Speicherplatz vorhanden ist, um eine App lokal zu installieren/auszuführen oder die Anmeldung blockiert ist:
+
++image:vm_performance14.png[""]

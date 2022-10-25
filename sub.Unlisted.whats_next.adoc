@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: whats-next.html 
+summary: Nächste Schritte 
+keywords:  
+---
+= Herzlichen Glückwunsch zum Starten der Implementierung einer neuen VDS-Umgebung!
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Sobald Ihre Bereitstellung abgeschlossen ist, sollten Sie eine E-Mail-Benachrichtigung sowie eine große Menge an Erfolg und Fehlermeldungen per E-Mail erhalten. Informationen zu diesen E-Mails und wie man die Lieferoptionen ändert, finden Sie hier: link:Unlisted.Whats_with_all_these_emails.html["Was ist mit all diesen E-Mails?"]
+
+Die vollständige Dokumentation finden Sie unter https://docs.netapp.com/us-en/virtual-desktop-service/[] Aber die unten ausgewählten Elemente sind ein guter Ausgangspunkt:
+
+
+
+== Schnellstart
+
+* link:https://www.youtube.com/playlist?list=PLQ1wYDzid2pRl74Y4SnFVvTHL7kbN9GQZ["VDS Einführung Video Playlist auf YouTube"]
+* link:Management.User_Administration.manage_user_accounts.html["Managen Von Benutzern"]
+* link:Management.Applications.application_entitlement_workflow.html["Managen Von Anwendungen"]
+* link:Management.User_Administration.manage_folders_and_permissions.html["Managen von Daten und Berechtigungen"]
+* link:Reference.end_user_access.html["Systemanforderungen Für Cloud Workspace: Übersicht Für Endbenutzer"]
+
+
+
+
+== Verfeinern Sie Ihre Bereitstellung – Tipps & Tricks
+
+* link:Management.User_Administration.multi-factor_authentication.html["Verbesserung der Sicherheit mit MFA"]
+* link:Management.System_Administration.configure_backup.html["Konfigurieren Sie Azure Backup"]
+* link:Management.System_Administration.configure_antivirus.html["Konfigurieren Sie Anti-Virus"]
+* link:Management.Cost_Optimization.workload_schedule.html["Optimierung Der Serverkosten"]
+* link:Management.Scripted_Events.scripted_events.html["Implementieren Sie Ihre Automatisierung mit skriptbasierten Ereignissen"]
+* link:Architectual.migrate_data_into_vds.html["Datenmigration"]
+

@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.adding_moving_mapped_drives.html 
+summary: Hinzufügen und Verschieben zugeordneter Laufwerke 
+keywords:  
+---
+= Hinzufügen und Verschieben zugeordneter Laufwerke
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Standardmäßig sind drei freigegebene Ordner für Endbenutzersitzungen zugänglich. Diese Ordner befinden sich auf der definierten Speicherebene. Dies könnte auf dem File Server (TSD1 oder D1) oder einem Storage-Service wie Azure Files, Azure NetApp Files, NetApp CVO und NetApp CVS sein.
+
+Um mit Klarheit zu helfen, wird dieser Artikel einen Beispielkunde mit dem Firmencode „NECA“ verwenden. In diesem Beispiel wird davon ausgegangen, dass ein einziger TDS1-Server mit dem Namen NECATSD1 bereitgestellt wurde. Wir werden durch den Prozess des Verschiebens eines Ordners auf eine andere VM (namens "NECAD1") arbeiten. Diese Strategie kann verwendet werden, um zwischen Partitionen auf demselben Rechner oder auf einen anderen Rechner zu verschieben, wie im folgenden Beispiel… dargestellt
+
+Ordner Starting Location:
+
+* Daten: NECATSD1\C:\Data\NECA\ (TSD1bedeutet, dass es der erste Terminalserver ist und auch als Datenserver funktioniert)
+* FTP: NECATSD1\C:\FTP\NECA\
+* Startseite: NECATSD1\C:\Home\NECA\
+
+
+Ordner Endort:
+
+* Daten: NECAD1\G:\Data\NECA\ (das D1bedeutet, dass es der erste Datenserver ist)
+* FTP: Der gleiche Prozess gilt, es muss nicht dreimal beschrieben werden
+* Home: Der gleiche Prozess gilt, es muss nicht 3x beschrieben werden
+
+
+
+
+== Fügen Sie eine Festplatte für G: Auf NECAD1 hinzu
+
+. Um den freigegebenen Ordner auf das Laufwerk E: Zu setzen, müssen wir einen über den Hypervisor hinzufügen (z.B. Azure Management Portal), initialisieren und formatieren Sie es
++
+image:mapped1.png[""]
+
+. Kopieren Sie den vorhandenen Ordner (auf NECATSD1, C:\)-Pfad zum neuen Speicherort (auf NECAD1, G:\)
+. Kopieren Sie die Ordner vom ursprünglichen Speicherort in den neuen Speicherort.
++
+image:mapped2.png[""]
+
+
+
+
+
+== Informationen aus der ursprünglichen Ordnerfreigabe erfassen (NECATSD1, C:\Data\NECA\)
+
+. Teilen Sie den neuen Ordner mit genau demselben Pfad wie den Ordner am ursprünglichen Speicherort.
+. Öffnen Sie den neuen Ordner NECAD1, G:\Data\ und in unserem Beispiel sehen Sie einen Ordner mit dem Firmencode „NECA“.
++
+image:mapped3.png[""]
+
+. Beachten Sie die Sicherheitsberechtigungen der ursprünglichen Ordnerfreigabe:
++
+image:mapped4.png[""]
+
+. Hier ist das typische Setup, aber es ist wichtig, die ursprünglichen Einstellungen zu kopieren, falls noch vorhandene Anpassungen vorhanden sind, die wir erhalten müssen. Alle anderen Benutzer-/Gruppenberechtigungen sollten aus der neuen Ordnerfreigabe entfernt werden
++
+** SYSTEM:Alle Berechtigungen zulässig
+** LocalClientDHPAccess (auf dem lokalen Computer):Alle Berechtigungen sind zulässig
+** ClientDHPAccess (in der Domäne): Alle Berechtigungen sind zulässig
+** NECA-all-Benutzer (auf der Domain): Alle Berechtigungen außer „Full Control“ erlaubt
+
+
+
+
+
+
+== Replizieren Sie den Freigabspfad und die Sicherheitsberechtigungen in den neuen freigegebenen Ordner
+
+. Gehen Sie zurück zum neuen Standort (NECAD1, G:\Data\NECA\ und teilen Sie den NECA-Ordner mit dem gleichen Netzwerkpfad (ohne die Maschine), in unserem Beispiel „neca-Data€“.
++
+image:mapped5.png[""]
+
+. Für die Benutzersicherheit fügen Sie alle Benutzer hinzu, legen Sie ihre Berechtigungen auf Übereinstimmung fest.
++
+image:mapped6.png[""]
+
+. Entfernen Sie alle anderen Benutzer-/Gruppenberechtigungen, die möglicherweise bereits vorhanden sind.
++
+image:mapped7.png[""]
+
+
+
+
+
+== Gruppenrichtlinie bearbeiten (nur wenn der Ordner auf eine neue Maschine verschoben wurde)
+
+. Als nächstes bearbeiten Sie die Drive Maps im Group Policy Management Editor. Für Azure AD-Domänendienste befindet sich die Zuordnung in:
++
+ “Cloud Workspace Users > User Configuration > Preferences > Windows Settings> Drive Maps”
++
+image:mapped8.png[""]
+
+. Sobald die Gruppenrichtlinien aktualisiert werden, wird beim nächsten Verbindungszeitpunkt jedes Benutzers die zugeordneten Laufwerke angezeigt, die auf den neuen Speicherort verwiesen werden.
+. An diesem Punkt können Sie die ursprünglichen Ordner auf NECATSD1, C:\ löschen.
+
+
+
+
+== Fehlerbehebung
+
+Wenn der Endbenutzer die zugeordneten Laufwerke mit einem roten X sieht, klicken Sie mit der rechten Maustaste auf das Laufwerk und wählen Sie trennen. Abmelden und wieder zurück im Laufwerk sind korrekt vorhanden.image:mapped9.png[""]

@@ -1,0 +1,115 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+VDS kann native Backup-Services bei einigen Infrastrukturanbietern, einschließlich Azure, konfigurieren und managen.
+
+
+
+== Azure
+
+In Azure kann VDS Backups automatisch mithilfe von nativen konfigurieren link:https://azure.microsoft.com/en-us/services/backup/["Azure Cloud Backup"] Durch lokal redundanten Storage (LRS). Geografisch redundanter Storage (GRS) kann bei Bedarf im Azure Management Portal konfiguriert werden.
+
+* Für jeden Servertyp können individuelle Backup-Richtlinien definiert werden (mit Standardempfehlungen). Darüber hinaus können einzelnen Maschinen innerhalb der VDS-Benutzeroberfläche einen Zeitplan unabhängig (von ihrem Servertyp) zugewiesen werden. Diese Einstellung kann durch Klicken auf den Servernamen auf der Workspace-Seite in der Server-Detailansicht angewendet werden (siehe Video unten: Einstellen einzelner Backup-Richtlinien).
++
+** Daten
++
+*** Backup mit 7 täglichen, 5 wöchentlichen & 2 monatlichen Backups. Verlängern Sie Aufbewahrungsfristen basierend auf geschäftlichen Anforderungen.
+*** Dies gilt sowohl für einen dedizierten Data Server als auch für Add-on VPS VMs für Applikationen und Datenbanken.
+
+
+** Infrastruktur
++
+*** CWMGR1 – Backup täglich und halten 7 täglich, 5 wöchentlich, 2 monatlich.
+*** RDS Gateway – wöchentlich sichern und wöchentlich 4 behalten.
+*** HTML5 Gateway – wöchentlich sichern und 4 wöchentlich aufbewahren.
+
+
+** Power-User (auch VDI-Benutzer)
++
+*** Sichern Sie die VM nicht, da die Daten auf einem D1- oder TSD1-Server gespeichert werden sollen.
+*** Beachten Sie, dass einige Applikationen Daten lokal speichern. In diesem Fall sollten besondere Überlegungen angestellt werden.
+*** Sollte eine VM ausfällt, kann die neue VM per Klonen eine andere erstellt werden. Sollte nur eine VDI VM (oder eine eindeutige VM-Erstellung) vorhanden sein, sollte ein Backup durchgeführt werden, damit keine vollständige Wiederherstellung der VM erforderlich ist.
+*** Anstatt alle VDI-Server zu sichern, können die Kosten minimiert werden, indem eine einzelne VM manuell für ein Backup direkt im Azure-Managementportal konfiguriert wird.
+
+
+** TS
++
+*** Sichern Sie die VM nicht, da die Daten auf einem D1- oder TSD1-Server gespeichert werden sollen.
+*** Beachten Sie, dass einige Applikationen Daten lokal speichern. In diesem Fall sollten besondere Überlegungen angestellt werden.
+*** Sollte eine VM ausfällt, kann die neue VM per Klonen eine andere erstellt werden. Falls nur eine TS-VM vorhanden ist, empfiehlt es sich, sie zu sichern, damit keine vollständige Wiederherstellung der VM erforderlich ist.
+*** Anstatt alle TS-Server zu sichern, können die Kosten minimiert werden, indem eine einzelne VM manuell für ein Backup direkt im Azure-Managementportal konfiguriert wird.
+
+
+** TSData
++
+*** Backup mit 7 täglichen, 5 wöchentlichen & 2 monatlichen Backups. Verlängern Sie Aufbewahrungsfristen basierend auf geschäftlichen Anforderungen.
+
+
+
+
+* Die Richtlinien können so festgelegt werden, dass Backups täglich oder wöchentlich durchgeführt werden. Azure unterstützt keine häufigeren Zeitpläne.
+* Geben Sie für tägliche Zeitpläne die bevorzugte Zeit für das Backup ein. Geben Sie bei wöchentlichen Schichtplänen den bevorzugten Tag und die gewünschte Zeit ein, um das Backup zu erstellen. Hinweis: Die Einstellung auf exakt 12:00 Uhr kann Probleme in Azure Backup verursachen, daher wird 12:01 am empfohlen.
+* Legen Sie fest, wie viele tägliche, wöchentliche, monatliche und jährliche Backups aufbewahrt werden sollen.
+
+
+
+
+=== Legen Sie die Standardeinstellungen für die Bereitstellung fest
+
+image:Backup_gif.gif[""]
+
+.Gehen Sie wie folgt vor, um Azure Backup für die gesamte Implementierung einzurichten:
+. Navigieren Sie zur Detailseite Bereitstellungen, und wählen Sie Standardeinstellungen sichern
+. Wählen Sie einen Servertyp aus dem Dropdown-Menü aus. Folgende Servertypen sind verfügbar:
++
+....
+Data: these are for LOB/database server types
+Infrastructure: these are platform servers
+Power User: these are for Users with a TS server dedicated solely to them
+TS: these are terminal servers that Users launch sessions on
+TSData: these are servers doubling as terminal and data servers.
+....
++
+** Auf diese Weise werden die übergeordneten Backup-Einstellungen für die gesamte Implementierung definiert. Diese können, falls gewünscht, später auf einer Server-spezifischen Ebene außer Kraft gesetzt werden.
+
+
+. Klicken Sie auf das Einstellrad und dann auf das daraufhin angezeigte Popup-Fenster „Bearbeiten“.
+. Wählen Sie die folgenden Sicherungseinstellungen aus:
++
+....
+On or off
+Daily or weekly
+What time of day backups take place
+How long each backup type (daily, weekly, etc.) should be retained
+....
+. Klicken Sie schließlich auf Zeitplan erstellen (oder bearbeiten), um diese Einstellungen zu übernehmen.
+
+
+
+
+=== Festlegung einzelner Backup-Richtlinien
+
+.Um serverspezifische integrierte Backup-Einstellungen anzuwenden, navigieren Sie zu einer Detailseite des Arbeitsbereichs.
+. Blättern Sie nach unten zum Abschnitt Server, und klicken Sie auf den Servernamen
+. Klicken Sie Auf Zeitplan Hinzufügen
+. Übernehmen Sie die Backup-Einstellungen wie gewünscht, und klicken Sie auf Zeitplan erstellen
+
+
+
+
+=== Wiederherstellung aus Backup
+
+.Um Backups einer bestimmten VM wiederherzustellen, navigieren Sie zu dieser Detailseite des Arbeitsbereichs.
+. Blättern Sie nach unten zum Abschnitt Server, und klicken Sie auf den Servernamen
+. Blättern Sie nach unten zum Abschnitt Backups, und klicken Sie auf das Rad, um Ihre Optionen zu erweitern, und wählen Sie dann entweder aus
+. Wiederherstellen auf Server oder Wiederherstellen auf Festplatte (Verbinden Sie ein Laufwerk aus dem Backup, damit Sie Daten aus dem Backup auf die vorhandene Version der VM kopieren können).
+. Fahren Sie wie bei jedem anderen Restore-Szenario mit Ihrer Wiederherstellung fort.
+
+
+
+NOTE: Die Kosten hängen davon ab, welchen Zeitplan Sie beibehalten möchten, und werden vollständig von den Azure Backup-Kosten gesteuert. Die Backup-Preise für VMs finden Sie im Azure Kostenrechner: https://azure.microsoft.com/en-us/pricing/calculator/[]

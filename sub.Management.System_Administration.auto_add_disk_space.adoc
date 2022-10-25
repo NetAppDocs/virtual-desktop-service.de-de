@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: Management.System_Administration.auto_add_disk_space.html 
+summary: Funktion Zum Automatischen Erhöhen Der Festplattengröße 
+keywords:  
+---
+= Funktion zum automatischen Erhöhen des Festplattenspeicherplatz
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+NetApp erkennt den Bedarf an Administratoren, eine einfache Möglichkeit zu geben, sicherzustellen, dass Benutzer immer über genügend Platz zum Abrufen und Speichern von Dokumenten verfügen. Dies gewährleistet auch, dass VMs über genügend freien Speicherplatz verfügen, um Backups erfolgreich durchzuführen und Administratoren sowie ihre Disaster Recovery- und Business Continuity-Pläne zu ermöglichen und zu unterstützen. Vor diesem Hintergrund haben wir eine Funktion entwickelt, die die verwendete verwaltete Festplatte automatisch auf die nächste Stufe erweitert, wenn nur wenig Speicherplatz vorhanden ist.
+
+Dies ist eine Einstellung, die standardmäßig auf allen neuen VDS-Bereitstellungen in Azure angewendet wird, um sicherzustellen, dass alle Bereitstellungen Benutzer und Backups des Mandanten standardmäßig schützen.
+
+Administratoren können dies überprüfen, indem sie zur Registerkarte Bereitstellungen navigieren, eine Implementierung auswählen und dann von dort aus eine Verbindung zu ihrem CWMGR1-Server herstellen. Öffnen Sie dann die DCConfig-Verknüpfung auf dem Desktop, und klicken Sie auf Erweitert, und scrollen Sie nach unten.
+
+image:increase_disk1.png[""]
+
+Administratoren können den gewünschten freien Speicherplatz in GB oder in Prozent des Laufwerks ändern, der frei sein soll, bevor sie in dieselbe erweiterte Sektion von DCConfig auf die nächste Stufe der verwalteten Laufwerke wechseln.
+
+image:increase_disk2.png[""]
+
+Einige praktische Anwendungsbeispiele:
+
+* Wenn Sie sicherstellen möchten, dass auf Ihrem Laufwerk mindestens 50 GB verfügbar sind, setzen Sie MinFreeSpaceGB auf 50
+* Wenn Sie sicherstellen möchten, dass mindestens 15 % Ihres Laufwerks frei sind, setzen Sie MinFreeSpacePercent von 10 auf 15.
+
+
+Diese Aktion findet um Mitternacht in der Zeitzone des Servers statt.

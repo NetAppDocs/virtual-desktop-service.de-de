@@ -1,0 +1,240 @@
+---
+sidebar: sidebar 
+permalink: Management.Deployments.provisioning_collections.html 
+summary: Zusammenfassung der Provisioning Collections 
+keywords:  
+---
+= Provisioning Collections
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Provisioning Collections ist eine Funktion von VDS, die sich mit der Erstellung und Verwaltung von VM-Images bezieht.
+
+.Im allgemeinen lautet der Workflow für die Provisioning Collection wie folgt:
+. Eine temporäre VM (z.B. „CWT1“) basiert auf einem vorhandenen Bild (entweder einem Lagerbild oder einer zuvor gespeicherten Provisioning Collection).
+. Der VDS-Administrator passt die temporäre VM an, um sie mit an ihre Anforderungen anzupassen link:Management.Scripted_Events.scripted_events.html["Skriptbasierte Ereignisse"], link:#customizing-the-temporary-vm["Verbindung zum Server herstellen"] Und/oder Management Tools von Drittanbietern.
+. Sobald der VDS-Administrator angepasst ist, klicken Sie auf *Validieren* und lösen einen Validierungsprozess aus, der das Abschließen des Images automatisiert, wobei Sysprep ausgeführt wird, die temporäre VM gelöscht wird und das Image für die Bereitstellung im gesamten VDS verfügbar wird.
+
+
+
+
+=== Video Demo - Verwalten von VM-Images für VDI-Session-Hosts
+
+video::rRDPnDzVBTw[youtube]
+
+
+=== Provisioning-Erfassungstypen
+
+Es gibt zwei unterschiedliche Arten von Sammlungen mit speziellen Anwendungsbeispielen, *_Shared_* und *_VDI_*.
+
+
+
+==== Freigegeben
+
+Der Typ *_Shared_* ist eine Sammlung von VM Images(s), die entwickelt wurden, um eine gesamte Umgebung mit mehreren unterschiedlichen VM-Images und VM-Rollen bereitzustellen.
+
+
+
+==== VDI
+
+Der Typ *_VDI_* ist ein einzelnes VM-Image, das zur Nutzung und Wiederverwendung für die Bereitstellung mehrerer identischer VMs entwickelt wurde, die normalerweise zum Hosten von Benutzersitzungen verwendet werden. Bei allen Typen von AVD-Session-Hosts sollte der Typ _VDI_ ausgewählt werden, auch bei Hosts, auf denen mehrere Sitzungen pro VM ausgeführt werden.
+
+
+
+=== Erstellen einer neuen Provisioning Collection
+
+Provisioning Collections finden Sie in der VDS-Schnittstelle in jeder Bereitstellung unter der Unterregisterkarte *_Provisioning Collections_*.
+
+image:Management.Deployments.provisioning_collections1.png["Breite = 75 %"]
+
+.Um eine neue Sammlung zu erstellen
+. Klicken Sie auf die Schaltfläche *_+ Sammlung hinzufügen_*.
+. Füllen Sie die folgenden Felder aus:
++
+.. *Name*
+.. *Beschreibung*(Optional)
+.. *Typ* - Shared oder VDI
+.. *Betriebssystem*
+.. *Share Drive* - Wenn diese VM verwendet wird, um Benutzer Profile oder Firmendaten zu hosten, wählen Sie den Laufwerkbuchstaben, auf dem gehostet wird. Falls nicht, mit „C“ belassen
+.. *Minimum Cache* - WENN Sie und VDS VMs erstellen, die für eine sofortige Bereitstellung bereitgehalten werden sollen, geben Sie die minimale Anzahl zwischengespeicherter VMs an, die beibehalten werden sollen. Wenn die Implementierung neuer VMs so lange warten kann, wie der Hypervisor zur Erstellung einer VM benötigt, kann dieser Wert auf „0“ gesetzt werden, um Kosten zu sparen.
+.. *Server Hinzufügen*
++
+... *Rolle* (wenn der Typ „gemeinsam genutzt“ ausgewählt ist)
++
+.... *TS* - Diese VM funktioniert nur als Session-Host
+.... *Daten* - Diese VM wird keine Benutzersitzungen hosten
+.... *TSData* - Diese VM ist sowohl der Session-Host als auch der Speicher-Host (maximal: Ein TSData pro Workspace)
+
+
+... *VM Template* - Wählen Sie aus der Liste verfügbar sind sowohl Stock-Hypervisor-Images als auch zuvor gespeicherte Provisioning-Sammlungen zur Auswahl verfügbar.
++
+.... HINWEIS: Für Windows 7-Bilder aus dem Azure Marketplace ist PowerShell-Remoting nicht aktiviert. Um ein Windows 7-Image zu verwenden, müssen Sie in Ihrer gemeinsamen Bildergalerie ein benutzerdefiniertes Image mit aktiviertem PowerShell-Remoting bereitstellen.
+.... HINWEIS: Mit einer vorhandenen Provisioning Collection können Sie vorhandene Images im Rahmen eines geplanten Image-Upgrades aktualisieren und neu bereitstellen.
+
+
+... *Speichertyp* - Wählen Sie die Geschwindigkeit der OS-Festplatte unter Berücksichtigung der Kosten und Leistung
+... *Datenlaufwerk* - optional aktivieren Sie eine zweite Festplatte, die an dieses Bild angeschlossen ist, in der Regel für die oben in 2.e. referenzierte Speicherebene
++
+.... *Datenlaufwerk* - Wählen Sie die Geschwindigkeit der 2. (Daten) Festplatte unter Berücksichtigung von Kosten und Leistung
+.... *Datenlaufwerk-Größe (GB)* - Definieren Sie die Größe der 2. (Daten-)Festplatte unter Berücksichtigung von Kapazität, Kosten und Leistung
+
+
+
+
+.. *Anwendungen hinzufügen* - Wählen Sie eine Anwendung aus der Anwendungsbibliothek aus, die (1) auf diesem Image installiert wird und (2) von VDS-Anwendungsberechtigungen verwaltet wird. (Dies gilt nur für RDS-Implementierungen. Für AVD-Arbeitsbereiche sollte es leer bleiben)
+
+
+
+
+
+
+=== Anpassen der temporären VM
+
+VDS enthält Funktionen, die das Entfernen des VM-Zugriffs von der VDS-Webschnittstelle ermöglichen. Standardmäßig wird ein lokales Windows-Administratorkonto mit einem rotierenden Passwort erstellt und an die VM weitergeleitet, sodass der lokale VDS-Admin-Zugriff hat, ohne dass die lokalen Anmeldedaten des lokalen Administrators bekannt sein müssen.
+
+
+NOTE: Die Funktion „mit Server verbinden“ verfügt über eine alternative Einstellung, bei der der VDS-Administrator bei jeder Verbindung zur Eingabe von Anmeldeinformationen aufgefordert wird. Diese Einstellung kann aktiviert/deaktiviert werden, indem das VDS-Administratorkonto im Abschnitt „Admin“ von VDS bearbeitet wird. Die Funktion heißt _Tech Account_ und wenn Sie das Kontrollkästchen aktivieren, müssen bei der Verwendung von Connect to Server Anmeldedaten eingegeben werden. Wenn Sie dieses Kontrollkästchen deaktivieren, wird die automatische Injektion lokaler Windows-Admin-Anmeldeinformationen bei jeder Verbindung aktiviert.
+
+Der VDS-Administrator muss lediglich eine Verbindung zur temporären VM über Connect to Server oder einen anderen Prozess herstellen und die Änderungen entsprechend vornehmen.
+
+
+
+=== Überprüfung der Sammlung
+
+Sobald die Anpassung abgeschlossen ist, kann der VDS-Administrator das Bild schließen und Sysprep durch Klicken auf *Validieren* aus dem Aktionen-Symbol.
+
+image::Management.Deployments.provisioning_collections-ed97e.png[Management.Deployments.provisioning Sammlungen eda7e]
+
+
+
+=== Verwenden der Sammlung
+
+Nach Abschluss der Validierung ändert sich der Status der Provisioning Collection in *verfügbar*. Aus der Provisioning Collection kann der VDS-Administrator den *VM Template*-Namen identifizieren, der zur Identifizierung dieser Provisioning-Sammlung im gesamten VDS verwendet wird.
+
+image::Management.Deployments.provisioning_collections-f5a49.png[Management.Deployments.provisioning Kollektionen f5a49]
+
+
+
+==== Neuer Server
+
+Auf der Seite Workspace > Servers kann ein neuer Server erstellt werden, und das Dialogfeld fordert die VM-Vorlage auf. Der Vorlagenname von oben ist in dieser Liste zu finden:
+
+image:Management.Deployments.provisioning_collections-fc8ad.png["Breite = 75 %"]
+
+
+TIP: VDS bietet eine einfache Möglichkeit, Sitzungshosts in einer RDS-Umgebung mithilfe von Provisioning Collections und der *Add Server*-Funktionalität zu aktualisieren. Dieser Vorgang kann ohne Beeinträchtigung der Endbenutzer durchgeführt und mit nachfolgenden Image-Aktualisierungen wiederholt werden, basierend auf vorherigen Bildwiederholungen. Weitere Informationen zu diesem Prozess finden Sie im link:#rds-session-host-update-process["*RDS Session Host Update Prozess*"] Abschnitt unten.
+
+
+
+==== Neuer AVD-Hostpool
+
+Auf der Seite Workspace > AVD > Host Pools können Sie einen neuen AVD Host Pool erstellen, indem Sie auf *+ Host Pool hinzufügen* klicken. Das Dialogfeld wird zur VM-Vorlage aufgefordert. Der Vorlagenname von oben ist in dieser Liste zu finden:
+
+image::Management.Deployments.provisioning_collections-ba2f5.png[Management.Deployments.provisioning Kollektionen ba2f5]
+
+
+
+==== Neue AVD-Sitzungshost(s)
+
+Auf der Seite Workspace > AVD > Host Pool > Sitzungshosts können neue AVD-Sitzungshost(s) erstellt werden, indem Sie auf *+ Sitzungshost hinzufügen* klicken. Das Dialogfeld wird zur VM-Vorlage aufgefordert. Der Vorlagenname von oben ist in dieser Liste zu finden:
+
+image::Management.Deployments.provisioning_collections-ba5e9.png[Management.Deployments.provisioning Kollektionen ba5e9]
+
+
+TIP: VDS bietet eine einfache Möglichkeit, Sitzungshosts in einem AVD-Hostpool mithilfe von Provisioning Collections und der *Session-Host hinzufügen*-Funktion zu aktualisieren. Dieser Vorgang kann ohne Beeinträchtigung der Endbenutzer durchgeführt und mit nachfolgenden Image-Aktualisierungen wiederholt werden, basierend auf vorherigen Bildwiederholungen. Weitere Informationen zu diesem Prozess finden Sie im link:#AVD-session-host-update-process["*Aktualisierungsprozess für AVD-Sitzungshost*"] Abschnitt unten.
+
+
+
+==== Neuer Arbeitsbereich
+
+Auf der Seite Workspaces kann ein neuer Arbeitsbereich erstellt werden, indem Sie auf *+ New Workspace* klicken. Das Dialogfeld wird zur Provisioning Collection aufgefordert. Der Name der Sammlung für freigegebene Provisioning wird in dieser Liste gefunden.
+
+image::Management.Deployments.provisioning_collections-5c941.png[Management.Deployments.provisioning Kollektionen 5c941]
+
+
+
+==== Neue Provisioning Collection –
+
+Auf der Seite „Deployment > Provisioning Collection“ können Sie eine neue Provisioning Collection erstellen, indem Sie auf *+ Add Collection* klicken. Beim Hinzufügen von Servern zu dieser Sammlung wird das Dialogfeld zur VM-Vorlage aufgefordert. Der Vorlagenname von oben ist in dieser Liste zu finden:
+
+image::Management.Deployments.provisioning_collections-9eac4.png[Management.Deployments.provisioning Kollektionen 9eac4]
+
+
+
+== Ergänzung 1 – RDS-Sitzungshosts
+
+
+
+=== RDS Session Host Update-Prozess
+
+VDS bietet eine einfache Möglichkeit, Sitzungshosts in einer RDS-Umgebung mithilfe von Provisioning Collections und der *Add Server*-Funktionalität zu aktualisieren. Dieser Vorgang kann ohne Beeinträchtigung der Endbenutzer durchgeführt und mit nachfolgenden Image-Aktualisierungen wiederholt werden, basierend auf vorherigen Bildwiederholungen.
+
+.Die Aktualisierung des RDS Session-Hosts erfolgt wie folgt:
+. Erstellen Sie eine neue VDI Provisioning Collection, passen Sie die Sammlung gemäß den obigen Anweisungen an und validieren Sie sie.
++
+.. Im Allgemeinen wird diese Provisioning-Sammlung auf der vorherigen VM-Vorlage aufgebaut und einen Prozess „Öffnen, Speichern unter“ emuliert.
+
+
+. Wenn die Provisioning Collection validiert wurde, navigieren Sie zur Seite _Workspace > Servers_, klicken Sie auf *+ Add Server*
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-e8204.png[Management.Deployments.provisioning collections.rds-Sitzung hostet e8204]
+
+. Wählen Sie *TS* als *Server-Rolle* aus
+. Wählen Sie die neueste *VM Template* aus. Wählen Sie je nach Ihren Anforderungen die passende Auswahl für *Maschinengröße* und *Speichertyp* aus. Lassen Sie *Datenlaufwerk* deaktiviert.
+. Wiederholen Sie diesen Vorgang für die Gesamtanzahl der für die Umgebung erforderlichen Session-Hosts.
+. Klicken Sie auf *Server hinzufügen*. Die Sitzungshosts bauen auf der Grundlage der ausgewählten VM-Vorlage auf und starten in nur 10-15 Minuten (je nach Hypervisor) online.
++
+.. Beachten Sie, dass die Sitzungshosts, die sich derzeit in der Umgebung befinden, letztendlich deaktiviert werden, nachdem dieser neue Host online geschaltet wurde. Die Erstellung von ausreichend neuen Hosts ist geplant, um den gesamten Workload in dieser Umgebung zu unterstützen.
+
+
+. Wenn ein neuer Host online geschaltet wird, bleibt die Standardeinstellung in *Neue Sitzungen deaktivieren*. Für jeden Sitzungshost kann der Schalter *Neue Sitzungen zulassen* verwendet werden, um zu verwalten, welche Hosts neue Benutzersitzungen empfangen können. Auf diese Einstellung können Sie zugreifen, indem Sie die Einstellungen jedes einzelnen Host-Servers bearbeiten. Sobald ausreichend neue Hosts aufgebaut und die Funktionalität bestätigt wurde, kann diese Einstellung sowohl auf den neuen als auch auf den alten Hosts verwaltet werden, um alle neuen Sitzungen an die neuen Hosts weiterzuleiten. Die alten Hosts, mit *Neue Sitzungen zulassen* auf *deaktiviert* eingestellt, können weiterhin bestehende Benutzersitzungen ausführen und hosten.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-726d1.png[Management.Deployments.provisioning Collections.rds-Sitzung hostet 726d1]
+
+. Da sich Benutzer vom alten Host(s) abmelden und keine neuen Benutzersitzungen den alten Host(s) anschließen, können die alten Host(s), bei denen *Sessions = 0* gelöscht werden kann, durch Anklicken des Symbols *Aktionen* und Auswählen von *delete* gelöscht werden.
++
+image::Management.Deployments.provisioning_collections.rds_session_hosts-45d32.png[Management.Deployments.provisioning collections.rds Session hostet 45d32]
+
+
+
+
+
+== Ergänzung 2: AVD-Sitzungshosts
+
+
+
+=== AVD-Host-Update-Prozess
+
+VDS bietet eine einfache Möglichkeit, Sitzungshosts in einem AVD-Hostpool mithilfe von Provisioning Collections und der *Session-Host hinzufügen*-Funktion zu aktualisieren. Dieser Vorgang kann ohne Beeinträchtigung der Endbenutzer durchgeführt und mit nachfolgenden Image-Aktualisierungen wiederholt werden, basierend auf vorherigen Bildwiederholungen.
+
+.Die Aktualisierung des AVD Session-Hosts erfolgt wie folgt:
+. Erstellen Sie eine neue VDI Provisioning Collection, passen Sie die Sammlung gemäß den obigen Anweisungen an und validieren Sie sie.
++
+.. Im Allgemeinen wird diese Provisioning-Sammlung auf der vorherigen VM-Vorlage aufgebaut und einen Prozess „Öffnen, Speichern unter“ emuliert.
+
+
+. Sobald die Provisioning Collection validiert wurde, navigieren Sie zur Seite _Workspace > AVD > Host Pools_, und klicken Sie auf den Namen des Host-Pools
+. Klicken Sie auf der Seite _Host Pool > Session Hosts_ auf *+ Session Host hinzufügen*
++
+image::Management.Deployments.provisioning_collections-9ed95.png[Management.Deployments.provisioning Sammlungen 9ed95]
+
+. Wählen Sie die neueste *VM Template* aus. Wählen Sie je nach Ihren Anforderungen die passende Auswahl für *Maschinengröße* und *Speichertyp* aus.
+. Geben Sie die *Anzahl der Instanzen* ein, die der Gesamtanzahl der erforderlichen Sitzungshosts entspricht. Normalerweise wird dies die gleiche Nummer sein wie derzeit im Host-Pool, aber es kann eine beliebige Zahl sein.
++
+.. Beachten Sie, dass die Sitzungshosts, die sich derzeit im Host-Pool befinden, letztendlich deaktiviert werden, nachdem dieser neue Host online geschaltet wurde. Planen Sie, dass die * Anzahl der eingegebenen Instanzen* ausreichend ist, um den gesamten Workload in diesem Host-Pool zu unterstützen.
+
+
+. Klicken Sie auf *Speichern*, die Session-Hosts bauen auf der ausgewählten VM-Vorlage auf und starten in nur 10-15 Minuten (je nach Hypervisor) online.
+. Wenn ein neuer Host online geschaltet wird, bleibt die Standardeinstellung in *Neue Sitzungen deaktivieren*. Für jeden Sitzungshost kann der Schalter *Neue Sitzungen zulassen* verwendet werden, um zu verwalten, welche Hosts neue Benutzersitzungen empfangen können. Sobald ausreichend neue Hosts aufgebaut und die Funktionalität bestätigt wurde, kann diese Einstellung sowohl auf den neuen als auch auf den alten Hosts verwaltet werden, um alle neuen Sitzungen an die neuen Hosts weiterzuleiten. Die alten Hosts, mit *Neue Sitzungen zulassen* auf *deaktiviert* eingestellt, können weiterhin bestehende Benutzersitzungen ausführen und hosten.
++
+image::Management.Deployments.provisioning_collections-be47e.png[Management.Deployments.provisioning Kollektionen be47e]
+
+. Da sich Benutzer vom alten Host(s) abmelden und keine neuen Benutzersitzungen den alten Host(s) anschließen, können die alten Host(s), bei denen *Sessions = 0* gelöscht werden kann, durch Anklicken des Symbols *Aktionen* und Auswählen von *delete* gelöscht werden.
++
+image::Management.Deployments.provisioning_collections-cefb9.png[Management.Deployments.provisioning Kollektionen cefb9]
+
+

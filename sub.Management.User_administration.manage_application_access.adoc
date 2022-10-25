@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: Management.Applications.application_entitlement_workflow.html 
+summary: Schritt-für-Schritt-Anleitung zur Implementierung von Anwendungen für Endbenutzer in VDS 
+keywords:  
+---
+= Applikationsberechtigung
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+VDS verfügt über eine robuste integrierte Anwendungsautomatisierung und Berechtigungsfunktionalität. Mit dieser Funktion können Benutzer auf verschiedene Anwendungen zugreifen, während eine Verbindung zu demselben Sitzungshost(s) hergestellt wird. Dies wird durch einige benutzerdefinierte GPOs, die Verknüpfungen ausblenden zusammen mit der Automatisierung selektiv platziert Verknüpfungen auf den Desktops der Benutzer.
+
+
+NOTE: Dieser Workflow gilt nur für RDS-Implementierungen. Informationen zu AVD-Anwendungsberechtigungen finden Sie unter link:Management.Applications.AVD_application_entitlement_workflow.html["Anwendungsberechtigungsworkflow für AVD"]
+
+Anwendungen können Benutzern direkt oder über in VDS gemanagte Sicherheitsgruppen zugewiesen werden.
+
+.Im allgemeinen folgt der Bereitstellungsprozess von Applikationen diesen Schritten.
+. App(s) zum App-Katalog hinzufügen
+. Fügen Sie dem Arbeitsbereich App(s) hinzu
+. Installieren Sie die Anwendung auf allen Sitzungshosts
+. Wählen Sie den Verknüpfungspfad aus
+. Weisen Sie Benutzern und/oder Gruppen Apps zu
+
+
+
+NOTE: Die Schritte 3 und 4 können wie unten dargestellt vollständig automatisiert werden
+
+.Video-Präsentation
+video::19NpO8v15BE[youtube]
+
+
+== Fügen Sie Anwendungen zum App-Katalog hinzu
+
+VDS-Anwendungsberechtigung beginnt mit dem App-Katalog. Dies ist eine Liste aller Anwendungen, die für die Bereitstellung in Endbenutzerumgebungen zur Verfügung stehen.
+
+.Führen Sie die folgenden Schritte aus, um dem Katalog Anwendungen hinzuzufügen
+. Melden Sie sich bei VDS an https://manage.cloudworkspace.com[] Verwendung der primären Anmeldedaten des Administrators
+. Klicken Sie oben rechts auf das Pfeilsymbol neben Ihrem Benutzernamen und wählen Sie Einstellungen aus.
+. Klicken Sie auf die Registerkarte App Catalog.
+. Klicken Sie in der Titelleiste des Anwendungskatalogs auf die Option App hinzufügen.
+. Um eine Gruppe von Anwendungen hinzuzufügen, wählen Sie die Option Apps importieren.
++
+.. Es wird ein Dialogfeld angezeigt, in dem eine Excel-Vorlage zum Herunterladen angezeigt wird, die das richtige Format für die Anwendungsliste erzeugt.
+.. Für diese Bewertung hat NetApp VDS eine Beispiel-Applikationsliste für den Import erstellt. Diese finden Sie hier.
+.. Klicken Sie auf den Bereich Hochladen und wählen Sie die Datei mit der Anwendungsvorlage aus. Klicken Sie auf die Schaltfläche Importieren.
+
+
+. Wenn Sie einzelne Anwendungen hinzufügen möchten, wählen Sie die Schaltfläche App hinzufügen, und es wird ein Dialogfeld angezeigt.
++
+.. Geben Sie den Namen der Anwendung ein.
+.. Mit einer externen ID kann eine interne Tracking-ID eingegeben werden, z. B. eine Produkt-SKU oder ein Abrechnungsverfolgungscode (optional).
+.. Aktivieren Sie das Kontrollkästchen Abonnement, wenn Sie über die Anwendungen als Abonnementprodukt berichten möchten (optional).
+.. Wenn das Produkt nicht nach Version installiert wird (z. B. Chrome), aktivieren Sie das Kontrollkästchen Version nicht erforderlich. So können Produkte mit kontinuierlicher Aktualisierung installiert werden, ohne ihre Versionen nachzuverfolgen.
+.. Wenn ein Produkt mehrere benannte Versionen unterstützt (z. B. QuickBooks), müssen Sie dieses Kontrollkästchen aktivieren, damit Sie mehrere Versionen installieren und jede verfügbare Version in der Liste der Anwendungen, die für und Endbenutzer berechtigt sein können, VDS-spezifisch besitzen können.
+.. Aktivieren Sie „kein Benutzer-Desktop-Symbol“, wenn VDS kein Desktop-Symbol für dieses Produkt bereitstellen soll. Dies wird für „Backend“-Produkte wie SQL Server verwendet, da Endbenutzer keine Anwendung haben, auf die sie zugreifen können.
+.. „App muss zugeordnet sein“ setzt die Notwendigkeit, eine zugehörige App zu installieren. Für eine Client-Server-Anwendung kann es z. B. erforderlich sein, dass auch SQL Server oder MySQL installiert werden muss.
+.. Wenn Sie das Feld Lizenz erforderlich aktivieren, wird angezeigt, dass VDS eine Lizenzdatei für eine Installation dieser Anwendung anfordern sollte, bevor der Anwendungsstatus auf aktiv gesetzt wird. Dieser Schritt wird auf der Seite Anwendungsdetails von VDS durchgeführt.
+.. Sichtbar für Alle – Anwendungsberechtigungen können auf bestimmte Teilpartner in einer Mehrkanalhierarchie beschränkt werden. Klicken Sie zu Evaluierungszwecken auf das Kontrollkästchen, damit alle Benutzer es in ihrer Liste der verfügbaren Anwendungen sehen können.
+
+
+
+
+
+
+== Fügen Sie die Anwendung dem Arbeitsbereich hinzu
+
+Um den Bereitstellungsprozess zu starten, fügen Sie die App zum Arbeitsbereich hinzu.
+
+.Führen Sie dazu die folgenden Schritte aus
+. Klicken Sie Auf Arbeitsbereiche
+. Blättern Sie nach unten zu „Apps“
+. Klicken Sie Auf Hinzufügen
+. Aktivieren Sie die Anwendung(en), geben Sie die erforderlichen Informationen ein, klicken Sie auf Anwendung hinzufügen und klicken Sie auf Apps hinzufügen.
+
+
+
+
+== Installieren Sie die Anwendung manuell
+
+Sobald die Anwendung dem Arbeitsbereich hinzugefügt wurde, müssen Sie diese Anwendung auf allen Sitzungshosts installieren. Dies kann manuell und/oder automatisiert werden.
+
+.Führen Sie die folgenden Schritte aus, um Anwendungen manuell auf Sitzungshosts zu installieren
+. Navigieren Sie zu Service Board.
+. Klicken Sie auf die Aufgabe des Service Board.
+. Klicken Sie auf die Servernamen, um eine Verbindung als lokaler Administrator herzustellen.
+. Installieren Sie die App(s), bestätigen Sie, dass die Verknüpfung zu dieser Anwendung im Startmenü-Pfad gefunden wird.
++
+.. Für Server 2016 und Windows 10: C:\ProgramData\Microsoft\Windows\Startmenü\Programme.
+
+
+. Gehen Sie zurück zur Aufgabe des Service-Mainboards, klicken Sie auf Durchsuchen und wählen Sie entweder die Verknüpfung oder einen Ordner mit Verknüpfungen aus.
+. Je nachdem, welche Option Sie auswählen, wird auf dem Desktop des Endbenutzers angezeigt, wenn die App zugewiesen wurde.
+. Ordner sind großartig, wenn eine Anwendung tatsächlich mehrere Anwendungen ist. Z. B. „Microsoft Office“ ist einfacher als Ordner mit jeder App als Verknüpfung im Ordner bereitzustellen.
+. Klicken Sie Auf Installation Abschließen.
+. Öffnen Sie bei Bedarf das erstellte Symbol Serviceboard Task hinzufügen, und bestätigen Sie, dass das Symbol hinzugefügt wurde.
+
+
+
+
+== Anwendungen zu Benutzern zuweisen
+
+Die Anwendungsberechtigungen werden von VDS verwaltet, und die Anwendung kann Benutzern auf drei Arten zugewiesen werden
+
+.Anwendungen zu Benutzern zuweisen
+. Navigieren Sie zur Seite „Benutzerdetails“.
+. Navigieren Sie zum Abschnitt Anwendungen.
+. Aktivieren Sie das Kontrollkästchen neben allen für diesen Benutzer erforderlichen Anwendungen.
+
+
+.Weisen Sie einer Anwendung Benutzer zu
+. Navigieren Sie auf der Seite Arbeitsbereichdetails zum Abschnitt Anwendungen.
+. Klicken Sie auf den Namen der Anwendung.
+. Aktivieren Sie das Kontrollkästchen neben den Benutzern, die die Anwendung verwenden.
+
+
+.Anwendungen und Benutzer zu Benutzergruppen zuweisen
+. Navigieren Sie zu den Benutzern und Gruppen-Details.
+. Fügen Sie eine neue Gruppe hinzu oder bearbeiten Sie eine vorhandene Gruppe.
+. Weisen Sie der Gruppe Benutzer und Anwendungen zu.
+

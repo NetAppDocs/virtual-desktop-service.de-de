@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.generate_reports-9332f.png[Management.command Center.Operations.Berichte generieren 9332f]

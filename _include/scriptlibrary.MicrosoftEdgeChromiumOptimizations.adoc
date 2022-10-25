@@ -1,0 +1,11 @@
+= Microsoft Edge Chromium-Optimierungen
+:allow-uri-read: 
+
+
+
+
+== Microsoft Edge Chromium-Optimierungen
+
+In Microsoft Edge Chromium 89, Microsoft hat Funktionen hinzugefügt, um den Ressourcenverbrauch der Microsoft Edge Chrom Browser-Registerkarten zu begrenzen. Dieses globale Skript wendet Einstellungen an, um die Hintergrundtabs auf ein Timeout zu begrenzen und den Verbrauch von Ressourcen nach 15 Minuten zu beenden. Hintergrundtabs, auf denen Audio wiedergegeben wird, sind nicht betroffen.
+
+Details können gefunden werden link:https://blogs.windows.com/msedgedev/2021/03/04/edge-89-performance/["Hier"].

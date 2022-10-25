@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.create_azure_file_share-4eabe.png[Management.command Center.Operations.Create Azure file share 4eabe]

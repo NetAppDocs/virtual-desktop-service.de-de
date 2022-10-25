@@ -1,0 +1,53 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Gelegentlich benötigen VDS-Administratoren Anmeldeinformationen auf Domänenebene für das Management der Umgebung. In VDS werden diese als „Level 3“- oder „.Tech“-Konto bezeichnet.
+
+Diese Anweisungen zeigen, wie diese Konten mit den entsprechenden Berechtigungen erstellt werden können.
+
+
+
+=== Windows Server Domain Controller
+
+Wenn ein intern gehosteter Domänencontroller (oder ein lokales DC, das über eine VPN/Express Route mit Azure verbunden ist) ausgeführt wird, können .Tech-Konten direkt in Active Directory Manager verwaltet werden.
+
+. Stellen Sie eine Verbindung zum Domänencontroller (CWMGR1, DC01 oder zur vorhandenen VM) mit einem Domain Admin (.Tech)-Konto her.
+. Erstellen Sie einen neuen Benutzer (falls erforderlich).
+. Fügen Sie den Benutzer der Sicherheitsgruppe „Level3 Technicians“ hinzu
++
+image::Management.System_Administration.create_domain_admin_account-9ee17.png[Management.System Administration.Domain-Admin-Konto erstellen 9ee17]
+
++
+.. Wenn die Sicherheitsgruppe „Level3 Technicians“ fehlt, erstellen Sie bitte die Gruppe und machen Sie sie zu einem Mitglied der Sicherheitsgruppe „CW-Infrastructure“.
++
+image::Management.System_Administration.create_domain_admin_account-0fc27.png[Management.System Administration.Create Domain Admin Konto 0fc27]
+
+
+
+
+
+
+NOTE: Das Hinzufügen von „.tech“ am Ende des Benutzernamens ist eine empfohlene Best Practice, um Administratorkonten von den Endkundenkonten zu beschreiben.
+
+
+
+=== Azure AD Domain Services
+
+Bei Ausführung in Azure AD-Domänendiensten oder Benutzerverwaltung in Azure AD können diese Konten (d. h. Kennwortänderung) im Azure Management Portal als normaler Azure AD-Benutzer gemanagt werden.
+
+Neue Konten können erstellt werden, indem sie zu diesen Rollen hinzugefügt werden, sollten ihnen die erforderlichen Berechtigungen geben:
+
+. AAD DC-Administratoren
+. ClientDHPAccess
+. Globaler Administrator im Verzeichnis.
+
+
+
+NOTE: Das Hinzufügen von „.tech“ am Ende des Benutzernamens ist eine empfohlene Best Practice, um Administratorkonten von den Endkundenkonten zu beschreiben.
+
+image:l33.png[""]

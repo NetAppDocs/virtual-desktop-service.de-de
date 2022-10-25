@@ -1,0 +1,179 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Mithilfe von Bereitstellungstechnologien für Virtual Desktop Services können verschiedene Storage-Optionen genutzt werden, abhängig von der zugrunde liegenden Infrastruktur. In diesem Leitfaden wird beschrieben, wie Sie die Nutzung von Azure Files nach der Implementierung ändern.
+
+
+
+=== Voraussetzungen
+
+* AD Connect installiert und eingerichtet
+* Globales Azure-Administratorkonto
+* AZFilesHybrid PowerShell-Modul https://github.com/Azure-Samples/azure-files-samples/releases[]
+* AZ PowerShell-Modul
+* ActiveDirectory PowerShell-Modul
+
+
+
+
+=== Erstellen Sie die neue Speicherebene
+
+. Melden Sie sich mit dem globalen Administratorkonto bei Azure an
+. Erstellen Sie ein neues Speicherkonto an demselben Speicherort und in derselben Ressourcengruppe wie der Arbeitsbereich
++
+image:Architectural.ChangeDataLayer.AzureFiles1.png[""]
+
+. Erstellen Sie die Daten-, Home- und Pro-File Shares unter dem Storage-Konto
++
+image:Architectural.ChangeDataLayer.AzureFiles2.png[""]
+
+
+
+
+
+=== Einrichten Von Active Directory
+
+. Erstellen Sie unter Cloud Workspace > Cloud Worksapce Service Accounts OU eine neue Organisationseinheit mit dem Namen „`Storage Account`“
++
+image:Architectural.ChangeDataLayer.AzureFiles3.png[""]
+
+. Aktivieren der AD DS-Authentifizierung (muss mit PowerShell durchgeführt werden) https://docs.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable[]
++
+.. DomänenAccountType sollte sein “`ServiceLogonAccount`„
+.. OraganisierungalUnitDistinguishedName ist der im vorherigen Schritt erstellte Name der OU (d.h. “`OU=Storage Account,OU=Cloud Workspace Service Accounts,OU=Cloud Workspace,DC=TrainingKrisG,DC=onmicrosoft,DC=com`„)
+
+
+
+
+
+
+=== Legen Sie die Rollen für die Freigaben fest
+
+. Geben Sie im Azure-Portal „`Storage File Data SMB Share Elevated Contributor`“ die Rolle von CloudWorkspaceSVC und Level3-Technikern
++
+image:Architectural.ChangeDataLayer.AzureFiles4.png[""]
+
+. Dem wird die Rolle „Storage File Data SMB Share Contributor“ zugewiesen “`<company code>-all users`„-Gruppe“
++
+image:Architectural.ChangeDataLayer.AzureFiles5.png[""]
+
+
+
+
+
+=== Erstellen Sie die Verzeichnisse
+
+. Erstellen Sie in jeder Freigabe ein Verzeichnis (Daten, Zuhause, pro), indem Sie den Unternehmenscode als Namen verwenden (in diesem Beispiel lautet der Unternehmenscode „`kift`“).
++
+image:Architectural.ChangeDataLayer.AzureFiles6.png[""]
+
+. Erstellen Sie im Verzeichnis <company Code> des Proshare ein Verzeichnis „`ProfilContainers`“
++
+image:Architectural.ChangeDataLayer.AzureFiles7.png[""]
+
+
+
+
+
+=== Legen Sie die NTFS-Berechtigungen fest
+
+. Stellen Sie eine Verbindung zu den Freigaben her
++
+.. Navigieren Sie im Azure-Portal zu der Freigabe unter dem Storage-Konto, klicken Sie auf die drei Punkte und klicken Sie anschließend auf Verbinden
++
+image:Architectural.ChangeDataLayer.AzureFiles8.png[""]
+
+.. Wählen Sie die Methode Active Directory for Authentication aus, und klicken Sie in der rechten unteren Ecke des Codes auf das Symbol in die Zwischenablage kopieren
++
+image:Architectural.ChangeDataLayer.AzureFiles9.png[""]
+
+.. Melden Sie sich am CWMGR1-Server mit einem Konto an, das Mitglied der Level3-Technikergruppe ist
+.. Führen Sie den kopierten Code in PowerShell aus, um das Laufwerk zuzuordnen
+.. Führen Sie für jede Freigabe das gleiche aus, während Sie einen anderen Laufwerksbuchstaben für jeden auswählen
+
+
+. Deaktivieren Sie die Vererbung in den Verzeichnissen <company Code>
+. System und AD Group Client DHPAccess sollten die Verzeichnisse <company Code> vollständig steuern
+. Domain Computers sollten die volle Kontrolle über das Verzeichnis <company Code> im Pro-Share sowie das Verzeichnis ProfilContainers in haben
+. Die <company Code>-all Users AD Group sollte Listen Ordner/read Data permissons in den Verzeichnissen <company Code> im Home und pro Shares haben
+. Die AD-Gruppe <company Code>-all Users sollte die unten aufgeführten Sonderberechtigungen für das Verzeichnis in der Datenfreigabe besitzen
++
+image:Architectural.ChangeDataLayer.AzureFiles10.png[""]
+
+. Die AD-Gruppe <company Code>-all Users sollte über die Berechtigung Ändern im ProfilContainers-Verzeichnis verfügen
+
+
+
+
+=== Gruppenrichtlinienobjekte Aktualisieren
+
+. Aktualisieren Sie das Gruppenrichtlinienobjekt <Unternehmenscode> Benutzer unter Cloud Workspace > Cloud Workspace Companies > <Company Code> <Company Code>-Desktop-Benutzer
++
+.. Ändern Sie die Zuordnung des Home-Laufwerks, um die neue Home-Freigabe zu zeigen
++
+image:Architectural.ChangeDataLayer.AzureFiles11.png[""]
+
+.. Ändern Sie die Ordnerumleitung, um die Home-Freigabe für Desktop und Dokumente zu zeigen
++
+image:Architectural.ChangeDataLayer.AzureFiles12.png[""]
+
++
+image:Architectural.ChangeDataLayer.AzureFiles13.png[""]
+
+
+
+
+
+
+
+=== Aktualisieren Sie die Freigabe in Active Directory-Benutzern und -Computern
+
+. Bei klassischer oder hybrider AD muss der Anteil im Unternehmenscode OU auf den neuen Standort aktualisiert werden
++
+image:Architectural.ChangeDataLayer.AzureFiles14.png[""]
+
+
+
+
+
+=== Aktualisieren von Daten-/Home-/Pro-Pfaden im VDS
+
+. Melden Sie sich bei CWMGR1 mit einem Konto in der Level3 Technicians Group an und starten Sie Command Center
+. Wählen Sie in der Dropdown-Liste Befehl die Option Daten/Home/Pro Ordner ändern aus
+. Klicken Sie auf die Schaltfläche Daten laden, und stellen Sie sicher, dass der richtige Unternehmenscode aus der Dropdown-Liste ausgewählt ist
+. Geben Sie die neue Patsh für die Daten-, Home- und pro-Standorte ein
+. Deaktivieren Sie das Kontrollkästchen IS Windows Server
+. Klicken Sie auf die Schaltfläche Befehl ausführen
++
+image:Architectural.ChangeDataLayer.AzureFiles15.png[""]
+
+
+
+
+
+=== Aktualisieren der FSLogix-Profilpfade
+
+. Öffnen Sie den Registrierungseditiv auf den Session-Hosts
+. Bearbeiten Sie den Eintrag VHDLockations unter HKLM\SOFTWARE\FSLogix\Profiles, um den UNC-Pfad zum neuen ProfilContainers-Verzeichnis zu erhalten
++
+image:Architectural.ChangeDataLayer.AzureFiles16.png[""]
+
+
+
+
+
+=== Backups Konfigurieren
+
+. Es wird empfohlen, eine Backup-Richtlinie für die neuen Freigaben einzurichten und zu konfigurieren
+. Erstellen Sie einen neuen Recovery Services Vault in derselben Ressourcengruppe
+. Navigieren Sie zum Tresor, und wählen Sie unter erste Schritte Sicherung aus
+. Wählen Sie Azure für den aktiven Workload und die Azure-Dateifreigabe für das, was Sie sichern möchten, und klicken Sie dann auf Backup
+. Wählen Sie das Speicherkonto aus, das zum Erstellen der Freigaben verwendet wird
+. Fügen Sie die Shares hinzu, die gesichert werden sollen
+. Bearbeiten und Erstellen einer Backup-Richtlinie, die Ihren Anforderungen entspricht
+

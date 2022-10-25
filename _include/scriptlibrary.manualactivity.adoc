@@ -1,0 +1,29 @@
+= Manuelle Aktivität hinzufügen
+:allow-uri-read: 
+
+
+
+
+=== Manuelle Aktivität hinzufügen
+
+Damit ein Skript im Repository eine Aktion ausführen kann, muss ein Vorgang erstellt werden, um dieses Skript einem ausgewählten Trigger zuzuordnen. In diesem Beispiel wird die Aktivität ausgeführt, wenn der VDS Admin das Skript manuell auslöst.
+
+VDS skriptbasierte Ereignisse bieten viele andere Arten von Aktivitäts-Triggern wie _Create Server_, die als Alternative zum Ereignistyp _Manual_ verwendet werden können. Mit _Create Server_ würde dieses Skript einfach auf allen neu erstellten VMs im VDS ausgeführt. _Create Server_ und andere Trigger werden dokumentiert und können untersucht werden link:Management.Scripted_Events.scripted_events.html["Hier"].
+
+.So erstellen Sie eine Aktivität und verknüpfen dieses Skript mit einer Aktion:
+. Navigieren Sie zum Abschnitt „skriptbasierte Ereignisse“ im VDS
+. Klicken Sie unter „ Aktivitäten “ auf _+ Aktivität hinzufügen_
+. Geben Sie im geöffneten Dialogfeld die folgenden Informationen ein:
++
+** *Name:* Benennen Sie diese Aktivität
+** *Beschreibung:* Geben Sie optional eine Beschreibung ein
+** *Bereitstellung* Wählen Sie die gewünschte Bereitstellung aus der Dropdown-Liste aus
+** *Skript:* Wählen Sie das Skript install (oder uninstall) aus dem Dropdown-Menü aus. Dies könnte das globale Skript oder Kundenskript sein, das Sie geklont und angepasst haben.
+** *Argumente:* Legen Sie leer
+** *Kontrollkästchen aktiviert:* `Check` Lieferumfang
+** *Ereignistyp:* Wählen Sie Aus `Manual` Aus der Dropdown-Liste
+** *Zieltyp:* Wählen Sie das aus `Servers` Optionsfeld
+** * Verwaltete Server:* `Check` Die Box für jede VM, die diese Deinstallation erhalten soll.
+
+
+

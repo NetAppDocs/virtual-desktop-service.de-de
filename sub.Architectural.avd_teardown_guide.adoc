@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: Architectural.AVD_teardown_guide.html 
+summary: Schritt-für-Schritt-Anleitung zum Entfernen von VDS aus AVD 
+keywords:  
+---
+= AVD-Rückführung
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+In diesem Artikel werden das Entfernen von VDS und der NetApp Steuerung unter Beibehaltung des AVD-Benutzerzugriffs behandelt. Und in Zukunft wäre das Management mit nativen Azure/Windows-Administrationstools. Nach Abschluss dieses Vorgangs wird empfohlen, sich an support@spotpc.netapp.com zu wenden, damit NetApp unsere Back-End- und Billing-Systeme bereinigen kann.
+
+
+
+== Ausgangszustand
+
+* AVD-Bereitstellung
+* TDS1 ist FS Logix FileShare
+* TS1 ist Session-Host
+* Benutzer ist angemeldet und FS Logix-Datenträger wurde erstellt in:
++
+ \\****TSD1\****-Pro$\ProfileContainers (**** = Unique Company Code)
+
+
+
+
+== CW Agent-Dienst löschen
+
+Der CW-Agent wird auf allen Maschinen in der Umgebung ausgeführt. Der Dienst, der diesen Prozess startet, sollte mit dem folgenden Befehl für jede VM in der Umgebung deinstalliert werden. CWMGR1 kann übersprungen werden, da die VM heruntergefahren und schließlich in den meisten Fällen gelöscht wird. Im Idealfall würde diese Aktion über skriptbasierte Automatisierung ausgeführt. Das Video unten zeigt, dass es manuell gemacht wurde.
+
+ C:\Program files\CloudWorkspace\CwAgent\CwAgent.exe -u
+
+
+=== Löschen Sie das Video zum CW Agent-Dienst
+
+video::l9ASmM5aap0[youtube]
+
+
+== Löschen Sie das CW-Agentenverzeichnis
+
+Bei der vorherigen Deinstallation wurde der Dienst entfernt, der CW Agent startet, die Dateien aber verbleiben. Löschen Sie das Verzeichnis:
+
+ "C:\Program Files\CloudWorkspace"
+
+
+=== CW Agent-Verzeichnisvideo löschen
+
+video::hMM_z4K2-iI[youtube]
+
+
+== Entfernen Sie Startverknüpfungen
+
+Das Verzeichnis der Startelemente enthält zwei Verknüpfungen zu Dateien, die im vorherigen Schritt gelöscht wurden. Um Fehlermeldungen für Endbenutzer zu vermeiden, sollten diese Dateien gelöscht werden.
+
+....
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\Pen.lnk"
+"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\CwRemoteApps.lnk"
+....
+
+
+=== Entfernen Sie Startverknüpfungen Video
+
+video::U0YLZ3Qfu9w[youtube]
+
+
+== Link ‘Benutzer’ und ‘Unternehmen’ GPOs aufheben
+
+VDS implementiert drei Gruppenrichtlinienobjekte. Wir empfehlen die Verknüpfung von zwei von ihnen und die Überprüfung des Inhalts der dritten.
+
+Link Aufheben:
+
+* ADDC-Benutzer > Cloud Workspace-Unternehmen
+* ADDC-Benutzer > Cloud Workspace-Benutzer
+
+
+Durchsehen:
+
+* ADDC-Computer > Cloud Workspace-Computer
+
+
+
+
+=== Link ‘Benutzer’ und ‘Unternehmen’ GPOs-Video aufheben
+
+video::cb68ri3HKUw[youtube]
+
+
+== Schalten Sie den CWMGR1 aus
+
+Mit den vorgenommenen Änderungen am Gruppenrichtlinienobjekt können wir die CWMGR1 VM jetzt herunterfahren. Sobald die fortgesetzte AVD-Funktion bestätigt wurde, kann diese VM dauerhaft gelöscht werden.
+
+In extrem seltenen Fällen muss diese VM gewartet werden, wenn eine andere Serverrolle läuft (z.B. DC, FTP-Server…). In diesem Fall können drei Dienste deaktiviert werden, um die VDS-Funktion auf CWMGR1 zu deaktivieren:
+
+* CW-Agent (siehe oben)
+* CW Automation Service
+* CW VM Automation
+
+
+
+
+=== CWMGR1-Video herunterfahren
+
+video::avk9HyIiC_s[youtube]
+
+
+== Löschen von NetApp VDS-Servicekonten
+
+Die von VDS verwendeten Azure AD-Servicekonten können entfernt werden. Melden Sie sich im Azure Management-Portal an und löschen Sie die Benutzer:
+
+* CloudWorkSpaceSVC
+* CloudWorkSpaceCASVC
+
+
+Andere Benutzerkonten können beibehalten werden:
+
+* Endanwender
+* Azure-Administrator
+* .Tech Domain-Administratoren
+
+
+
+
+=== Video zum Löschen von VDS-Servicekonten für NetApp
+
+video::_VToVNp49cg[youtube]
+
+
+== App-Registrierungen löschen
+
+Bei der Bereitstellung von VDS werden zwei App-Registrierungen durchgeführt. Diese können gelöscht werden:
+
+* Cloud Workspace-API
+* Cloud Workspace AVD
+
+
+
+
+=== Video zum Löschen von App-Registrierungen
+
+video::iARz2nw1Oks[youtube]
+
+
+== Unternehmensanwendungen löschen
+
+Bei der Implementierung von VDS werden zwei Enterprise-Applikationen implementiert. Diese können gelöscht werden:
+
+* Cloud Workspace
+* Cloud Workspace Management-API
+
+
+
+
+=== Video zu Unternehmensanwendungen löschen
+
+video::3eQzTPdilWk[youtube]
+
+
+== Bestätigen Sie, dass CWMGR1 angehalten wurde
+
+Bevor Sie testen, ob die Endbenutzer noch eine Verbindung herstellen können, bestätigen Sie, dass der CWMGR1 für einen realistischen Test angehalten wurde.
+
+
+
+=== Bestätigen Sie, dass das Video „CWMGR1 wurde angehalten“ wurde
+
+video::Ux9nkDk5lU4[youtube]
+
+
+== Anmeldung und Endbenutzer
+
+Um den Erfolg zu bestätigen, melden Sie sich als Endbenutzer an und bestätigen Sie, dass die Funktionalität erhalten bleibt.
+
+
+
+=== Anmeldung und Endbenutzervideo
+
+video::SuS-OTHJz7Y[youtube]

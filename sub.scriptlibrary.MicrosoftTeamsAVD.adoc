@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: scriptlibrary.MicrosoftTeamsAVD.html 
+summary: Skriptdokumentation – Microsoft-Teams für AVD 
+keywords:  
+---
+= Scripted Event Documentation – Microsoft-Teams für AVD
+:allow-uri-read: 
+
+
+
+
+== Übersicht Über Globale Skripts
+
+NetApp VDS umfasst eine Bibliothek mit vordefinierten skriptbasierten Ereignissen, die direkt in VDS-Umgebungen verwendet und/oder dupliziert und als Bausteine für individuelle skriptbasierte Ereignisse verwendet werden können.
+
+In diesem Artikel werden sowohl die Aktion Install/Enable als auch die Deinstallation/Deaktivierung behandelt.
+
+
+
+== Verwendung Von Globalen Skripten
+
+Integrierte skriptbasierte Ereignisse wie diese sind bereits ausgefüllt. Wenn Sie das Kontrollkästchen „globaler“-Filter aktivieren, werden diese angezeigt.
+
+Globale skriptbasierte Ereignisse wie diese sind schreibgeschützt. Sie können als ist verwendet werden oder über die Funktion „Klonen“ kann eine Kundenkopie für die Bearbeitung und Nutzung erstellt werden.
+
+Die Schaltfläche Klonen befindet sich im Aktivitätsmenü auf der Seite „skriptbasierte Ereignisse“.
+
+image::scriptlibrary.overview-2ccb2.png[Scriptbibliothek.Übersicht 2cb2]
+
+
+
+== Microsoft-Teams für AVD-Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Microsoft Teams AVD_ mit dem chocolatey-Paketmanager (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+WARNING: Diese Installation von Microsoft-Teams ist speziell für Implementierungen in einer AVD-Umgebung mit spezifischen Anpassungen und Komponenten für AVD in Azure konfiguriert. link:scriptlibrary.MicrosoftTeams.html["Ein anderes Skript für Microsoft-Teams"] Für RDS-Implementierungen verfügbar.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcut\Microsoft Teams AVD.lnk`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.script.InstallMicrosoftTeamsAVD.png[Scriptbibliothek.script.InstallMicrosoftTeamsAVD]
+
+
+
+=== Vorgang zur Installation/Deinstallation von Anwendungen hinzufügen
+
+Damit ein Skript im Repository eine Aktion ausführen kann, muss ein Vorgang erstellt werden, um dieses Skript einem ausgewählten Trigger zuzuordnen. In diesem Beispiel wird diese Anwendung installiert/deinstalliert, wenn die App zum Arbeitsbereich hinzugefügt oder aus diesem entfernt wird (von der Seite _Workspace > Anwendungen_ im VDS).
+
+VDS skriptbasierte Ereignisse bieten viele andere Arten von Aktivitäts-Triggern wie _Create Server_, die als Alternative zum Ereignistyp _Application Install_ (oder _Application Uninstall_) verwendet werden können. Mit _Create Server_ würde diese App-Installation einfach auf alle neu erstellten VMs im VDS ausgeführt. _Create Server_ und andere Trigger werden dokumentiert und können untersucht werden link:Management.Scripted_Events.scripted_events.html["Hier"].
+
+
+NOTE: Diese Anwendung muss in der VDS-Anwendungsbibliothek vorhanden sein. Das link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["Abschnitt"] Der Artikel über die Anwendungsberechtigung für RDS umfasst das Hinzufügen von Apps zur Bibliothek.
+
+.So erstellen Sie eine Aktivität und verknüpfen dieses Skript mit einer Aktion:
+. Navigieren Sie im VDS zum Abschnitt „_skriptbasierte Ereignisse_“
+. Klicken Sie unter „ Aktivitäten “ auf _+ Aktivität hinzufügen_
+. Geben Sie im geöffneten Dialogfeld die folgenden Informationen ein:
++
+** *Name:* Benennen Sie diese Aktivität
+** *Beschreibung:* Geben Sie optional eine Beschreibung ein
+** *Bereitstellung* Wählen Sie die gewünschte Bereitstellung aus der Dropdown-Liste aus
+** *Skript:* Wählen Sie das Skript install (oder uninstall) aus dem Dropdown-Menü aus. Dies könnte das globale Skript oder Kundenskript sein, das Sie geklont und angepasst haben.
+** *Argumente:* Legen Sie leer
+** *Kontrollkästchen aktiviert:* `Check` Lieferumfang
+** *Ereignistyp:* Wählen Sie Aus `Application Install` (Oder Application Uninstall) aus dem Dropdown-Menü
+** *Anwendung:* Wählen Sie diese Anwendung aus der Dropdown-Liste aus
+** *Verknüpfungspfad:* Geben Sie den Standard-Verknüpfungspfad für diese Anwendung ein (siehe oben)
+
+
+

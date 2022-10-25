@@ -1,0 +1,24 @@
+= Microsoft-Teams für AVD-Übersicht
+:allow-uri-read: 
+
+
+
+
+== Microsoft-Teams für AVD-Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Microsoft Teams AVD_ mit dem chocolatey-Paketmanager (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+WARNING: Diese Installation von Microsoft-Teams ist speziell für Implementierungen in einer AVD-Umgebung mit spezifischen Anpassungen und Komponenten für AVD in Azure konfiguriert. link:scriptlibrary.MicrosoftTeams.html["Ein anderes Skript für Microsoft-Teams"] Für RDS-Implementierungen verfügbar.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcut\Microsoft Teams AVD.lnk`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.script.InstallMicrosoftTeamsAVD.png[Scriptbibliothek.script.InstallMicrosoftTeamsAVD]

@@ -1,0 +1,18 @@
+= Microsoft Teams – Übersicht
+:allow-uri-read: 
+
+
+
+
+== Microsoft Teams – Übersicht
+
+Dieses Skript-Paket installiert/deinstalliert _Microsoft Teams_ mit dem chocolatey-Paketmanager (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+WARNING: Diese Installation von Microsoft Teams wurde speziell für Implementierungen in einer RDS-Umgebung konfiguriert. link:scriptlibrary.MicrosoftTeamsAVD.html["Ein anderes Skript für Microsoft-Teams"] Wird für AVD-Bereitstellungen bereitgestellt.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\shortcut\Microsoft Teams.lnk`

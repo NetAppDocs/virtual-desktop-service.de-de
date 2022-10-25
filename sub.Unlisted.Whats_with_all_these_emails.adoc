@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: Unlisted.Whats_with_all_these_emails.html 
+summary: Was ist mit all diesen E-Mails? 
+keywords:  
+---
+= Was ist mit all diesen E-Mails?
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+VDS sendet eine Vielzahl von nächtlichen E-Mail-Berichten. Diese dienen dazu, jeden Abend verschiedene Aspekte Ihrer Umgebung zusammenzufassen, um Fehler und Ausnahmen zu erkennen. Sie sind darauf abgestimmt, große Implementierungen zu unterstützen, bei denen das individuelle Monitoring eines jeden Mandanten eine wichtige Aufgabe sein kann.
+
+In kleineren Umgebungen können diese E-Mails übermäßig oder gar unnötig sein.
+
+Die E-Mail-Adresse(n), die diese Berichte empfangen, ist im VDS-Einrichtungsassistenten im Kontoschritt definiert.
+
+Nach der Bereitstellung können die Adressen im DCConfig-Dienstprogramm geändert werden. Dies ist eine Anwendung, die auf der CWMGR1 VM ausgeführt wird und viele der fortschrittlicheren und differenzierteren Einstellungen, die zu weit fortgeschritten sind, um in der VDS-Benutzeroberfläche offenzulegen.
+
+Um die E-Mail-Adresse zu ändern, die diese Berichte empfängt, bearbeiten Sie das Feld „toAddress“ in DCConfig (unter Konfiguration > E-Mail) auf der CWMGR1-VM. Es wird empfohlen, ddcnotifications@cloudjumper.com intakt zu lassen.
+
+image:why_emails.png[""]

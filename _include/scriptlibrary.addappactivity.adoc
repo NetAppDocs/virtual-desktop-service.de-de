@@ -1,0 +1,32 @@
+= Vorgang zur Installation/Deinstallation von Anwendungen hinzufügen
+:allow-uri-read: 
+
+
+
+
+=== Vorgang zur Installation/Deinstallation von Anwendungen hinzufügen
+
+Damit ein Skript im Repository eine Aktion ausführen kann, muss ein Vorgang erstellt werden, um dieses Skript einem ausgewählten Trigger zuzuordnen. In diesem Beispiel wird diese Anwendung installiert/deinstalliert, wenn die App zum Arbeitsbereich hinzugefügt oder aus diesem entfernt wird (von der Seite _Workspace > Anwendungen_ im VDS).
+
+VDS skriptbasierte Ereignisse bieten viele andere Arten von Aktivitäts-Triggern wie _Create Server_, die als Alternative zum Ereignistyp _Application Install_ (oder _Application Uninstall_) verwendet werden können. Mit _Create Server_ würde diese App-Installation einfach auf alle neu erstellten VMs im VDS ausgeführt. _Create Server_ und andere Trigger werden dokumentiert und können untersucht werden link:Management.Scripted_Events.scripted_events.html["Hier"].
+
+
+NOTE: Diese Anwendung muss in der VDS-Anwendungsbibliothek vorhanden sein. Das link:Management.Applications.application_entitlement_workflow.html#add-applications-to-the-app-catalog["Abschnitt"] Der Artikel über die Anwendungsberechtigung für RDS umfasst das Hinzufügen von Apps zur Bibliothek.
+
+.So erstellen Sie eine Aktivität und verknüpfen dieses Skript mit einer Aktion:
+. Navigieren Sie im VDS zum Abschnitt „_skriptbasierte Ereignisse_“
+. Klicken Sie unter „ Aktivitäten “ auf _+ Aktivität hinzufügen_
+. Geben Sie im geöffneten Dialogfeld die folgenden Informationen ein:
++
+** *Name:* Benennen Sie diese Aktivität
+** *Beschreibung:* Geben Sie optional eine Beschreibung ein
+** *Bereitstellung* Wählen Sie die gewünschte Bereitstellung aus der Dropdown-Liste aus
+** *Skript:* Wählen Sie das Skript install (oder uninstall) aus dem Dropdown-Menü aus. Dies könnte das globale Skript oder Kundenskript sein, das Sie geklont und angepasst haben.
+** *Argumente:* Legen Sie leer
+** *Kontrollkästchen aktiviert:* `Check` Lieferumfang
+** *Ereignistyp:* Wählen Sie Aus `Application Install` (Oder Application Uninstall) aus dem Dropdown-Menü
+** *Anwendung:* Wählen Sie diese Anwendung aus der Dropdown-Liste aus
+** *Verknüpfungspfad:* Geben Sie den Standard-Verknüpfungspfad für diese Anwendung ein (siehe oben)
+
+
+

@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: video_content_netapptv.html 
+summary: Video-Content auf NetApp TV 
+keywords:  
+---
+= VDS-Inhalte auf NetApp TV
+:allow-uri-read: 
+
+
+
+
+== VDS, GFC und ANF – die Lösung für weltweit eingesetzte Cloud-Desktops
+
+Azure NetApp Files hostet hochperformanten Storage, während Virtual Desktop Service und globaler Datei-Cache Sie Workspaces und Standortregionen über eine zentrale Konsole für Ihre global implementierten Cloud-Desktops managen.
+
+image:netapptv1.png["Link:https://tv.netapp.com/detail/video/6182654694001"]
+
+link:https://tv.netapp.com/detail/video/6182654694001[""]

@@ -1,0 +1,278 @@
+---
+sidebar: sidebar 
+permalink: Reference.end_user_access.html 
+summary: Endbenutzerzugriff 
+keywords:  
+---
+= Anforderungen Von Endbenutzern
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+NetApp VDS verfolgt keine Endpunktgeräte verschiedener Benutzer und empfiehlt keine Empfehlung. Wir empfehlen einige Grundlagen, aber dadurch werden keine anderen möglichen Endpunktoptionen ausgeschlossen.
+
+Remote-Desktop-Umgebungen können von verschiedenen Endgeräten aus darauf zugreifen. Kunden sind direkt bei Microsoft und Drittanbietern erhältlich. NetApp VDS bietet einen individuellen Verbindungs-Client für Windows Geräte (_NetApp VDS Client for Windows_) sowie einen Web-Client, der mit HTML 5 Browsern kompatibel ist.
+
+Auf virtuelle Desktop-Umgebungen von Azure kann über verschiedene Endpunktgeräte zugegriffen werden. Im Gegensatz zu RDS können AVD-Umgebungen nur von nativen Microsoft-Clients genutzt werden. Microsoft hat Clients für Windows, MacOS, Android, iOS sowie einen Web-Client veröffentlicht. Darüber hinaus ist IGEL eine Partnerschaft eingegangen, um ein Linux-basiertes Thin-Client-Angebot anzubieten.
+
+
+
+== Verbindungsoptionen für Endbenutzer
+
+
+
+=== Remote Desktop Services
+
+
+
+==== NetApp VDS Client für Windows
+
+Der NetApp VDS Client für Windows ist die beste Möglichkeit für Benutzer, eine Verbindung zu ihrer RDS-Umgebung herzustellen. Mit diesem einfachen Installationsprogramm können Benutzer nur mit ihrem Benutzernamen und Passwort eine Verbindung herstellen. Es ist keine Server- oder Gateway-Konfiguration erforderlich. Das Drucken und die Zuordnung lokaler Laufwerke werden automatisch aktiviert, und diese Methode hat die höchste Leistung.
+
+
+
+===== VDS-Client-url-Sicherheit
+
+Falls ausgehende Netzwerkverbindungen Controller sind und um sicherzustellen, dass sie weiterhin den NetApp VDS Client für Windows verwenden können, empfehlen wir Folgendes zur Safelist: * api.cloudworkspace.com * vdsclient.App * API.vdsclient.App * bin.vdsclient.App
+
+Auf Wunsch kann eine Markenversion dieser Bewerbung mit den Logos und Kontaktinformationen des Partners erstellt werden. Bitte wenden Sie sich an den Support, um dies anzufordern.
+
+Der NetApp VDS Client kann hier heruntergeladen werden: https://cwc.cloudworkspace.com/download/cwc-win-setup.exe[]
+
+*Druck:* bei der Verbindung mit dem NetApp VDS Client für Windows wird der Druck automatisch mithilfe von ThinPrint eingerichtet.
+
+*Lokaler Dateizugriff:* standardmäßig teilt der NetApp VDS Client für Windows die lokalen Laufwerke (HDD, USB & Network) mit der Cloud-Benutzersitzung. Der Benutzer kann im Windows Explorer Daten von der „dieser PC“-Position aus durchsuchen und übertragen. Diese Funktion kann deaktiviert werden, indem der Arbeitsbereich oder der Benutzer im VDS bearbeitet wird.
+
+_VDS > Arbeitsbereiche > Benutzer und Gruppen > Sicherheitseinstellungen_image:win_client_disk_access.png[""]
+
+
+
+==== NetApp VDS Web-Client
+
+Der NetApp VDS Web-Client ist verfügbar unter https://login.cloudworkspace.com/[]
+
+Endbenutzer können auch über eine Webseite auf ihren Desktop zugreifen, sofern ihr Browser HTML5 unterstützt. Browser-Kompatibilität für HTML5 kann unter geprüft werden https://html5test.com/[]
+
+Für NetApp VDS Partner kann eine vollständig proprietäre Version dieser Seite erstellt werden. Der Partner muss ein SSL-Zertifikat bereitstellen und es gibt eine kleine Gebühr für die Implementierung von Professional Services. Wenden Sie sich an den Support, um mit dem Prozess zu beginnen.
+
+*Drucken:* beim Herstellen einer Verbindung über HTML5 generiert der Druck vom Virtual Desktop eine PDF, die im Browser heruntergeladen wird und dann lokal gedruckt werden kann.
+
+*Lokaler Dateizugriff:* bei der Verbindung über HTML5 kann der Benutzer Dateien auf das Cloud-Laufwerk hochladen. Dazu klicken Sie auf das Symbol der schwebenden Cloud, laden Sie die Datei hoch und navigieren Sie zu „This PC > Cloud on…“ Speicherort in Windows Explorer, um auf diese Datei in der Benutzersitzung des virtuellen Desktops zuzugreifen.
+
+
+
+==== Manuell konfigurierter RDS-Client
+
+Die zweite beste Verbindungsmethode ist die manuelle Konfiguration der Microsoft Remote Desktop-Anwendung. Das ist ideal für macOS, Linux, iOS, Android und ThinClients. Die einzige Voraussetzung ist, dass das Gerät/die Software über RDP eine Verbindung herstellen und ein RDS Gateway konfigurieren kann.
+
+Die Informationen, die zum manuellen Konfigurieren eines RDP-Clients benötigt werden, sind (Links gehen Sie zu, wo diese Informationen gefunden werden können):
+
+* Benutzername
+* Passwort
+* Server-Adresse (auch als PC-Name)
+* Gateway-Adresse
+
+
+*Drucken:* bei der Konfiguration eines lokalen RDP-Clients kann der Benutzer optional seinen Drucker in die Cloud-Umgebung zum Drucken weiterleiten.
+
+*Lokaler Dateizugriff:* Wenn ein RDP-Client manuell konfiguriert wird, kann der Benutzer bestimmte Ordner für die virtuelle Desktop-Benutzersitzung freigeben.
+
+
+
+===== Suchen der RDS-Gateway-Adresse
+
+. Navigieren Sie zu VDS (https://manage.cloudworkspace.com)[]
+. Klicken Sie Auf Bereitstellungen
+. Klicken Sie auf den Namen der Bereitstellung
+. Suchen Sie RDP Gateway unter Bereitstellungsdetails
+
+
+image:manual_client1.png[""]
+
+
+
+===== Suchen der Serveradresse für Benutzer auf einem freigegebenen Sitzungshost
+
+Navigieren Sie zu VDS (https://manage.cloudworkspace.com)[]
+
+. Klicken Sie Auf Arbeitsbereiche
+. Klicken Sie auf den Namen des Arbeitsbereichs
+. Suchen Sie unter „Unternehmensinformationen“ die Serveradresseimage:manual_client2.png[""]
+
+
+
+
+===== Ermitteln der Server-Adresse für VDI-Benutzer
+
+. Navigieren Sie zu VDS (https://manage.cloudworkspace.com)[]
+. Klicken Sie Auf Arbeitsbereiche
+. Klicken Sie auf den Namen des Arbeitsbereichs
+. Suchen Sie unter „Unternehmensinformationen“ die Serveradresseimage:manual_client3.png[""]
+. Klicken Sie auf die Registerkarte Benutzer und Gruppen
+. Klicken Sie auf den Benutzernamen
+. Suchen Sie die VDI Server-Adresseimage:manual_client4.png[""]
+. Die Serveradresse für diesen vdi-Benutzer ist die Serveradresse: dvy.ada.cloudWorkspace.App, aber mit dem Firmencode (z.B. dvy) ersetzt durch den VDI Server-Wert (z.B. DVYTS1)…
++
+ e.g. DVYTS1.ada.cloudworkspace.app
+
+
+
+
+==== RDS-Anforderungsmatrix
+
+[cols="25,25,25,25"]
+|===
+| Typ | Betriebssystem | RDS-Zugriffsmethode(n) für Clients | RDS Web Client 
+
+
+| Windows-PC | Windows 7 oder höher mit Microsoft RDP 8 App | NetApp VDS Clients konfigurieren den Client manuell | https://login.cloudworkspace.com/[] 
+
+
+| MacOS | MacOS 10.10 oder höher und Microsoft Remote Desktop 8 App | Konfigurieren Sie Den Client Manuell | https://login.cloudworkspace.com/[] 
+
+
+| IOS | IOS 8.0 oder höher und any link:https://itunes.apple.com/us/app/microsoft-remote-desktop/id714464092?mt=8["Remote Desktop App"] Das RD-Gateways unterstützt | Konfigurieren Sie Den Client Manuell | https://login.cloudworkspace.com/[] 
+
+
+| Android | Android-Version, die ausgeführt werden kann link:https://play.google.com/store/apps/details?id=com.microsoft.rdc.android&hl=en_US["Microsoft Remote Desktop App"] | Konfigurieren Sie Den Client Manuell | https://login.cloudworkspace.com/[] 
+
+
+| Linux | Praktisch alle Versionen mit jeder RDS-Anwendung, die RD-Gateways unterstützt | Konfigurieren Sie Den Client Manuell | https://login.cloudworkspace.com/[] 
+
+
+| Thin Client | Zahlreiche Thin Clients funktionieren, vorausgesetzt, sie unterstützen RD-Gateways. Wir empfehlen Windows-basierte Thin-Clients | Konfigurieren Sie Den Client Manuell | https://login.cloudworkspace.com/[] 
+|===
+
+
+===== Vergleichsmatrix
+
+[cols="20,20,20,20,20,20"]
+|===
+| Elemente/Funktionen | HTML5-Browser | VDS Client für Windows | MacOS RDP-Client | RDP-Client auf mobilen Geräten | HTML5 Client auf mobilen Geräten 
+
+
+| Zugriff Auf Lokale Laufwerke | Klicken Sie auf den Hintergrund und anschließend auf das Cloud-Symbol, das in der Mitte des oberen Bildschirmfensters angezeigt wird | Verfügbar in Windows Explorer | Klicken Sie mit der rechten Maustaste auf das RDP bearbeiten. Wechseln Sie zur Registerkarte Umleitung. Wählen Sie dann einen Ordner aus, den Sie zuordnen möchten. Melden Sie sich am Desktop an, und es wird als zugewiesenes Laufwerk angezeigt. | K. A. | K. A. 
+
+
+| Bildschirmskalierung | Kann geändert werden, und ändert sich je nach Größe des Browser-Fensters.Dies kann nie größer als die Auflösung des Endpunkts (primär, Endpunkt-Monitor bei mehreren Monitoren | Kann neu skaliert werden, entspricht aber immer der Bildschirmauflösung des Endpunkts (primärer Endpunkt-Monitor bei mehreren Monitoren) | Kann neu skaliert werden, entspricht aber immer der Bildschirmauflösung des Endpunkts (primärer Endpunkt-Monitor bei mehreren Monitoren) | K. A. | K. A. 
+
+
+| Kopieren/Einfügen | Aktiviert durch Zwischenablage-Umleitung. | Aktiviert durch Zwischenablage-Umleitung. | Aktiviert durch Zwischenablage-Umleitung. Verwenden Sie in dem virtuellen Desktop Control + C oder V anstelle von Befehl + C oder V. | Aktiviert durch Zwischenablage-Umleitung. | Aktiviert durch Zwischenablage-Umleitung. 
+
+
+| Druckerzuordnung | Drucken erfolgt über einen PDF-Druckertreiber, mit dem Browser lokale und Netzwerkdrucker erkennen | Alle lokalen und Netzwerkdrucker sind über das ThinPrint-Dienstprogramm abgebildet | Alle lokalen und Netzwerkdrucker sind über das ThinPrint-Dienstprogramm abgebildet | Alle lokalen und Netzwerkdrucker sind über das ThinPrint-Dienstprogramm abgebildet | Drucken erfolgt über einen PDF-Druckertreiber, mit dem Browser lokale und Netzwerkdrucker erkennen 
+
+
+| Leistung | RemoteFX (Erweiterung von Audio und Video) nicht aktiviert | RemoteFX wurde über RDP aktiviert und verbessert die Audio-/Video-Leistung | RemoteFX wurde über RDP aktiviert und verbessert die Audio-/Video-Leistung | RemoteFX aktiviert, Verbesserung der Audio-/Video-Leistung | RemoteFX (Erweiterung von Audio/Video) nicht aktiviert 
+
+
+| Verwendung der Maus auf dem Mobilgerät | K. A. | K. A. | K. A. | Tippen Sie auf den Bildschirm, um die Maus zu bewegen, und klicken Sie auf | Halten Sie den Bildschirm gedrückt und ziehen Sie, um die Maus zu bewegen, tippen Sie auf, um auf zu klicken 
+|===
+
+
+==== Peripheriegeräte
+
+
+
+===== Drucken
+
+* Der Virtual Desktop Client umfasst ThinPrint, das lokale Drucker nahtlos an den Cloud-Desktop weiterleitet.
+* Die HTML5-Verbindungsmethode lädt ein PDF zum lokalen Drucken im Browser herunter.
+* Mit der Microsoft Remote Desktop 8 App auf MacOS können Benutzer Drucker auf dem Cloud-Desktop freigeben
+
+
+
+
+===== USB-Peripheriegeräte
+
+Produkte wie Scanner, Kameras, Kartenleser, Audiogeräte haben Mischergebnisse. Eine Virtual Desktop-Bereitstellung ist nichts Besonderes, das dies verhindert, aber die beste Wahl ist, alle erforderlichen Geräte zu testen. Ihr Vertriebsmitarbeiter kann bei Bedarf die Einrichtung von Testkonten unterstützen.
+
+
+
+===== Bandbreite
+
+* NetApp empfiehlt eine Bandbreite von mindestens 150 kb pro Benutzer. Höhere Kapazität verbessert die Benutzerfreundlichkeit.
+* Internetlatenz unter 100 ms und sehr geringer Jitter sind ebenso wichtig. KB-Artikel
+* Zusätzliche Bandbreite wird durch die Verwendung VON VOIP, Video-Streaming, Audio-Streaming und allgemeinen Internet-Browsing eingeführt werden.
+* Die vom Virtual Desktop selbst verbrauchte Bandbreite ist bei der Berechnung der Anforderungen an die Bandbreite des Benutzers eine der kleinsten Komponenten.
+
+
+
+
+====== Empfehlungen zur Bandbreite von Microsoft
+
+https://docs.microsoft.com/en-us/azure/virtual-desktop/bandwidth-recommendations[]
+
+
+
+====== App-Empfehlungen
+
+[cols="20,60,20"]
+|===
+| Workload | Beispielanwendungen | Empfohlene Bandbreite 
+
+
+| Task Worker | Microsoft Word, Outlook, Excel, Adobe Reader | 1.5 Mbit/S 
+
+
+| Büroangestellte | Microsoft Word, Outlook, Excel, Adobe Reader, PowerPoint, Foto Viewer | 3 Mbit/S 
+
+
+| Knowledge Worker | Microsoft Word, Outlook, Excel, Adobe Reader, PowerPoint, Photo Viewer, Java | 5 Mbit/S 
+
+
+| Power Worker | Microsoft Word, Outlook, Excel, Adobe Reader, PowerPoint, Photo Viewer, Java, CAD/CAM, Illustration/Publishing | 15 Mbit/S 
+|===
+
+NOTE: Diese Empfehlungen gelten unabhängig davon, wie viele Benutzer sich in der Sitzung befinden.
+
+
+
+===== Empfehlungen zur Anzeigeauflösung
+
+[cols="60,40"]
+|===
+| Typische Bildschirmauflösungen bei 30 Bildern/s | Empfohlene Bandbreite 
+
+
+| Etwa 1024 × 768 px | 1.5 Mbit/S 
+
+
+| Etwa 1280 × 720 px | 3 Mbit/S 
+
+
+| Etwa 1920 × 1080 px | 5 Mbit/S 
+
+
+| Ca. 3840 × 2160 px (4K) | 15 Mbit/S 
+|===
+
+
+===== Ressourcen für lokale Geräte
+
+* Lokale Systemressourcen wie RAM, CPU, Netzwerkkarten und Grafikfunktionen verursachen Abweichungen in der Benutzererfahrung.
+* Dies trifft AM MEISTEN auf Netzwerk- und Grafikfunktionen zu.
+* 1 GB RAM und ein Low-Power-Prozessor auf einem kostengünstigen Windows-Gerät. 2-4 GB RAM wird als Minimum empfohlen.
+
+
+
+
+=== Azure Virtual Desktop
+
+
+
+==== AVD Windows-Client
+
+Laden Sie den Windows 7/10-Client von herunter https://docs.microsoft.com/en-us/azure/virtual-desktop/connect-windows-7-10[] Und melden Sie sich mit dem Benutzernamen und Kennwort des Endbenutzers an. Beachten Sie, dass Remote-App- und Desktop-Verbindungen (RADC), Remote Desktop Connection (mstsc) und der NetApp VDS Client für Windows-Applikation derzeit nicht die Möglichkeit zur Anmeldung bei AVD-Instanzen bieten.
+
+
+
+==== AVD-Webclient
+
+Navigieren Sie in einem Browser zur mit Azure Resource Manager integrierten Version des Web-Clients Azure Virtual Desktop unter https://rdweb.AVD.microsoft.com/arm/webclient[] Und melden Sie sich mit Ihrem Benutzerkonto an.
+
+
+NOTE: Wenn Sie Azure Virtual Desktop (klassisch) ohne Integration in Azure Resource Manager nutzen, stellen Sie eine Verbindung zu Ihren Ressourcen unter her https://rdweb.AVD.microsoft.com/webclient[] Stattdessen.

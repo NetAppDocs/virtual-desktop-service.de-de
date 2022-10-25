@@ -1,0 +1,50 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+CWASetup 5.4 ist eine Abkehr von früheren Azure-Bereitstellungsmethoden. Der Konfigurations- und Validierungsprozess optimiert den Bedarf an Informationen zur Beginn einer Implementierung. Viele dieser entfernten Eingabeaufforderungen gelten für Anmeldeinformationen oder Konten wie lokaler VM-Administrator, SMTP-Konto, Technischer Account, SQL SA usw. Diese Konten werden jetzt automatisch generiert und in Azure Key Vault gespeichert. Für den Zugriff auf diese automatisch generierten Konten ist standardmäßig ein weiterer Schritt erforderlich, wie unten beschrieben.
+
+* Suchen Sie die „Key Vault“-Ressource und klicken Sie darauf:
++
+image:Management.System_Administration.azure_key_vault-4d897.png["Breite = 75 %"]
+
+* Klicken Sie unter „Einstellungen“ auf „‘S‘Secrets“. Sie sehen eine Nachricht, die besagt, dass Sie nicht berechtigt sind, sich anzusehen:
++
+image:Management.System_Administration.azure_key_vault-0f7b9.png["Breite = 75 %"]
+
+* Fügen Sie eine ‘Zugriffsrichtlinie’ hinzu, um einem Azure AD-Konto (wie einem globalen Administrator oder Systemadministrator) Zugriff auf diese sensiblen Schlüssel zu gewähren:
++
+image:Management.System_Administration.azure_key_vault-fe473.png["Breite = 75 %"]
+
+* In diesem Beispiel wird ein globaler Administrator verwendet. Nach der Auswahl des Principal, klicken Sie ‘SAuswahl’, dann ‘Hinzufügen’:
++
+image:Management.System_Administration.azure_key_vault-3ae42.png["Breite = 75 %"]
+
+* Klicken ‘SSie auf „Speichern“:
++
+image:Management.System_Administration.azure_key_vault-15c03.png["Breite = 75 %"]
+
+* Zugriffsrichtlinie wurde hinzugefügt:
++
+image:Management.System_Administration.azure_key_vault-770dd.png["Breite = 75 %"]
+
+* Überprüfen Sie die ‘Secrets’, ob das Konto nun Zugriff auf die Bereitstellungskonten hat:
++
+image:Management.System_Administration.azure_key_vault-e277a.png["Breite = 75 %"]
+
+* Wenn Sie z. B. die Domänenadministratorberechtigung zum Anmelden bei CWMGR1 und zum Aktualisieren der Gruppenrichtlinie benötigen, überprüfen Sie die Strings unter cjDomainAdministratorname und cjDomainAdministratorPassword, indem Sie auf jeden Eintrag klicken:
++
+image:Management.System_Administration.azure_key_vault-69e35.png["Breite = 75 %"]
+
++
+image:Management.System_Administration.azure_key_vault-83926.png["Breite = 75 %"]
+
+* Wert anzeigen oder kopieren:
++
+image:Management.System_Administration.azure_key_vault-c9405.png["Breite = 75 %"]
+
+

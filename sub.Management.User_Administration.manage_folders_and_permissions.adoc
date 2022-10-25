@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: Management.User_Administration.manage_folders_and_permissions.html 
+summary: Managen Von Datenberechtigungen 
+keywords:  
+---
+= Managen Von Datenberechtigungen
+:allow-uri-read: 
+
+
+
+
+== Aus der Sicht des Endbenutzers
+
+Endbenutzer von virtuellen Desktops können auf mehrere zugeordnete Laufwerke zugreifen. Zu diesen Laufwerken zählen eine auf FTA zugängliche Teamfreigabe, eine Company File Share und ihr Home Drive (für Dokumente, Desktop usw.…). . Alle diese zugeordneten Laufwerke verweisen auf eine zentrale Storage-Ebene entweder auf ein Storage-Service (z. B. Azure NetApp Files) oder auf einer File Server-VM.
+
+Je nach Konfiguration des Benutzers kann der Benutzer nicht über die Laufwerke H: Oder F: Freigelegt haben, können sie nur ihren Desktop, Dokumente, etc… sehen Ordner. Darüber hinaus werden gelegentlich bei der Bereitstellung verschiedene Laufwerksbuchstaben vom VDS-Administrator festgelegt.image:manage_data1.png[""]
+
+image:manage_data2.png[""]
+
+
+
+=== Verwalten von Berechtigungen
+
+MIT VDS können Administratoren Sicherheitsgruppen und Ordnerberechtigungen über das VDS-Portal bearbeiten.
+
+
+
+=== Sicherheitsgruppen
+
+Sicherheitsgruppen werden verwaltet, indem Sie im Abschnitt Gruppen auf Workspaces > Mandantenname > Benutzer & Gruppen > klicken
+
+.In diesem Abschnitt können Sie:
+. Erstellen Sie neue Sicherheitsgruppen
+. Benutzer zu den Gruppen hinzufügen/entfernen
+. Anwendungen Gruppen zuweisen
+. Aktivieren/Deaktivieren des Zugriffs auf lokale Laufwerke für Gruppen
+
+
+image:manage_data3.gif[""]
+
+
+
+== Ordnerberechtigungen
+
+Ordnerberechtigungen werden verwaltet, indem Sie auf Workspaces > Mandantenname > Verwalten klicken (im Abschnitt Ordner).
+
+.In diesem Abschnitt können Sie:
+. Ordner Hinzufügen/Löschen
+. Weisen Sie Benutzern oder Gruppen Berechtigungen zu
+. Passen Sie die Berechtigungen an schreibgeschützt, vollständige Kontrolle und Keine an
+
+
+image:manage_data4.gif[""]

@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.make_server_data_server-67eee.png[Management.command Center.Operations.Machen Sie Server-Datenserver 67ee]

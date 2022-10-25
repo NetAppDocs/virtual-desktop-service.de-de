@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.delete_template-83488.png[Management.command center.operations.delete Vorlage 83488]

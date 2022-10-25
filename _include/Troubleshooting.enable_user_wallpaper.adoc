@@ -1,0 +1,27 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+Bei Remote-Sitzungen ist die Hintergrundanzeige standardmäßig deaktiviert, um die Leistung zu verbessern. Das Ergebnis ist ein schwarzes Hintergrundbild, das Benutzer oft anpassen möchten. Diese Einstellung kann mit einer einfachen GPO-Bearbeitung geändert werden
+
+
+
+=== Wichtig:
+
+. Melden Sie sich bei einem Plattform-Server an (z. B. CWMGR1) Verwendung von Level3 .tech-Konto
+. Öffnen Sie Die Group Policy Management Console
+. Suchen Sie das GPO rdsh (gekennzeichnet als „Unternehmenscode“ rdsh (z. B. „Xyz1 rdsh“)) Klicken Sie mit der rechten Maustaste auf das GPO „xyz1 rdsh“, wählen Sie „Bearbeiten“
++
+.. In Azure AD-Domänendiensten wird das GPO „ADDC“ genannt „Computer > Cloud Workspace-Computer“.
+
+
+. Ändern Sie die Richtlinie: Computerkonfiguration > Richtlinien > Administrative Vorlagen > Windows-Komponenten > Remotedesktopdienste > Remote Desktop Session Host > Remote Session Environment > Remote Desktop Wallpaper entfernen. Setzen Sie diese Einstellung auf deaktiviert
+
+
+image:wallpaper1.png[""]
+image:wallpaper2.png[""]
+image:wallpaper3.png[""]

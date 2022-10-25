@@ -1,0 +1,9 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.rename_server-db4c9.png[Management.command Center.Operations.benennen Sie den Server db4c9 um]

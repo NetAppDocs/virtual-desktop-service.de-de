@@ -1,0 +1,24 @@
+= Übersicht über Microsoft Office 365
+:allow-uri-read: 
+
+
+
+
+== Übersicht über Microsoft Office 365
+
+Dieses Skript-Paket installiert/deinstalliert _Microsoft Office_ mithilfe des chocolatey-Paketmanagers (https://chocolatey.org/)[] Um die Bereitstellung zu erledigen. Chocolatey wird von VDS bereitgestellt, wenn VMs erstellt werden. Dieses Skript prüft aber auch Chocolatey und installiert es als Voraussetzung, wenn es fehlt.
+
+
+WARNING: Dieses Installationsskript für Microsoft Office 365 enthält keine Microsoft Teams oder Microsoft One Drive. Diese werden als eigenständige automatisierte Skripte enthalten, die eine größere Flexibilität ermöglichen, da einige Implementierungen diese Applikationen nicht erfordern. Diese Bereitstellung kann kopiert und bearbeitet werden, um sie einzubeziehen (oder andere zu ändern link:https://docs.microsoft.com/en-us/deployoffice/overview-office-deployment-tool["Office Deployment Tool"] Einstellungen) durch Klonen des Skripts aus VDS und Bearbeiten des InstallMicrosoftOffice365.ps1, um unterschiedliche Werte in die XML-Konfigurationsdatei einzugeben.
+
+
+
+=== Standardpfad für Verknüpfungen
+
+Der standardmäßige Verknüpfungspfad wird unten eingegeben, für diese Anwendung ist die Verknüpfung: `\\folders\Microsoft Office`
+
+
+
+=== Screenshot des Dialogfensters „Aktivität hinzufügen“
+
+image::scriptlibrary.activity.InstallMicrosoftOffice365.png[ScriptLibrary.activity.InstallMicrosoftOffice365]

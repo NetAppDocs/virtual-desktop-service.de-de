@@ -1,0 +1,15 @@
+= Überblick
+:allow-uri-read: 
+
+
+
+
+== Überblick
+
+image::Management.command_center.operations.load_resource_pool_data-e7092.png[Management.command Center.Operations.Laden Ressourcen-Pool Daten e7092]
+
+image::Management.command_center.operations.load_resource_pool_data-c9810.png[Management.command Center.Operations.Laden der Ressourcen-Pool-Daten c9810]
+
+image::Management.command_center.operations.load_resource_pool_data-cb3a8.png[Management.command Center.Operations.Laden der Ressourcen-Pool-Daten cb3a8]
+
+image::Management.command_center.operations.load_resource_pool_data-6ae0e.png[Management.command Center.Operations.Daten des Ressourcen-Pools 6ae0e laden]
