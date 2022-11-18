@@ -10,6 +10,19 @@ keywords:
 
 
 
+== VDS v6 Veröffentlichung: Donnerstag 17. November 2020 um 23 Uhr Ost
+
+_Auswirkung:_ Benutzer werden das VDS Client für Windows Update beim nächsten Start sehen
+
+
+
+=== Verbesserungen
+
+* Korrigieren Sie bei der Erstellung von Client-Verbindungsdateien ein Syntaxproblem mit dem Parameter 'Umleitungsservername verwenden'. Für VDS-Client verwendetes Aktualisierungs-Code-Signierungszertifikat
+
+
+
+
 == VDS v6-Veröffentlichung: Donnerstag, Oktober 6, 2022
 
 _Komponenten:_ Virtual Desktop Service v6 _Wann:_ 10pm - 11pm Eastern _Auswirkungen:_ der Zugriff auf Desktops und Applikations-Services für Endbenutzer bleibt ununterbrochen. Der Zugriff auf den Virtual Desktop Service bleibt verfügbar.

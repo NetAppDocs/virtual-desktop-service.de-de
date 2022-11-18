@@ -4792,4 +4792,6 @@
   <block id="40b4efb37895d327a4e6134b05f98845" category="sidebar">Ressourcen-Management und Kostensenkung</block>
   <block id="b0e9038d535164893f7c6af3eac68b19" category="sidebar">Automatisieren Sie das Applikationsmanagement für AVD und RDS</block>
   <block id="160a4c43add4282278f715aef7950d51" category="sidebar">Upgrade von v1 AVD-Hostpool auf v2</block>
+  <block id="9aed81e863bfdb7e494068bdc2480d25" category="doc">VDS v6 Veröffentlichung: Donnerstag 17. November 2020 um 23 Uhr Ost</block>
+  <block id="f65ca5ce599727cf81a452e9c6f12a61" category="list-text">Korrigieren Sie bei der Erstellung von Client-Verbindungsdateien ein Syntaxproblem mit dem Parameter 'Umleitungsservername verwenden'. Für VDS-Client verwendetes Aktualisierungs-Code-Signierungszertifikat</block>
 </blocks>
