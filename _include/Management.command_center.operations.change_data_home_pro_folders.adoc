@@ -4,7 +4,7 @@
 
 
 
-== Übersicht Zu Daten-/Pro/Home-Ordnern Ändern
+== *Daten/Pro/Home Ordner Ändern* Übersicht
 
 image::Management.command_center.operations.change_data_home_pro_folders-678cd.png[Management.command center.operations.change Data Home Pro Folder 678cd]
 

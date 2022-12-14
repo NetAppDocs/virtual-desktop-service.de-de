@@ -39,7 +39,7 @@ Aktivieren der Genehmigungen auf Client-Ebene
 
 Falls die Bereitstellung eines Unternehmens auch die Möglichkeit zur Genehmigung des Zugriffs erfordert, können Software Master Partner die Genehmigungen auf Client-Ebene aktivieren, indem sie zum Bereitstellungsmodul navigieren und zum Abschnitt „Bereitstellungsdetails“ scrollen.
 
-Aktivieren Sie dann das Kontrollkästchen Clientgenehmigung für PAM-Zugriffsanforderungen benötigen, und klicken Sie auf Aktualisieren. Dadurch werden Anforderungen gesendet, die der Software-Master-Partner zur Implementierung an die VDS-Administratoren sendet. Hinweis: Hierzu müssen Benutzer über die folgenden Schritte auch als VDS-Administratoren eingerichtet werden. < to Admin Access for Users
+Aktivieren Sie dann das Kontrollkästchen Clientgenehmigung für PAM-Zugriffsanforderungen benötigen, und klicken Sie auf Aktualisieren. Dadurch werden Anforderungen gesendet, die der Software-Master-Partner zur Implementierung an die VDS-Administratoren sendet. Hinweis: Hierzu müssen Benutzer über die folgenden Schritte auch als VDS-Administratoren eingerichtet werden. <<<Link to Admin Access for Users>>
 
 image:PAM3.png[""]
 

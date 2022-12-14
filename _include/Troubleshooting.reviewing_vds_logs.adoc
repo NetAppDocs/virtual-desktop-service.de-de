@@ -87,6 +87,7 @@ Die verbleibenden Protokolle verfolgen die Installation der oben beschriebenen W
 
 === Zugriff auf Protokolle und Überprüfung von Informationen
 
+.Bei angeforderten Aktionen wie Klonen eines Servers, Hinzufügen eines Benutzers oder Wiederherstellen eines Backups erhalten Sie Feedback in der VDS-UI.
 +image:troubleshooting1.png[""]
 
 . VDS speichert ausführliche Protokolle und stellt einige von ihnen im Abschnitt „Aufgabenverlauf“ der Seite „Bereitstellungen“ im VDS bereit. Klicken Sie auf Ansicht, um Details zu den aufgeführten Aufgaben anzuzeigen.

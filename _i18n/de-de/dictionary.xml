@@ -1581,7 +1581,6 @@
   <block id="471b20c503021fed160a4ac025cfc843" category="section-title">Workspace Management Suite</block>
   <block id="8e2c034d879afb4a097ac6003f1aa13d" category="list-text">Fügen Sie eine Suchfunktion in der Anwendungstabelle hinzu</block>
   <block id="d5b6cbddffdb05cc428aee66e4a62837" category="list-text">Verbesserte Sortierung in der Anwendungstabelle</block>
-  <block id="88fb03f4640e0e5f7a955cc7194f2c7c" category="section-title">CWMS 5.1 Nebenversion: Donnerstag, 6. September 2018</block>
   <block id="44aa4b3bf375161b20f2125cff7aed98" category="paragraph">Komponenten: 5.1 Cloud Workspace Management Suite Wann: Donnerstag, 6. September 2018 @ 10pm – 11pm Eastern Impact: Der Zugriff auf Cloud Workspace Desktops und Anwendungsdienste für Endbenutzer bleibt ununterbrochen. Der Zugriff auf die Cloud Workspace Management Suite bleibt verfügbar.</block>
   <block id="0590cc2ef82bb595d665965193600949" category="section-title">5.1 Cloud Workspace Management Suite</block>
   <block id="a066b084ea4a674b056fc307dca326d5" category="list-text">Im Katalog „Benutzerdefinierte App“ wurde die Möglichkeit hinzugefügt, nach Unterpartnern zu suchen</block>
@@ -1624,11 +1623,9 @@
   <block id="c06d9236c95f7f77a09dbf5860e217c0" category="list-text">Fehler beim Erfassen des Usernamens für den Benutzeranmeldungsbericht behoben</block>
   <block id="c267505614215a90d970c3e4ce15c2f1" category="list-text">Es wurde ein Fehler behoben, bei dem die alten Überwachungsdaten nicht gelöscht wurden, indem der Anruf asynchron ausgeführt wurde, sodass keine Zeit für das Löschen erforderlich war</block>
   <block id="26b643f3a505bdae83051204fc3877ad" category="list-text">Installieren Sie automatisch Platzhalterzertifikate auf allen Infrastrukturservern</block>
-  <block id="204ec076facf92c6fff2e5856abcf4ff" category="section-title">CWMS 5.1 Nebenversion: Donnerstag, 12. Juli 2018</block>
   <block id="964e94cde697a37a1e7b753a424ad480" category="paragraph">Komponenten: 5.1 CWMS Tools and Services Wann: Donnerstag, 12. Juli 2018 @ 10-10:30 Eastern Impact: Der Zugriff auf Cloud Workspace Desktops und Anwendungsdienste für Endbenutzer bleibt ununterbrochen.</block>
   <block id="bf3a3f6dadadce021c36ea3afbbc0abb" category="section-title">5.1 CWMS Web-App</block>
   <block id="d5447554d25cf48afcf346638c6fcfd9" category="list-text">Beheben Sie ein Problem bezüglich der Persistenz der Einstellungen des globalen App-Katalogs</block>
-  <block id="6b437d216a207eadb3c941c67e3a37e1" category="section-title">CWMS 5.1 Nebenversion: Donnerstag, 17. Mai 2018</block>
   <block id="2e887e3e2e749a35e8e1e921e88d788b" category="paragraph">Komponenten: 5.1 CWMS Tools and Services Wann: Donnerstag, 17. Mai 2018 @ 10-11 Uhr EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Anwendungsdienste für Endbenutzer bleibt ununterbrochen.</block>
   <block id="5e4f820fe7d44e2864a878df8015399f" category="list-text">Beheben Sie ein Problem bezüglich der Zusammenfassungen von Benutzern für App-Services-Gruppen</block>
   <block id="cb51c5417edb67609abe74277118ae68" category="list-text">Beheben Sie ein Problem mit dem Data Center-Assistenten, der den Benutzernamen und das Kennwort vorgibt</block>
@@ -1640,7 +1637,6 @@
   <block id="5dcf02de3236b048cf229873b72cf33f" category="list-text">Beheben Sie den JavaScript-Fehler, um das Hinzufügen neuer Benutzer/Gruppen für einen Kunden außerhalb des Cloud Workspace zu verhindern</block>
   <block id="d0937187b6cab5a4c4fd3db5e9c30c00" category="list-text">Zulassen, dass Master-Partner Active Directory-Benutzeradministratoren für Unterpartner erstellen</block>
   <block id="f9a017e2e32ef03b140eb1d253c674c3" category="list-text">Fehler beheben, der beim Zurücksetzen des Passworts eines Hauptadministratoradministratores eines Teilpartners zu einem Fehler führt</block>
-  <block id="a98c80d0b22ee332411838555eeddd13" category="section-title">CWS 5.1 Nebenversion: Mi., Feb 21, 2018</block>
   <block id="4ed5a807b4d823f6a502f9cdea00981c" category="paragraph">Komponenten: 5.1 CW Werkzeuge und Dienstleistungen Wann: Mi., Feb 21, 2018 @ 10-11 Uhr EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Applikations-Services für Endbenutzer bleibt ununterbrochen.</block>
   <block id="4a3657ade99b1a0cc74773b73c0b5ed8" category="section-title">5.1 CW Web-App</block>
   <block id="dfea7ca36631ab3ec55bb8a207fbf3cc" category="list-text">Problem beim Verwalten von Benutzerordnern über die Administratorrolle beheben</block>
@@ -1649,31 +1645,26 @@
   <block id="07bbf7b5ac7805798eb3341326e7b916" category="list-text">GPO-Updates von W2016 verarbeiten, um zu verhindern, dass Popup-Meldungen für Benutzer, die bei ihren RDS-Sitzungen auf W2016-VMs angemeldet sind, kurz sichtbar werden</block>
   <block id="505f50471a823c982859d2e7bd1cca70" category="section-title">5.1 REST API</block>
   <block id="0b91665692dc69ebe89d795b4fcf4409" category="list-text">Fügen Sie neue Attribute hinzu (ändern Sie den SPLA-Bericht von CWS, um neue Attribute zu nutzen), um die Verwendung von auf Lizenzen basierenden Anwendungen (insbesondere SQL) zu optimieren.</block>
-  <block id="be0b0c4ab78ab1351ee8bb5b8fc16902" category="section-title">CWS 5.1 Nebenversion: Mi., Feb 7, 2018</block>
   <block id="cdbdcac3fea9b7902c62e274061cce98" category="paragraph">Komponenten: 5.1 CW Werkzeuge und Dienstleistungen Wann: Mi., Feb 7, 2018 @ 10-11 Uhr EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Applikations-Services für Endbenutzer bleibt ununterbrochen.</block>
   <block id="6adf97f83acf6453d4a6a4b1070f3754" category="list-text">Keine</block>
   <block id="0099d9dc99c34d751a5385610ed939cf" category="list-text">Problem beheben Deaktivieren von App locker unter Windows 2016 (aufgrund neu entdeckter interner Probleme mit Windows 2016)</block>
   <block id="2e1c4ec0f89e89f8f4234b7934ad9470" category="list-text">Beheben Sie den Fehler, wenn die IP-Adresse aufgrund eines Fehlers falsch neu zugewiesen wird</block>
   <block id="d7f799ed602d8b9ffe00e2826ce6c429" category="list-text">Beheben Sie das Speichern des Speichertyps, wenn Sie einen Server in einer Provisioning Collection ändern</block>
   <block id="84fc0b7efafe5233a4835cdf812c46b2" category="list-text">Beim Erstellen einer Provisioning Collection mit zwei Terminal Server (TS)-Servern sollte nur ein TS-Server zur Validierung der Sammlung erstellt werden</block>
-  <block id="10a36fc2434e07152630f31228dd138b" category="section-title">CWS 5.1 Nebenversion: Mi., Jan. 31, 2018</block>
   <block id="67e7f918137fdb9292ecd62a1730280d" category="paragraph">Komponenten: 5.1 CW Werkzeuge und Dienstleistungen Wann: Mi., Jan. 31, 2018 @ 10-11 Uhr EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Applikations-Services für Endbenutzer bleibt ununterbrochen.</block>
   <block id="73e9c4d54c9da52e1cdcbaca70384272" category="list-text">Erhöhen Sie die Anzahl der Zeilen pro Tabelle auf CWS-Modulen der obersten Ebene von 10 auf 20</block>
   <block id="bc2f591efc9a1c1a882fb5d5fac75df8" category="list-text">Beheben Sie nur Anwenderunterstützung Admin kann sich nicht in einen Client eintauchen</block>
   <block id="37a53c843d7e82ee462c254dc447b89f" category="list-text">Fehler beheben, wenn die Vorlage nicht über .Net Framework v4.5.2 hat, schlägt die Server-Erstellung falsch fehl</block>
   <block id="0317e5b409a36c238af2fe6c1ed76320" category="list-text">Behebung des Problems beim Klonen von VMs in Hyper-V</block>
-  <block id="5a067d3c5a4738de09a8252bb4496de9" category="section-title">CWS 5.1 Nebenversion: Mi., Jan. 10, 2018</block>
   <block id="399e2544068ebd1a11b4036d983d3b48" category="paragraph">Komponenten: 5.1 CW Werkzeuge und Dienstleistungen Wann: Mi., Jan. 10, 2018 @ 10-11 Uhr EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Applikations-Services für Endbenutzer bleibt ununterbrochen.</block>
   <block id="8f81e5ff571fcdc9f15c1f271842173e" category="paragraph">CWS Version 5.1 Tools und Services (einschließlich CW Automation Service, VM Automation Service und CWAgent Service) werden aktualisiert, um alle Autorisierungsfehler zu beseitigen, die für bestimmte RemoteApp-Anwendungsszenarien auftreten. Insbesondere werden die Dienste geändert in:</block>
   <block id="cc74509e0d3a5cfade951d2ca357717b" category="list-text">Ändern Sie die automatische Bereitstellung des SSL-Wildcard-Zertifikats für Sitzungsserver, damit es nur auf RemotedesktopverbindungBroker-Servern und Power User-Servern bereitgestellt wird. Server, die keine Broker-Sitzungen sind, verwenden das von Remote Desktop Services (RDS) generierte Standardzertifikat.</block>
   <block id="78952a2c655a8b6e24b0ee6645c60024" category="list-text">Ändern Sie die externe DNS-Forward-Lookup-Zone in Active Directory am SDDC, um nur einen DNS-Datensatz für freigegebene Client-Sitzungsserver zu erstellen. Dieser Datensatz wird auf den RDS Broker Server (VM) des Clients verweisen, der wiederum den Lastenausgleich zwischen freigegebenen Sitzungsservern übernimmt. Power-User-Server werden weiterhin über separate DNS-Einträge verfügen.</block>
   <block id="a32d725f70862d29cea3da7ec2badefd" category="paragraph">Hinweis: Dieses Problem wurde nur von Endclient-Konfigurationen betroffen, bei denen mehrere freigegebene Sitzungsserver verwendet werden. Mithilfe dieser Konfiguration werden jedoch neue und geänderte Client-Konfigurationen implementiert.</block>
-  <block id="e2fb0db079114d4e2c93f955bfbbaa12" category="section-title">CWS 5.1 Nebenversion: Mi., Jan. 3, 2018</block>
   <block id="2ba3ecff123bf6e7f9ba21102dff5e49" category="paragraph">Komponenten: 5.1 CW Web App Wann: Mi., Jan. 3, 2018 @ 10 - 10:30 EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Applikationsservices für Endanwender bleibt ununterbrochen.</block>
   <block id="52dfccd06edd16f23e7c988c98782a46" category="list-text">Sortieren nach Unternehmenscode im Modul „Workspaces“ von CWS beheben</block>
   <block id="f11cdd03de24921b5fa24724691790a4" category="list-text">Cloud Workspace-Benutzer beheben -&gt; Kennwortrücksetzung erzwingen, die keine Änderungen widerspiegelt (wenn Sie zu einem anderen Modul navigieren und dann zum Benutzer zurückkehren)</block>
   <block id="747163bd075f83e98ca5e50c843d4b95" category="list-text">SDDC Self-Deploy Wizard: Beim Prüfen der ThinPrint Installation (Abschnitt Lizenzierung) wird eine Bestätigungsmeldung modal hinzugefügt</block>
-  <block id="972900a55a244d4524142234d780fe36" category="section-title">CWS 5.1 Nebenversion: Tues., Dez. 5, 2017</block>
   <block id="b731c544b377a86f2553f9fbd33fce4c" category="paragraph">Komponenten: 5.1 CW Web App Wann: Dienstag, Dezember 5, 2017 @ 10 - 10:30 EST Auswirkungen: Der Zugriff auf Cloud Workspace Desktops und Applikationsservices für Endanwender bleibt ununterbrochen.</block>
   <block id="965879d9b52e7380215ae7630b0a3f13" category="list-text">Beheben Sie den CWS Admin MFA-Fehler im Internet Explorer (IE) 11</block>
   <block id="b434c5bddf61114d0d1ea2bcd5664320" category="list-text">Beheben Sie CWS-Gruppen -&gt; lokaler Laufwerkzugriff kehrt zurück ‘nicht gefunden’</block>
@@ -1684,10 +1675,8 @@
   <block id="934d93cb65e54e68326821d5acdf34f1" category="list-text">Beheben Sie verschiedene Fehler beim Aktualisieren von AppService-Details und/oder Verwalten von Anwendungslizenzen für einen AppService</block>
   <block id="8b14aeb9d589f8fa4bfebbb8ed6bda3e" category="list-text">CWS Workspace Module &gt; Assistent zum Hinzufügen von Workspace -&gt; AppServices korrigieren falsches Format, das an die globale Kontrollebene gesendet wird</block>
   <block id="083366a03e720cc40cf0907e7e4eb550" category="list-text">CWS Workspace Module &gt; Assistent zum Hinzufügen von Workspace -&gt; Neuer Client -&gt; Schritt 3, Fix Updategruppe um JavaScript-Fehler zu beheben, um sicherzustellen, dass das Update verarbeitet wird</block>
-  <block id="51358b9a957717a9c9d1ef3efb3649a5" category="section-title">CWS 5.1 Nebenversion: Samstag, Nov. 11, 2017</block>
   <block id="305239db946d5de2135544d2f2f25e3d" category="paragraph">Komponenten: 5.1 CW Web App Wann: Samstag, Nov. 11, 2017 @ 10 bis 23 Uhr EST Impact: Der Zugriff auf Cloud Workspace Desktops und Applikationsservices für Endbenutzer bleibt ununterbrochen.</block>
   <block id="6720cfb407e9c34648c74e49c756f75c" category="list-text">Ab 10.00 Uhr EST am Nov. 11 müssen alle CWS 5.1-Partner verwenden<block ref="9f518c47ed92326e3ddb54e745f7db32" category="inline-link-rx"></block>. Diese URL wird zur Unterstützung von CWS 5.1 (sowie CWS 5.0) nachgerüstet. Partner sind dafür verantwortlich, dass ihre CWS-Administratoren und Endbenutzer mit CWS-Administratorzugriff diese Änderung kennen.</block>
-  <block id="bbf0b0b40e10ef6f0cf6950edf259e79" category="section-title">CWS 5.1 Nebenversion: Mon., Okt 30, 2017</block>
   <block id="fbc288bb5d6a751d43bb0b109956ba6c" category="paragraph">Komponenten: 5.1 CW Web App und 5.1 CW Tools &amp; Services Wann: Mon., Okt 30, 2017 @ 10 bis 23 Uhr EST Impact: Der Zugriff auf Cloud Workspace Desktops und Applikationsservices für Endbenutzer bleibt ununterbrochen</block>
   <block id="4c01239b1f3b0265eaac9456d853b792" category="list-text">CWS Admin MFA: Drücken Sie Enter submit Code for MFA und beheben Sie Fehler, die das erneute Senden von MFA-Code verhindert</block>
   <block id="0196dfa77bed58e0674ee234bdb43f69" category="list-text">SDDC Self Deploy Wizard: Für GCP haben den Administrator für den lokalen VM-Namen, anstatt nur deaktiviert zu sein</block>
@@ -1705,7 +1694,6 @@
   <block id="7bc5f82573706bb01c5b7a07de2b70a9" category="list-text">Ressourcenzuordnungsbericht ändern: Fehler beheben, der falsch angezeigt wird</block>
   <block id="0bea6278f398d2d56ac24aaf47abd814" category="list-text">Data Center Resources Report: Wenn der Hypervisor nicht konfiguriert ist, verfügbaren Festplattenspeicher oder VM Quote zurückzugeben, verhindern Sie, dass der Bericht Fehler anzeigt</block>
   <block id="7b9d97d4147479270ccd31159345af75" category="list-text">Infrastructure Server Monatliche Neustarts: Adressszenario, wenn Infrastruktur-Server nicht monatlich wie geplant neu starten, weil sie nicht mit dem CWMGR1-Server kommunizieren konnten, da dieser Server beschäftigt ist, neu zu starten</block>
-  <block id="a418addae3eb596e83ee86b7e67e14f2" category="section-title">5.1 Nebenveröffentlichung: Tues., Okt 3, 2017</block>
   <block id="c87561fb44a6a06431c6407351bc3362" category="paragraph">Komponenten: 5.1 CW Web App und 5.1 CW Tools &amp; Services Wann: Dienstag, Oktober 3, 2017 @ 10 bis 23 Uhr EST Impact: Der Zugriff auf Cloud Workspace Desktops und Applikationsservices für Endbenutzer bleibt ununterbrochen</block>
   <block id="1af223dc691da908123cd095377b0e78" category="list-text">AppServices: Problem beim Blockieren von Add-Lizenzen für AppService-Anwendungen beheben</block>
   <block id="8e59fc2970cb4e83382a61c0c07ee38c" category="list-text">AppServices: Stellen Sie sicher, dass die Funktionalität „Neue Instanz hinzufügen“ für AppService-Anwendungen immer verfügbar ist</block>
@@ -2950,7 +2938,6 @@
   <block id="89794252c0f0bfdbf33ad5bf9bf58054" category="paragraph">Komponenten: 5.2 Cloud Workspace Management Suite Wann: Donnerstag, 6. September 2018 um 22:00 – 23:00 Uhr Eastern Impact: Der Zugriff auf Cloud Workspace Desktops und Anwendungsdienste für Endbenutzer bleibt ununterbrochen. Der Zugriff auf die Cloud Workspace Management Suite bleibt verfügbar.</block>
   <block id="502472086949b5f54ec4dc42d2e5e7b9" category="paragraph">Hinzufügen der Möglichkeit zur Suche nach Unterpartnern im Benutzerdefinierten App-Katalog ein Fehler wurde behoben, bei dem die Aktualisierung des Bildschirms im Modul „Rechenzentren“ zu einer Fehlermeldung führt, die die Beschränkung auf die maximale Größe des Ordnernamens beseitigt und das Durchsuchen von Ordnern vereinfacht. Dadurch wird sichergestellt, dass die Ressourcen auf VMs zählen Nicht unter den angegebenen minimalen CPU- und RAM-Werten festlegen Rephrase Power User Terminologie to VDI User Behoben ein Fehler, bei dem ein generischer Fehler angezeigt wurde, obwohl der Back-End-Prozess erfolgreich abgeschlossen wurde verbesserte Anzeige des Servernamens im Assistenten für die Erstellung des Rechenzentrums Kontoablauf beheben, das nicht das gespeicherte Ablaufdatum anzeigt In CWMS</block>
   <block id="49126dbf5cbe8de3f02d6026b0c563af" category="paragraph">Behoben einen Fehler mit MFA, wo Benutzer, die E-Mail manchmal nicht erhalten einen Code erlauben zusätzliche CPU und RAM eingegeben werden für Benutzer Anzahl Ressourcen Zuweisung Typ Fix einen Fehler, wo die Automation Engine nicht alle Maschinentypen auf Behoben ein Timing-Problem, das manchmal verursachen würde Klonen von Servern zum Löschen Automatisieren der zuvor manuellen Installation eines Wildcard-Zertifikats auf FTP-Server ein Prozess zum Löschen alter Zertifikate nach dem Aktualisieren von Platzhalterzertifikaten behebt ein Problem, bei dem bei der Verwendung von Data Enabled Application Services das Laufwerk X: Nicht immer einem Endbenutzer zugeordnet wird.</block>
-  <block id="962919cad759b917000926e5e15f6f59" category="section-title">CWMS 5.2 Allgemeine Verfügbarkeit: Donnerstag, 10. August 2018</block>
   <block id="97b939e907f875da6827e7123c34092b" category="paragraph">Komponenten: 5.2 Cloud Workspace Management Suite Wann: Donnerstag, 10. August 2018 um 22 Uhr Eastern Impact: Der Zugriff auf Cloud Workspace Desktops und Application Services für Endbenutzer bleibt ununterbrochen. Der Zugriff auf die Cloud Workspace Management Suite bleibt verfügbar.</block>
   <block id="94c7e0a554d3704adf80d78ea4cccad5" category="paragraph">Veröffentlichen Sie Komponenten der Webschnittstelle, um die Funktionen in der obigen Übersicht zu aktivieren</block>
   <block id="bf3df22d55d5cf102d681a4d44121e4a" category="paragraph">Lassen Sie Back-End-Tools frei, um die Funktionen in der obigen Übersicht zu aktivieren</block>
@@ -4794,4 +4781,21 @@
   <block id="160a4c43add4282278f715aef7950d51" category="sidebar">Upgrade von v1 AVD-Hostpool auf v2</block>
   <block id="9aed81e863bfdb7e494068bdc2480d25" category="doc">VDS v6 Veröffentlichung: Donnerstag 17. November 2020 um 23 Uhr Ost</block>
   <block id="f65ca5ce599727cf81a452e9c6f12a61" category="list-text">Korrigieren Sie bei der Erstellung von Client-Verbindungsdateien ein Syntaxproblem mit dem Parameter 'Umleitungsservername verwenden'. Für VDS-Client verwendetes Aktualisierungs-Code-Signierungszertifikat</block>
+  <block id="5c812ccbfe7520774b5efe5e5ee4d9f9" category="paragraph-title">Bei angeforderten Aktionen wie Klonen eines Servers, Hinzufügen eines Benutzers oder Wiederherstellen eines Backups erhalten Sie Feedback in der VDS-UI.</block>
+  <block id="8b645b3c1dd8e727ffc3b815094165d6" category="section-title">*Vorlage in Galerie kopieren* Übersicht</block>
+  <block id="b7d7d6510062e208f7c5c8e8390cf5f4" category="section-title">CWMS 5.1 Nebenveröffentlichung: Donnerstag, 18. Oktober 2018</block>
+  <block id="abefdae2bd80e9e655df2f55023dae03" category="section-title">CWMS 5.1 Nebenversion: Donnerstag, 6. September 2018</block>
+  <block id="8d1a2876e4de71a37d41d980505bad90" category="section-title">CWMS 5.1 Nebenversion: Donnerstag, 12. Juli 2018</block>
+  <block id="62353761803c64b84e797157fdfcbfe7" category="section-title">CWMS 5.1 Nebenversion: Donnerstag, 17. Mai 2018</block>
+  <block id="1c30a5b5747fe7aef6f19a36b3cf802e" category="section-title">CWS 5.1 Nebenversion: Mi., Feb 21, 2018</block>
+  <block id="9cf38b480f1548d9a3c32443ea6510ea" category="section-title">CWS 5.1 Nebenversion: Mi., Feb 7, 2018</block>
+  <block id="fe5abb01806ee15c3365ac50d3ee9ff2" category="section-title">CWS 5.1 Nebenversion: Mi., Jan. 31, 2018</block>
+  <block id="b99b83e687268c36f2e9e9aa6990d7f3" category="section-title">CWS 5.1 Nebenversion: Mi., Jan. 10, 2018</block>
+  <block id="8a8c56225f5c00ddee0c0518f37c4513" category="section-title">CWS 5.1 Nebenversion: Mi., Jan. 3, 2018</block>
+  <block id="bd4cdf8acb01c3f5ce9fed80787109f9" category="section-title">CWS 5.1 Nebenversion: Tues., Dez. 5, 2017</block>
+  <block id="518316abeaf7d6f28fe90e70a0c23674" category="section-title">CWS 5.1 Nebenversion: Samstag, Nov. 11, 2017</block>
+  <block id="9fb4da514eb687d7d3ebd7de2da24f05" category="section-title">CWS 5.1 Nebenversion: Mon., Okt 30, 2017</block>
+  <block id="84c135aaa4bab2e311e8d45828526d5b" category="section-title">5.1 Nebenveröffentlichung: Tues., Okt 3, 2017</block>
+  <block id="0399dd5464a7bc6838cc641a061ab1a6" category="section-title">*Daten/Pro/Home Ordner Ändern* Übersicht</block>
+  <block id="7e1105852992a2fd1e8736d426fdfe84" category="section-title">CWMS 5.2 Allgemeine Verfügbarkeit: Donnerstag, 10. August 2018</block>
 </blocks>

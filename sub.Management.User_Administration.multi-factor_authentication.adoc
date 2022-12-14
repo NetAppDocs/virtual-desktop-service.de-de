@@ -30,10 +30,10 @@ NetApp Virtual Desktop Service (VDS) umfasst ohne Aufpreis einen SMS/E-Mail-basi
 Dieses Handbuch erläutert die Einrichtung von MFA sowie die Darstellung der Benutzerfreundlichkeit
 
 .In diesem Leitfaden werden die folgenden Themen behandelt:
-.  MFA for Individual Users,MFA für einzelne Benutzer aktivieren
-.  MFA for All Users,MFA für alle Benutzer erforderlich
-.  MFA for Individual Administrators ,MFA für einzelne Administratoren aktivieren
-.  User Initial Setup,Ersteinrichtung Des Endbenutzers
+. <<MFA für einzelne Benutzer aktivieren,MFA für einzelne Benutzer aktivieren>>
+. <<MFA für alle Benutzer erforderlich,MFA für alle Benutzer erforderlich>>
+. <<Enabling MFA for Individual Administrators ,MFA für einzelne Administratoren aktivieren>>
+. <<Ersteinrichtung Des Endbenutzers,Ersteinrichtung Des Endbenutzers>>
 
 
 

@@ -4,7 +4,7 @@
 
 
 
-== Vorlage in Galerierieübersicht kopieren
+== *Vorlage in Galerie kopieren* Übersicht
 
 image::Management.command_center.operations.copy_template_to_gallery-67ea4.png[Management.command Center.Operations.Vorlage in Galerie 67ea4 kopieren]
 
