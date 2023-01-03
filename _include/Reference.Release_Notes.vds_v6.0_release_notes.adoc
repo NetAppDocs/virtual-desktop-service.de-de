@@ -1,18 +1,5 @@
-= VDS v6 Veröffentlichung: Donnerstag 17. November 2020 um 23 Uhr Ost
+= VDS v6-Veröffentlichung: Donnerstag, Oktober 6, 2022
 :allow-uri-read: 
-
-
-
-
-== VDS v6 Veröffentlichung: Donnerstag 17. November 2020 um 23 Uhr Ost
-
-_Auswirkung:_ Benutzer werden das VDS Client für Windows Update beim nächsten Start sehen
-
-
-
-=== Verbesserungen
-
-* Korrigieren Sie bei der Erstellung von Client-Verbindungsdateien ein Syntaxproblem mit dem Parameter 'Umleitungsservername verwenden'. Für VDS-Client verwendetes Aktualisierungs-Code-Signierungszertifikat
 
 
 
